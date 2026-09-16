@@ -1,3 +1,14 @@
+# NOTE (tensorflow pin): keep this at 2.14.1, do NOT go back to 2.13.0.
+# tensorflow 2.13.0 declares `typing-extensions<4.6.0`, while fastapi==0.104.1 (pinned below)
+# requires `typing-extensions>=4.8.0`. Those two constraints cannot both be satisfied, so
+# `pip install -r backend/requirements.txt` raised ResolutionImpossible on every Python
+# runtime: this file was uninstallable, so the backend had never actually run anywhere.
+# tensorflow 2.14.1 declares only `typing-extensions>=3.6.6` (no upper bound) plus
+# `numpy<2.0.0,>=1.23.5`, so it resolves against every other pin in this file unchanged.
+# Verified: an environment built from exactly this list imports fastapi 0.104.1 / tf 2.14.1 /
+# numpy 1.24.3 / pydantic 2.13.5 / cv2 4.8.1 / Pillow 10.0.0 and loads backend/main.py.
+numpy
+
 numpy
 python-dotenv
 fastapi
@@ -10,7 +21,7 @@ Pillow
 fastapi==0.104.1
 uvicorn==0.24.0
 python-multipart==0.0.6
-tensorflow==2.13.0
+tensorflow==2.14.1
 numpy==1.24.3
 Pillow==10.0.0
 requests==2.31.0
