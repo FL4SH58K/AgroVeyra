@@ -1,0 +1,211 @@
+======================================================================================================================
+AgroVeyra preprocessing / TTA / confidence benchmark
+======================================================================================================================
+model          : C:\ROHIT RAJESH\AgriVeyra\ml\export_build_i320\agroveyra_model_float32.tflite
+model size     : 6,452,252 bytes (sha256 7e6762b9e1ce2494)
+model input    : shape=[1, 320, 320, 3] dtype=float32 scale=0 zp=0  layout=NHWC
+model output   : shape=[1, 60] dtype=float32 scale=0 zp=0
+resize size    : 320x320 (read from the graph)
+real-world set : C:\ROHIT RAJESH\AgriVeyra\ml\real_world_test (16 images)
+val subset     : C:\ROHIT RAJESH\AgriVeyra\ml\data\merged\val (480 images, 8/class)
+
+real-world geometry (why preprocessing matters):
+  original sizes      : [(400, 266), (595, 515), (404, 900), (418, 734), (539, 300), (1122, 1402), (300, 400), (365, 547), (1244, 897), (1479, 1109), (272, 185), (387, 516), (596, 335), (400, 533), (452, 678), (335, 597)]
+  portrait orientation: 9/16
+  aspect ratio        : mean 1.527, max 2.228
+
+----------------------------------------------------------------------------------------------------------------------
+REAL SET - 16 images
+----------------------------------------------------------------------------------------------------------------------
+transform              | tta   |  top-1 |   correct | mean conf |  mean p(gt)
+----------------------------------------------------------------------------------------------------------------------
+app                    | none  |  37.5% |    6/16   |    77.44% |      37.95%
+app                    | hflip |  37.5% |    6/16   |    77.55% |      38.28%
+short-side-crop        | none  |  43.8% |    7/16   |    75.72% |      37.48%
+short-side-crop        | hflip |  43.8% |    7/16   |    76.11% |      37.48%
+short-side-1.14-crop   | none  |  37.5% |    6/16   |    76.20% |      36.24%
+short-side-1.14-crop   | hflip |  37.5% |    6/16   |    75.65% |      36.59%
+letterbox-114          | none  |  37.5% |    6/16   |    70.89% |      37.02%
+letterbox-114          | hflip |  37.5% |    6/16   |    69.93% |      36.86%
+letterbox-0            | none  |  43.8% |    7/16   |    68.87% |      40.36%
+letterbox-0            | hflip |  43.8% |    7/16   |    68.52% |      41.20%
+
+----------------------------------------------------------------------------------------------------------------------
+VAL SET - 480 images
+----------------------------------------------------------------------------------------------------------------------
+transform              | tta   |  top-1 |   correct | mean conf |  mean p(gt)
+----------------------------------------------------------------------------------------------------------------------
+app                    | none  |  96.5% |  463/480  |    96.75% |      94.65%
+app                    | hflip |  96.7% |  464/480  |    96.75% |      94.73%
+short-side-crop        | none  |  95.8% |  460/480  |    96.46% |      94.22%
+short-side-crop        | hflip |  95.8% |  460/480  |    96.55% |      94.32%
+short-side-1.14-crop   | none  |  94.4% |  453/480  |    95.69% |      92.77%
+short-side-1.14-crop   | hflip |  94.8% |  455/480  |    95.76% |      92.89%
+letterbox-114          | none  |  95.8% |  460/480  |    95.18% |      92.92%
+letterbox-114          | hflip |  95.6% |  459/480  |    95.24% |      93.01%
+letterbox-0            | none  |  96.9% |  465/480  |    96.21% |      94.35%
+letterbox-0            | hflip |  96.9% |  465/480  |    96.26% |      94.43%
+
+======================================================================================================================
+VERDICT (best transform without TTA, ranked on the val subset)
+======================================================================================================================
+  letterbox-0            val  96.9% (465/480) | real  43.8% (7/16)
+  app                    val  96.5% (463/480) | real  37.5% (6/16)
+  short-side-crop        val  95.8% (460/480) | real  43.8% (7/16)
+  letterbox-114          val  95.8% (460/480) | real  37.5% (6/16)
+  short-side-1.14-crop   val  94.4% (453/480) | real  37.5% (6/16)
+  short-side-crop        val  43.8% (  7/16 ) | real  43.8% (7/16)
+  letterbox-0            val  43.8% (  7/16 ) | real  43.8% (7/16)
+  app                    val  37.5% (  6/16 ) | real  37.5% (6/16)
+  short-side-1.14-crop   val  37.5% (  6/16 ) | real  37.5% (6/16)
+  letterbox-114          val  37.5% (  6/16 ) | real  37.5% (6/16)
+
+  best on val : letterbox-0 -> 96.88% (+0.42 pp vs app parity)
+  best on real: 6/16 app parity -> 7/16 with letterbox-0
+
+======================================================================================================================
+TTA EFFECT (hflip averaging, same transform)
+======================================================================================================================
+  transform              |  val none |  val hflip |  real none |  real hflip
+  app                    |     96.5% |      96.7% |      37.5% |       37.5%
+  short-side-crop        |     95.8% |      95.8% |      43.8% |       43.8%
+  short-side-1.14-crop   |     94.4% |      94.8% |      37.5% |       37.5%
+  letterbox-114          |     95.8% |      95.6% |      37.5% |       37.5%
+  letterbox-0            |     96.9% |      96.9% |      43.8% |       43.8%
+
+======================================================================================================================
+CONFIDENCE GATE (should the app refuse to answer below a threshold?)
+======================================================================================================================
+  val / app:
+    threshold | answered | coverage | accuracy
+         0.30 |      479 |    99.8% |   96.45%
+         0.40 |      478 |    99.6% |   96.44%
+         0.50 |      472 |    98.3% |   97.03%
+         0.60 |      463 |    96.5% |   98.06%
+         0.70 |      457 |    95.2% |   98.25%
+         0.80 |      451 |    94.0% |   98.45%
+         0.90 |      439 |    91.5% |   98.41%
+         0.95 |      429 |    89.4% |   98.37%
+         0.99 |      394 |    82.1% |   98.22%
+  val / short-side-crop:
+    threshold | answered | coverage | accuracy
+         0.30 |      479 |    99.8% |   95.82%
+         0.40 |      476 |    99.2% |   96.22%
+         0.50 |      472 |    98.3% |   96.82%
+         0.60 |      460 |    95.8% |   98.26%
+         0.70 |      454 |    94.6% |   98.46%
+         0.80 |      450 |    93.8% |   98.44%
+         0.90 |      437 |    91.0% |   98.40%
+         0.95 |      424 |    88.3% |   98.35%
+         0.99 |      395 |    82.3% |   98.23%
+  val / short-side-1.14-crop:
+    threshold | answered | coverage | accuracy
+         0.30 |      479 |    99.8% |   94.57%
+         0.40 |      474 |    98.8% |   95.36%
+         0.50 |      471 |    98.1% |   95.54%
+         0.60 |      459 |    95.6% |   97.17%
+         0.70 |      449 |    93.5% |   97.77%
+         0.80 |      439 |    91.5% |   98.18%
+         0.90 |      427 |    89.0% |   98.36%
+         0.95 |      414 |    86.2% |   98.31%
+         0.99 |      382 |    79.6% |   98.17%
+  val / letterbox-114:
+    threshold | answered | coverage | accuracy
+         0.30 |      477 |    99.4% |   96.02%
+         0.40 |      471 |    98.1% |   96.60%
+         0.50 |      462 |    96.2% |   97.19%
+         0.60 |      455 |    94.8% |   98.02%
+         0.70 |      447 |    93.1% |   98.43%
+         0.80 |      439 |    91.5% |   98.41%
+         0.90 |      420 |    87.5% |   98.33%
+         0.95 |      411 |    85.6% |   98.30%
+         0.99 |      380 |    79.2% |   98.16%
+  val / letterbox-0:
+    threshold | answered | coverage | accuracy
+         0.30 |      478 |    99.6% |   97.07%
+         0.40 |      474 |    98.8% |   97.26%
+         0.50 |      469 |    97.7% |   97.87%
+         0.60 |      462 |    96.2% |   98.27%
+         0.70 |      455 |    94.8% |   98.46%
+         0.80 |      447 |    93.1% |   98.43%
+         0.90 |      434 |    90.4% |   98.39%
+         0.95 |      422 |    87.9% |   98.34%
+         0.99 |      392 |    81.7% |   98.21%
+
+  real / app:
+    threshold | answered | coverage | accuracy
+         0.30 |       15 |    93.8% |   40.00%
+         0.40 |       15 |    93.8% |   40.00%
+         0.50 |       11 |    68.8% |   54.55%
+         0.60 |       11 |    68.8% |   54.55%
+         0.70 |       10 |    62.5% |   60.00%
+         0.80 |       10 |    62.5% |   60.00%
+         0.90 |        8 |    50.0% |   62.50%
+         0.95 |        5 |    31.2% |  100.00%
+         0.99 |        5 |    31.2% |  100.00%
+  real / short-side-crop:
+    threshold | answered | coverage | accuracy
+         0.30 |       16 |   100.0% |   43.75%
+         0.40 |       14 |    87.5% |   50.00%
+         0.50 |       12 |    75.0% |   41.67%
+         0.60 |       10 |    62.5% |   50.00%
+         0.70 |       10 |    62.5% |   50.00%
+         0.80 |        8 |    50.0% |   62.50%
+         0.90 |        8 |    50.0% |   62.50%
+         0.95 |        7 |    43.8% |   71.43%
+         0.99 |        5 |    31.2% |  100.00%
+  real / short-side-1.14-crop:
+    threshold | answered | coverage | accuracy
+         0.30 |       16 |   100.0% |   37.50%
+         0.40 |       14 |    87.5% |   42.86%
+         0.50 |       12 |    75.0% |   50.00%
+         0.60 |       12 |    75.0% |   50.00%
+         0.70 |       10 |    62.5% |   50.00%
+         0.80 |        9 |    56.2% |   55.56%
+         0.90 |        6 |    37.5% |   83.33%
+         0.95 |        6 |    37.5% |   83.33%
+         0.99 |        6 |    37.5% |   83.33%
+  real / letterbox-114:
+    threshold | answered | coverage | accuracy
+         0.30 |       16 |   100.0% |   37.50%
+         0.40 |       15 |    93.8% |   40.00%
+         0.50 |       11 |    68.8% |   45.45%
+         0.60 |        8 |    50.0% |   62.50%
+         0.70 |        7 |    43.8% |   71.43%
+         0.80 |        7 |    43.8% |   71.43%
+         0.90 |        7 |    43.8% |   71.43%
+         0.95 |        6 |    37.5% |   83.33%
+         0.99 |        5 |    31.2% |  100.00%
+  real / letterbox-0:
+    threshold | answered | coverage | accuracy
+         0.30 |       14 |    87.5% |   50.00%
+         0.40 |       12 |    75.0% |   58.33%
+         0.50 |       10 |    62.5% |   70.00%
+         0.60 |        9 |    56.2% |   66.67%
+         0.70 |        8 |    50.0% |   62.50%
+         0.80 |        8 |    50.0% |   62.50%
+         0.90 |        7 |    43.8% |   71.43%
+         0.95 |        6 |    37.5% |   83.33%
+         0.99 |        4 |    25.0% |  100.00%
+
+======================================================================================================================
+REAL-WORLD PHOTO DETAIL (app parity, no TTA)
+======================================================================================================================
+  image                                | expected                         | predicted                        |   conf |  p(gt)
+  cotton_bacterial_blight_1.jpg        | Cotton___bacterial_blight        | Cotton___bacterial_blight        | 100.0% | 100.0%
+  cotton_bacterial_blight_2.jpg        | Cotton___bacterial_blight        | Cotton___bacterial_blight        | 100.0% | 100.0%
+  healthy_rice_1.jpg                   | Rice___healthy                   | Rice___healthy                   | 100.0% | 100.0%
+  healthy_rice_2.jpg                   | Rice___healthy                   | Rice___healthy                   | 100.0% | 100.0%
+x healthy_wheat_1.jpg                  | Wheat___healthy                  | Rice___healthy                   |  88.0% |   9.4%
+x healthy_wheat_2.jpg                  | Wheat___healthy                  | Wheat___aphid                    |  28.6% |   3.1%
+x rice_bacterial_leaf_blight_1.jpg     | Rice___Bacterial_leaf_blight     | Rice___Sheath_blight             |  48.4% |   1.4%
+x rice_bacterial_leaf_blight_2.jpg     | Rice___Bacterial_leaf_blight     | Wheat___leaf_blight              |  92.5% |   0.2%
+x rice_brown_spot_1.jpg                | Rice___Brown_spot                | Wheat___leaf_blight              |  94.7% |   0.0%
+x rice_brown_spot_2.jpg                | Rice___Brown_spot                | Wheat___smut                     |  66.7% |   0.0%
+x tomato_early_blight_1.jpg            | Tomato___Early_blight            | Wheat___smut                     |  49.7% |   3.8%
+x tomato_early_blight_2.jpg            | Tomato___Early_blight            | Cotton___bacterial_blight        |  50.0% |   0.8%
+  wheat_powdery_mildew_1.jpg           | Wheat___mildew                   | Wheat___mildew                   |  84.3% |  84.3%
+  wheat_powdery_mildew_2.jpg           | Wheat___mildew                   | Wheat___mildew                   |  99.9% |  99.9%
+x wheat_yellow_rust_1.jpg              | Wheat___yellow_rust              | Wheat___black_rust               |  44.1% |   0.0%
+x wheat_yellow_rust_2.jpg              | Wheat___yellow_rust              | Wheat___brown_rust               |  92.5% |   4.3%
+

@@ -1,0 +1,2 @@
+Train: 80053 images checked, 0 corrupt
+Val: 17816 images checked, 0 corrupt

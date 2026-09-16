@@ -1,0 +1,67 @@
+====================================================================================================================================
+AgroVeyra real-world evaluation - agroveyra_model.tflite
+====================================================================================================================================
+model         : C:\ROHIT RAJESH\AgriVeyra\backend\models\agroveyra_model.tflite
+model size    : 6,452,252 bytes (sha256 c24464eb725661f6)
+class names   : C:\ROHIT RAJESH\AgriVeyra\backend\models\class_names.json (60 classes)
+images dir    : C:\ROHIT RAJESH\AgriVeyra\ml\real_world_test (16 images)
+preprocessing : app parity: bilinear stretch 224x224, RGB/255, tensor quantization
+input tensor  : shape=[np.int32(1), np.int32(224), np.int32(224), np.int32(3)] dtype=float32 quant=(0.0, 0)
+output tensor : shape=[np.int32(1), np.int32(60)] dtype=float32 quant=(0.0, 0)
+
+PASS 1 - APP PARITY (pixels fed exactly the way TFLiteHelper feeds them)
+------------------------------------------------------------------------------------------------------------------------------------
+filename                                  | ground truth                     | predicted class                  |    conf | correct
+------------------------------------------------------------------------------------------------------------------------------------
+cotton_bacterial_blight_1.jpg             | Cotton___bacterial_blight        | Cotton___bacterial_blight        |  99.82% | yes
+cotton_bacterial_blight_2.jpg             | Cotton___bacterial_blight        | Cotton___bacterial_blight        | 100.00% | yes
+healthy_rice_1.jpg                        | Rice___healthy                   | Rice___healthy                   |  99.80% | yes
+healthy_rice_2.jpg                        | Rice___healthy                   | Rice___healthy                   |  99.97% | yes
+healthy_wheat_1.jpg                       | Wheat___healthy                  | Wheat___healthy                  |  76.18% | yes
+healthy_wheat_2.jpg                       | Wheat___healthy                  | Wheat___aphid                    |  24.67% | NO
+rice_bacterial_leaf_blight_1.jpg          | Rice___Bacterial_leaf_blight     | Rice___Brown_spot                |  32.82% | NO
+rice_bacterial_leaf_blight_2.jpg          | Rice___Bacterial_leaf_blight     | Rice___Sheath_blight             |  66.05% | NO
+rice_brown_spot_1.jpg                     | Rice___Brown_spot                | Wheat___aphid                    |  71.17% | NO
+rice_brown_spot_2.jpg                     | Rice___Brown_spot                | Wheat___mite                     |  34.50% | NO
+tomato_early_blight_1.jpg                 | Tomato___Early_blight            | Wheat___tan_spot                 |  28.44% | NO
+tomato_early_blight_2.jpg                 | Tomato___Early_blight            | Wheat___tan_spot                 |  36.32% | NO
+wheat_powdery_mildew_1.jpg                | Wheat___mildew                   | Wheat___mildew                   |  92.28% | yes
+wheat_powdery_mildew_2.jpg                | Wheat___mildew                   | Wheat___mildew                   |  99.92% | yes
+wheat_yellow_rust_1.jpg                   | Wheat___yellow_rust              | Wheat___black_rust               |  67.07% | NO
+wheat_yellow_rust_2.jpg                   | Wheat___yellow_rust              | Wheat___brown_rust               |  64.90% | NO
+
+SUMMARY - PASS 1 - APP PARITY (pixels fed exactly the way TFLiteHelper feeds them)
+------------------------------------------------------------------------------------------------------------------------------------
+images evaluated      : 16
+ground truth resolved : 16
+correct top-1         : 7
+OVERALL ACCURACY      : 43.75%  (7/16)
+top-3 accuracy        : 50.00%  (8/16)
+
+PER-LABEL ACCURACY
+------------------------------------------------------------------------------------------------------------------------------------
+Cotton___bacterial_blight                  2/2 correct (100.0%)
+Rice___Bacterial_leaf_blight               0/2 correct (  0.0%)
+Rice___Brown_spot                          0/2 correct (  0.0%)
+Rice___healthy                             2/2 correct (100.0%)
+Tomato___Early_blight                      0/2 correct (  0.0%)
+Wheat___healthy                            1/2 correct ( 50.0%)
+Wheat___mildew                             2/2 correct (100.0%)
+Wheat___yellow_rust                        0/2 correct (  0.0%)
+
+MISCLASSIFICATIONS (top-3 candidates)
+------------------------------------------------------------------------------------------------------------------------------------
+healthy_wheat_2.jpg                       truth=Wheat___healthy                    -> Wheat___aphid 24.67% | Wheat___blast 17.27% | Rice___healthy 9.35%
+rice_bacterial_leaf_blight_1.jpg          truth=Rice___Bacterial_leaf_blight       -> Rice___Brown_spot 32.82% | Rice___healthy 22.46% | Rice___Leaf_scald 11.19%
+rice_bacterial_leaf_blight_2.jpg          truth=Rice___Bacterial_leaf_blight       -> Rice___Sheath_blight 66.05% | Rice___Brown_spot 19.00% | Rice___Leaf_blast 5.94%
+rice_brown_spot_1.jpg                     truth=Rice___Brown_spot                  -> Wheat___aphid 71.17% | Wheat___leaf_blight 18.58% | Wheat___mite 8.95%
+rice_brown_spot_2.jpg                     truth=Rice___Brown_spot                  -> Wheat___mite 34.50% | Wheat___smut 30.41% | Wheat___blast 13.35%
+tomato_early_blight_1.jpg                 truth=Tomato___Early_blight              -> Wheat___tan_spot 28.44% | Wheat___leaf_blight 16.11% | Wheat___mite 13.25%
+tomato_early_blight_2.jpg                 truth=Tomato___Early_blight              -> Wheat___tan_spot 36.32% | Cotton___bacterial_blight 28.65% | Wheat___mite 26.02%
+wheat_yellow_rust_1.jpg                   truth=Wheat___yellow_rust                -> Wheat___black_rust 67.07% | Wheat___brown_rust 19.51% | Wheat___leaf_blight 9.24%
+wheat_yellow_rust_2.jpg                   truth=Wheat___yellow_rust                -> Wheat___brown_rust 64.90% | Wheat___yellow_rust 32.92% | Wheat___black_rust 0.85%
+
+CSV/TXT report written for: app parity
+
+CSV: C:\ROHIT RAJESH\AgriVeyra\ml\real_world_results.csv
+TXT: C:\ROHIT RAJESH\AgriVeyra\ml\real_world_results.txt

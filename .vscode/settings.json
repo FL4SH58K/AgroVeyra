@@ -1,0 +1,24 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+
+    // --- Python / Pylance ---------------------------------------------------
+    // The workspace root also contains a `.venv` that is DEAD: it was created
+    // from C:\Users\smroh\AppData\Local\Programs\Python\Python313\python.exe,
+    // which no longer exists (pyvenv.cfg still names it). VS Code prefers a
+    // root `.venv` during discovery, and a dead interpreter is exactly why the
+    // Problems panel reported "Import could not be resolved" on files whose
+    // imports are fine. Pin the interpreter to the env that is actually alive.
+    "python.defaultInterpreterPath": "${workspaceFolder}/ml/.venv/Scripts/python.exe",
+    "python.terminal.activateEnvironment": true,
+
+    // `backend/*.py` does `from utils.predict import ...`, which only resolves
+    // if `backend/` itself is on the analysis path (`ml/` likewise, so the
+    // scripts can import each other the way they do at runtime).
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/ml",
+        "${workspaceFolder}/backend"
+    ],
+
+    // Do not walk the whole tree (ml/data, ml/runs, ml/.export-libs, android/build).
+    "python.analysis.diagnosticMode": "openFilesOnly"
+}

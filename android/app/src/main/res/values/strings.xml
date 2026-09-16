@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">AgroVeyra</string>
+
+	<string name="scan_button">Scan Plant</string>
+	<string name="scan_again">Scan Again</string>
+	<string name="open_camera">Open Camera</string>
+	<string name="choose_gallery_image">Choose from Gallery</string>
+	<string name="scan_leaf_title">Scan Leaf</string>
+	<string name="position_leaf_within_frame">Position leaf within the frame</string>
+	<string name="gallery">Gallery</string>
+	<string name="flash">Flash</string>
+	<string name="analyzing">Analyzing...</string>
+	<string name="back">Back</string>
+	<string name="capture_button">Capture</string>
+	<string name="view_history">View History</string>
+	<string name="weather_forecast">Weather Forecast</string>
+	<string name="treatment_plan">Treatment Plan</string>
+	<string name="capture_hint">Capture a clear leaf image for accurate diagnosis</string>
+
+	<string name="prediction_result">Prediction Result</string>
+	<string name="disease_label">Disease</string>
+	<string name="confidence_label">Confidence</string>
+	<string name="crop_label">Crop</string>
+	<string name="stage_label">Stage</string>
+	<string name="stage_percentage_label">Severity</string>
+	<string name="urgency_label">Urgency</string>
+	<string name="chemical_treatment_label">Chemical Treatment</string>
+	<string name="organic_treatment_label">Organic Treatment</string>
+	<string name="prevention_label">Prevention</string>
+	<string name="healthy_label">Healthy</string>
+	<string name="unhealthy_label">Diseased</string>
+
+	<string name="history_title">Scan History</string>
+	<string name="history_empty">No scans saved yet.</string>
+	<string name="history_subtitle">Your recent AgroVeyra predictions will appear here.</string>
+	<string name="history_empty_icon_description">Empty history illustration</string>
+	<string name="history_thumbnail_description">Scanned leaf thumbnail</string>
+
+	<string name="weather_title">Weather Spread Risk</string>
+	<string name="weather_spread_risk">Spread Risk</string>
+	<string name="weather_message">Spread Message</string>
+	<string name="forecast_title">7-Day Forecast</string>
+	<string name="treatment_urgency_label">Treatment Urgency</string>
+
+	<string name="loading">Loading...</string>
+	<string name="processing_image">Analyzing image...</string>
+	<string name="saving_result">Saving result...</string>
+	<string name="model_not_ready">Model is not ready. Please try again later.</string>
+	<string name="invalid_image">Please select a valid image file.</string>
+	<string name="camera_permission_required">Camera permission is required to scan plants.</string>
+	<string name="network_error">Unable to connect to the server. Check your internet connection.</string>
+	<string name="weather_api_error">Unable to load the weather forecast.</string>
+	<string name="prediction_failed">Prediction failed. Please try another image.</string>
+	<string name="unknown_error">Something went wrong. Please try again.</string>
+	<string name="enable_location_for_spread_prediction">Enable location for spread prediction</string>
+	<string name="weather_loading">Loading weather forecast...</string>
+	<string name="speak_analyzing">Speaking...</string>
+	<string name="voice_dialog_title">Choose a language</string>
+	<string name="tts_failed">Unable to generate voice advisory.</string>
+	<string name="location_unavailable">Location unavailable. Turn on location services and try again.</string>
+
+	<string name="home_welcome_title">AgroVeyra</string>
+	<string name="home_welcome_subtitle">AI-powered crop disease detection and treatment guidance</string>
+	<string name="home_description">Scan leaves, view treatment recommendations, and check weather-based disease spread risk.</string>
+	<string name="home_scan_title">SCAN A LEAF</string>
+	<string name="home_scan_subtitle">Take or upload a photo</string>
+	<string name="recent_scans">Recent Scans</string>
+	<string name="disease_guide">Disease Guide</string>
+	<string name="home_nav">Home</string>
+	<string name="scan_nav">Scan</string>
+	<string name="history_nav">History</string>
+	<string name="info_nav">Info</string>
+	<string name="home_recent_scans_subtitle">Review your latest predictions</string>
+	<string name="home_disease_guide_subtitle">Learn symptoms and treatments</string>
+	<string name="camera_icon_description">Camera icon</string>
+	<string name="back_arrow_description">Back arrow</string>
+	<string name="history_icon_description">History icon</string>
+	<string name="book_icon_description">Book icon</string>
+	<string name="home_icon_description">Home icon</string>
+	<string name="scan_icon_description">Scan icon</string>
+	<string name="info_icon_description">Info icon</string>
+	<string name="gallery_icon_description">Gallery icon</string>
+	<string name="flash_icon_description">Flash icon</string>
+	<string name="loading_overlay_description">Analyzing overlay</string>
+	<string name="scan_frame_description">Scanning frame</string>
+
+	<string name="result_healthy_message">This plant appears healthy. Keep following preventive care practices.</string>
+	<string name="result_disease_message">Disease detected. Review the treatment plan below.</string>
+	<string name="result_stage_early">Stage 1 - Early</string>
+	<string name="result_stage_moderate">Stage 2 - Moderate</string>
+	<string name="result_stage_severe">Stage 3 - Severe</string>
+	<string name="result_title">Scan Result</string>
+	<string name="disease_detection_result">Disease Detection Result</string>
+	<string name="severity_stage_title">Severity Stage</string>
+	<string name="infected_area_label">Infected area: ~23%% of leaf</string>
+	<string name="seven_day_spread_prediction">7-Day Spread Prediction</string>
+	<string name="spread_risk_high">HIGH</string>
+	<string name="spread_risk_medium">MEDIUM</string>
+	<string name="spread_risk_low">LOW</string>
+	<string name="chemical_tab">Chemical</string>
+	<string name="organic_tab">Organic</string>
+	<string name="prevention_section_title">Prevention</string>
+	<string name="voice_advisory_title">Voice Advisory</string>
+	<string name="listen_in_your_language">Listen in Your Language</string>
+	<string name="language_selector_label">Language</string>
+	<string name="chemical_treatment_result">Chemical Treatment</string>
+	<string name="organic_treatment_result">Organic Treatment</string>
+	<string name="prevention_result">Prevention</string>
+	<string name="confidence_percent">Confidence: 94%%</string>
+	<string name="crop_type_placeholder">Crop type</string>
+	<string name="day_1">Mon</string>
+	<string name="day_2">Tue</string>
+	<string name="day_3">Wed</string>
+	<string name="day_4">Thu</string>
+	<string name="day_5">Fri</string>
+	<string name="day_6">Sat</string>
+	<string name="day_7">Sun</string>
+	<string name="weather_icon_description">Weather icon</string>
+	<string-array name="voice_language_entries">
+		<item>English</item>
+		<item>Hindi</item>
+		<item>Tamil</item>
+		<item>Telugu</item>
+		<item>Kannada</item>
+		<item>Malayalam</item>
+		<item>Marathi</item>
+	</string-array>
+	<string-array name="voice_language_values">
+		<item>en</item>
+		<item>hi</item>
+		<item>ta</item>
+		<item>te</item>
+		<item>kn</item>
+		<item>ml</item>
+		<item>mr</item>
+	</string-array>
+</resources>
+

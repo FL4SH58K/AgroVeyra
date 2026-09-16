@@ -1,0 +1,157 @@
+======================================================================================================================
+AgroVeyra export parity: shipped flatbuffer vs training checkpoint
+======================================================================================================================
+checkpoint     : C:\ROHIT RAJESH\AgriVeyra\ml\runs\classify\runs\disease_classifier-3\weights\best.pt
+                 3,341,179 bytes (sha256 9b9d1995b1fcc019)
+flatbuffer     : C:\ROHIT RAJESH\AgriVeyra\backend\models\agroveyra_model.tflite
+                 6,452,252 bytes (sha256 c24464eb725661f6)
+input tensor   : shape=[np.int32(1), np.int32(224), np.int32(224), np.int32(3)] dtype=float32
+preprocessing  : app parity (stretch resize)
+pixel layout   : app (declared by the graph: app)
+classes        : 60
+val subset     : C:\ROHIT RAJESH\AgriVeyra\ml\data\merged\val (480 images)
+field photos   : C:\ROHIT RAJESH\AgriVeyra\ml\real_world_test (16 images)
+
+----------------------------------------------------------------------------------------------------------------------
+VALIDATION SPLIT (every class sampled) - 480 images
+----------------------------------------------------------------------------------------------------------------------
+  top-1 agreement            : 480/480 (100%)
+  max |p_tflite - p_torch|   : 0.000004
+  accuracy, flatbuffer       : 95.83%
+  accuracy, checkpoint       : 95.83%
+
+  per-class accuracy (deployed pipeline):
+    class                              |      flatbuffer |      checkpoint |  gap
+    Apple___Apple_scab                 |    8/8    100.0% |    8/8    100.0% |    0
+    Apple___Black_rot                  |    8/8    100.0% |    8/8    100.0% |    0
+    Apple___Cedar_apple_rust           |    8/8    100.0% |    8/8    100.0% |    0
+    Apple___healthy                    |    8/8    100.0% |    8/8    100.0% |    0
+    Blueberry___healthy                |    8/8    100.0% |    8/8    100.0% |    0
+    Cherry_(including_sour)___Powdery_mildew |    8/8    100.0% |    8/8    100.0% |    0
+    Cherry___healthy                   |    8/8    100.0% |    8/8    100.0% |    0
+    Corn_(maize)___Common_rust_        |    8/8    100.0% |    8/8    100.0% |    0
+    Corn_(maize)___Northern_Leaf_Blight |    8/8    100.0% |    8/8    100.0% |    0
+    Corn___healthy                     |    8/8    100.0% |    8/8    100.0% |    0
+    Cotton___bacterial_blight          |    8/8    100.0% |    8/8    100.0% |    0
+    Cotton___curl_virus                |    8/8    100.0% |    8/8    100.0% |    0
+    Cotton___fussarium_wilt            |    8/8    100.0% |    8/8    100.0% |    0
+    Cotton___healthy                   |    8/8    100.0% |    8/8    100.0% |    0
+    Grape___Black_rot                  |    8/8    100.0% |    8/8    100.0% |    0
+    Grape___Esca_(Black_Measles)       |    8/8    100.0% |    8/8    100.0% |    0
+    Grape___healthy                    |    8/8    100.0% |    8/8    100.0% |    0
+    Orange___Haunglongbing_(Citrus_greening) |    8/8    100.0% |    8/8    100.0% |    0
+    Peach___Bacterial_spot             |    8/8    100.0% |    8/8    100.0% |    0
+    Peach___healthy                    |    8/8    100.0% |    8/8    100.0% |    0
+    Pepper,_bell___Bacterial_spot      |    8/8    100.0% |    8/8    100.0% |    0
+    Pepper___healthy                   |    8/8    100.0% |    8/8    100.0% |    0
+    Potato___Early_blight              |    8/8    100.0% |    8/8    100.0% |    0
+    Potato___Late_blight               |    8/8    100.0% |    8/8    100.0% |    0
+    Potato___healthy                   |    8/8    100.0% |    8/8    100.0% |    0
+    Raspberry___healthy                |    8/8    100.0% |    8/8    100.0% |    0
+    Rice___Bacterial_leaf_blight       |    8/8    100.0% |    8/8    100.0% |    0
+    Rice___Brown_spot                  |    8/8    100.0% |    8/8    100.0% |    0
+    Rice___Leaf_blast                  |    8/8    100.0% |    8/8    100.0% |    0
+    Rice___Leaf_scald                  |    8/8    100.0% |    8/8    100.0% |    0
+    Rice___Sheath_blight               |    8/8    100.0% |    8/8    100.0% |    0
+    Rice___healthy                     |    8/8    100.0% |    8/8    100.0% |    0
+    Soybean___healthy                  |    8/8    100.0% |    8/8    100.0% |    0
+    Squash___Powdery_mildew            |    8/8    100.0% |    8/8    100.0% |    0
+    Strawberry___Leaf_scorch           |    8/8    100.0% |    8/8    100.0% |    0
+    Strawberry___healthy               |    8/8    100.0% |    8/8    100.0% |    0
+    Tomato___Bacterial_spot            |    8/8    100.0% |    8/8    100.0% |    0
+    Tomato___Early_blight              |    8/8    100.0% |    8/8    100.0% |    0
+    Tomato___Late_blight               |    8/8    100.0% |    8/8    100.0% |    0
+    Tomato___Leaf_Mold                 |    8/8    100.0% |    8/8    100.0% |    0
+    Tomato___Septoria_leaf_spot        |    8/8    100.0% |    8/8    100.0% |    0
+    Tomato___Target_Spot               |    8/8    100.0% |    8/8    100.0% |    0
+    Tomato___Tomato_Yellow_Leaf_Curl_Virus |    8/8    100.0% |    8/8    100.0% |    0
+    Tomato___Tomato_mosaic_virus       |    8/8    100.0% |    8/8    100.0% |    0
+    Tomato___healthy                   |    8/8    100.0% |    8/8    100.0% |    0
+    Wheat___aphid                      |    8/8    100.0% |    8/8    100.0% |    0
+    Wheat___black_rust                 |    6/8     75.0% |    6/8     75.0% |    0
+    Wheat___blast                      |    8/8    100.0% |    8/8    100.0% |    0
+    Wheat___brown_rust                 |    5/8     62.5% |    5/8     62.5% |    0
+    Wheat___common_root_rot            |    7/8     87.5% |    7/8     87.5% |    0
+    Wheat___fusarium_head_blight       |    8/8    100.0% |    8/8    100.0% |    0
+    Wheat___healthy                    |    1/8     12.5% |    1/8     12.5% |    0
+    Wheat___leaf_blight                |    7/8     87.5% |    7/8     87.5% |    0
+    Wheat___mildew                     |    7/8     87.5% |    7/8     87.5% |    0
+    Wheat___mite                       |    5/8     62.5% |    5/8     62.5% |    0
+    Wheat___septoria                   |    7/8     87.5% |    7/8     87.5% |    0
+    Wheat___smut                       |    8/8    100.0% |    8/8    100.0% |    0
+    Wheat___stem_fly                   |    8/8    100.0% |    8/8    100.0% |    0
+    Wheat___tan_spot                   |    7/8     87.5% |    7/8     87.5% |    0
+    Wheat___yellow_rust                |    8/8    100.0% |    8/8    100.0% |    0
+
+  misclassifications (deployed pipeline), worst confidence first: 20
+    truth=Wheat___healthy                    -> Wheat___yellow_rust                conf 100.0% | p(true)   0.0%
+    truth=Wheat___healthy                    -> Wheat___yellow_rust                conf 100.0% | p(true)   0.0%
+    truth=Wheat___healthy                    -> Wheat___yellow_rust                conf 100.0% | p(true)   0.0%
+    truth=Wheat___healthy                    -> Wheat___yellow_rust                conf 100.0% | p(true)   0.0%
+    truth=Wheat___healthy                    -> Wheat___yellow_rust                conf 100.0% | p(true)   0.0%
+    truth=Wheat___healthy                    -> Wheat___yellow_rust                conf 100.0% | p(true)   0.0%
+    truth=Wheat___healthy                    -> Wheat___yellow_rust                conf 100.0% | p(true)   0.0%
+    truth=Wheat___brown_rust                 -> Wheat___yellow_rust                conf  88.1% | p(true)  11.7%
+    truth=Wheat___tan_spot                   -> Wheat___mildew                     conf  85.4% | p(true)   1.0%
+    truth=Wheat___brown_rust                 -> Wheat___healthy                    conf  58.3% | p(true)  41.5%
+    truth=Wheat___brown_rust                 -> Wheat___yellow_rust                conf  56.6% | p(true)  43.0%
+    truth=Wheat___black_rust                 -> Wheat___brown_rust                 conf  52.0% | p(true)  47.6%
+    truth=Wheat___mite                       -> Wheat___aphid                      conf  50.6% | p(true)   1.2%
+    truth=Wheat___septoria                   -> Wheat___leaf_blight                conf  50.2% | p(true)  49.8%
+    truth=Wheat___black_rust                 -> Wheat___brown_rust                 conf  48.9% | p(true)  44.5%
+    truth=Wheat___mildew                     -> Wheat___healthy                    conf  48.6% | p(true)  46.8%
+    truth=Wheat___mite                       -> Wheat___leaf_blight                conf  44.2% | p(true)  16.4%
+    truth=Wheat___mite                       -> Wheat___smut                       conf  41.8% | p(true)  13.0%
+    truth=Wheat___common_root_rot            -> Cotton___fussarium_wilt            conf  34.6% | p(true)  25.7%
+    truth=Wheat___leaf_blight                -> Wheat___yellow_rust                conf  30.0% | p(true)  26.2%
+
+----------------------------------------------------------------------------------------------------------------------
+FIELD PHOTOS - 16 images
+----------------------------------------------------------------------------------------------------------------------
+  top-1 agreement            : 16/16 (100%)
+  max |p_tflite - p_torch|   : 0.000002
+  accuracy, flatbuffer       : 43.75%
+  accuracy, checkpoint       : 43.75%
+
+  per-class accuracy (deployed pipeline):
+    class                              |      flatbuffer |      checkpoint |  gap
+    Cotton___bacterial_blight          |    2/2    100.0% |    2/2    100.0% |    0
+    Rice___Bacterial_leaf_blight       |    0/2      0.0% |    0/2      0.0% |    0
+    Rice___Brown_spot                  |    0/2      0.0% |    0/2      0.0% |    0
+    Rice___healthy                     |    2/2    100.0% |    2/2    100.0% |    0
+    Tomato___Early_blight              |    0/2      0.0% |    0/2      0.0% |    0
+    Wheat___healthy                    |    1/2     50.0% |    1/2     50.0% |    0
+    Wheat___mildew                     |    2/2    100.0% |    2/2    100.0% |    0
+    Wheat___yellow_rust                |    0/2      0.0% |    0/2      0.0% |    0
+
+  misclassifications (deployed pipeline), worst confidence first: 9
+    truth=Rice___Brown_spot                  -> Wheat___aphid                      conf  71.2% | p(true)   0.0%
+    truth=Wheat___yellow_rust                -> Wheat___black_rust                 conf  67.1% | p(true)   0.1%
+    truth=Rice___Bacterial_leaf_blight       -> Rice___Sheath_blight               conf  66.1% | p(true)   0.9%
+    truth=Wheat___yellow_rust                -> Wheat___brown_rust                 conf  64.9% | p(true)  32.9%
+    truth=Tomato___Early_blight              -> Wheat___tan_spot                   conf  36.3% | p(true)   0.4%
+    truth=Rice___Brown_spot                  -> Wheat___mite                       conf  34.5% | p(true)   0.0%
+    truth=Rice___Bacterial_leaf_blight       -> Rice___Brown_spot                  conf  32.8% | p(true)   3.6%
+    truth=Tomato___Early_blight              -> Wheat___tan_spot                   conf  28.4% | p(true)   0.5%
+    truth=Wheat___healthy                    -> Wheat___aphid                      conf  24.7% | p(true)   2.7%
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  argmax agreement     : 496/496 (100.00%), gate 100%
+  max probability delta: 0.000004, gate 0.001
+  flatbuffer faithful  : YES
+  => the shipped file scores what the checkpoint scores, so a field-photo drop is a
+     domain gap in the data, not an export regression.
+
+  val classes with at least one miss at this sample size: 9/60
+    Wheat___black_rust                     6/8
+    Wheat___brown_rust                     5/8
+    Wheat___common_root_rot                7/8
+    Wheat___healthy                        1/8
+    Wheat___leaf_blight                    7/8
+    Wheat___mildew                         7/8
+    Wheat___mite                           5/8
+    Wheat___septoria                       7/8
+    Wheat___tan_spot                       7/8
+

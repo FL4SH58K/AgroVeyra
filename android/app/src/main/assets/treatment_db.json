@@ -1,0 +1,600 @@
+{
+	"Apple___Apple_scab": {
+		"display_name": "Apple scab",
+		"crop": "Apple",
+		"stage_advice": {
+			"early": "Remove infected leaves and fruit immediately, improve airflow with pruning, and start a protectant fungicide program before wet weather continues.",
+			"moderate": "Apply a fungicide spray program at 7 to 10 day intervals, remove fallen leaves, and avoid overhead irrigation that keeps foliage wet.",
+			"severe": "Remove heavily infected fruit, intensify spray intervals after rain, and combine sanitation with repeated fungicide coverage until new growth is protected."
+		},
+		"chemical_treatment": "Mancozeb 2.5 g/L or captan 2 g/L; alternate with myclobutanil 0.3 mL/L according to label directions.",
+		"organic_treatment": "Apply sulfur 2 to 3 g/L or potassium bicarbonate 5 g/L, plus compost tea or neem-based protectants as supportive measures.",
+		"prevention": "Rake and destroy fallen leaves, prune for air movement, mulch to reduce leaf splash, and begin preventive sprays at green tip to petal fall in wet seasons.",
+		"urgency": "medium",
+		"spread_speed": "moderate",
+		"spread_conditions": "Cool, wet spring weather, prolonged leaf wetness, frequent rain, and dense canopies"
+	},
+	"Apple___Black_rot": {
+		"display_name": "Apple black rot",
+		"crop": "Apple",
+		"stage_advice": {
+			"early": "Prune out cankers, remove mummified fruit, and start protectant sprays before infection spreads into fruiting wood.",
+			"moderate": "Increase sanitation, thin fruit clusters, and apply fungicide after rain events to protect new tissue.",
+			"severe": "Cut back infected limbs where practical, remove all mummified fruit, and maintain tight spray intervals through the wet period."
+		},
+		"chemical_treatment": "Captan 2 g/L or myclobutanil 0.3 mL/L; rotate with thiophanate-methyl 1 g/L where label permits.",
+		"organic_treatment": "Use sulfur 2 g/L or Bordeaux mixture 1% on a preventive schedule, combined with aggressive pruning and fruit removal.",
+		"prevention": "Prune out dead wood, remove mummies, avoid wound injuries, and keep trees open and well aerated.",
+		"urgency": "high",
+		"spread_speed": "moderate",
+		"spread_conditions": "Warm, humid weather, rainfall, wounded tissue, and neglected mummified fruit"
+	},
+	"Apple___Cedar_apple_rust": {
+		"display_name": "Cedar apple rust",
+		"crop": "Apple",
+		"stage_advice": {
+			"early": "Remove nearby juniper galls if possible and begin fungicide protection before orange lesions expand.",
+			"moderate": "Continue protectant sprays during wet periods and inspect nearby cedar/juniper hosts for gall development.",
+			"severe": "Protect all new foliage and fruit with repeated sprays and consider removal of nearby alternate hosts in the landscape."
+		},
+		"chemical_treatment": "Myclobutanil 0.3 mL/L or tebuconazole 0.5 mL/L; apply before infection periods and repeat after rain.",
+		"organic_treatment": "Sulfur 2 to 3 g/L or potassium bicarbonate 5 g/L applied preventively; remove nearby cedar galls where feasible.",
+		"prevention": "Avoid planting apples close to infected junipers, remove cedar galls in late winter, and maintain a protective spray schedule during spring rains.",
+		"urgency": "medium",
+		"spread_speed": "moderate",
+		"spread_conditions": "Cool spring rains, extended leaf wetness, and nearby juniper hosts"
+	},
+	"Apple___healthy": {
+		"display_name": "Healthy apple",
+		"crop": "Apple",
+		"stage_advice": {
+			"early": "Maintain routine scouting, balanced fertilization, and sanitation so the orchard stays disease-free.",
+			"moderate": "No treatment needed; continue pruning for airflow, leaf litter removal, and irrigation management.",
+			"severe": "No treatment needed; intensify monitoring after storms or humid periods and remove any new suspect tissue early."
+		},
+		"chemical_treatment": "No chemical treatment needed; preventive spraying only if local disease pressure warrants it.",
+		"organic_treatment": "Use compost mulch, balanced nutrition, and beneficial microbial inoculants as preventive care.",
+		"prevention": "Prune annually, avoid overwatering, remove fallen leaves, monitor pests, and keep the canopy open and dry.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "None if healthy; risk increases with wet, crowded, or poorly ventilated conditions"
+	},
+	"Blueberry___healthy": {
+		"display_name": "Healthy blueberry",
+		"crop": "Blueberry",
+		"stage_advice": {
+			"early": "Maintain acidic soil, mulch, and routine scouting to keep plants vigorous.",
+			"moderate": "Continue irrigation management and pruning to maintain strong canes and dry foliage.",
+			"severe": "No treatment needed; inspect for nutrient stress, cane dieback, or root problems and correct cultural issues promptly."
+		},
+		"chemical_treatment": "No chemical treatment needed; only use fertilizers or pH adjustments based on soil test results.",
+		"organic_treatment": "Use pine bark mulch, composted organic matter, and approved organic fertilizers as needed.",
+		"prevention": "Keep soil pH around 4.5 to 5.5, mulch heavily, avoid standing water, and prune to improve air circulation.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Stress increases in poorly drained soils, drought, or high heat"
+	},
+	"Cherry_(including_sour)___Powdery_mildew": {
+		"display_name": "Cherry powdery mildew",
+		"crop": "Cherry",
+		"stage_advice": {
+			"early": "Remove heavily infected shoots and begin protective sprays as soon as white growth is observed.",
+			"moderate": "Repeat fungicide applications at labeled intervals and thin dense growth to reduce humidity inside the canopy.",
+			"severe": "Prune out infected terminals, protect new flushes, and continue sprays through the active growth period."
+		},
+		"chemical_treatment": "Wettable sulfur 2 to 3 g/L or myclobutanil 0.3 mL/L; repeat per label during active growth.",
+		"organic_treatment": "Potassium bicarbonate 5 g/L or sulfur-based organic sprays, applied early and repeated after rain.",
+		"prevention": "Prune for air movement, avoid excess nitrogen, and remove infected shoots before new growth is exposed.",
+		"urgency": "medium",
+		"spread_speed": "moderate",
+		"spread_conditions": "Warm days, cool nights, dense canopies, and moderate humidity"
+	},
+	"Cherry_(including_sour)___healthy": {
+		"display_name": "Healthy cherry",
+		"crop": "Cherry",
+		"stage_advice": {
+			"early": "Maintain pruning, irrigation balance, and routine scouting.",
+			"moderate": "Continue canopy opening and remove any suspect tissue before symptoms expand.",
+			"severe": "No treatment needed; keep monitoring after rain and avoid stressing trees with excessive nitrogen or water."
+		},
+		"chemical_treatment": "No chemical treatment needed; use only label-approved preventive sprays when disease risk is high.",
+		"organic_treatment": "Use compost mulch, balanced feeding, and airflow-focused pruning.",
+		"prevention": "Maintain open structure, avoid water stress, and clean up fallen leaves and fruit.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Weak trees, poorly ventilated canopies, and wet spring weather increase risk"
+	},
+	"Corn_(maize)___Cercospora_leaf_spot_Gray_leaf_spot": {
+		"display_name": "Corn Cercospora leaf spot / gray leaf spot",
+		"crop": "Corn",
+		"stage_advice": {
+			"early": "Scout lower leaves, rotate to a non-host crop if possible, and begin fungicide protection when lesions first appear.",
+			"moderate": "Apply foliar fungicides at tasseling to early grain fill if disease is advancing up the canopy.",
+			"severe": "Protect ear leaf and upper canopy with repeat sprays, reduce residue inoculum next season, and prioritize resistant hybrids."
+		},
+		"chemical_treatment": "Azoxystrobin 0.5 mL/L or propiconazole 0.5 mL/L; tank-mix or rotate per label, especially around tasseling.",
+		"organic_treatment": "Use Bacillus-based biocontrols and approved copper formulations where permitted, together with residue management.",
+		"prevention": "Use resistant hybrids, rotate crops, bury or manage corn residue, and avoid excessive plant density.",
+		"urgency": "high",
+		"spread_speed": "moderate",
+		"spread_conditions": "Warm, humid weather, heavy dew, corn residue, and dense stands"
+	},
+	"Corn_(maize)___Common_rust_": {
+		"display_name": "Corn common rust",
+		"crop": "Corn",
+		"stage_advice": {
+			"early": "Scout leaves regularly and apply fungicide if pustules appear before tasseling or during early reproductive stages.",
+			"moderate": "Protect upper leaves if lesions are moving quickly upward and conditions remain humid.",
+			"severe": "Use repeated fungicide coverage for susceptible hybrids and continue scouting after each rain or dew period."
+		},
+		"chemical_treatment": "Propiconazole 0.5 mL/L or azoxystrobin 0.5 mL/L according to label timing and pre-harvest intervals.",
+		"organic_treatment": "Use copper hydroxide 2 g/L where permitted and focus on resistant varieties and field sanitation.",
+		"prevention": "Plant resistant hybrids, scout weekly, and avoid excessive nitrogen that promotes lush susceptible tissue.",
+		"urgency": "medium",
+		"spread_speed": "fast",
+		"spread_conditions": "Moderate temperatures, humidity, heavy dew, and repeated leaf wetness"
+	},
+	"Corn_(maize)___Northern_Leaf_Blight": {
+		"display_name": "Corn northern leaf blight",
+		"crop": "Corn",
+		"stage_advice": {
+			"early": "Begin scouting lower leaves and protect susceptible hybrids before lesions move into the canopy.",
+			"moderate": "Apply fungicide when disease reaches the lower to middle canopy and weather favors rapid spread.",
+			"severe": "Protect the upper canopy quickly, manage residue after harvest, and switch to resistant hybrids next season."
+		},
+		"chemical_treatment": "Azoxystrobin 0.5 mL/L or pyraclostrobin + metconazole per label; apply at early disease onset or tasseling.",
+		"organic_treatment": "Use Bacillus subtilis products and copper-based protectants where label-approved, plus residue reduction.",
+		"prevention": "Plant resistant hybrids, rotate crops, reduce residue inoculum, and scout aggressively during humid periods.",
+		"urgency": "high",
+		"spread_speed": "fast",
+		"spread_conditions": "Warm, humid, overcast weather, prolonged leaf wetness, and corn residue"
+	},
+	"Corn_(maize)___healthy": {
+		"display_name": "Healthy corn",
+		"crop": "Corn",
+		"stage_advice": {
+			"early": "Maintain regular scouting and balanced fertilization.",
+			"moderate": "Keep the field clean, well drained, and evenly irrigated to reduce stress.",
+			"severe": "No treatment needed; monitor closely during humid periods and after storms."
+		},
+		"chemical_treatment": "No chemical treatment needed; use fungicides only when disease pressure and labels justify it.",
+		"organic_treatment": "Maintain soil health with compost, rotation, and approved biologicals as needed.",
+		"prevention": "Use crop rotation, resistant hybrids, balanced nitrogen, and residue management.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Stress rises in dense, wet, nutrient-imbalanced fields"
+	},
+	"Grape___Black_rot": {
+		"display_name": "Grape black rot",
+		"crop": "Grape",
+		"stage_advice": {
+			"early": "Remove infected berries and shoots, then begin fungicide protection before bloom and through fruit set.",
+			"moderate": "Continue protectant sprays after rain and remove mummified fruit from canes and the ground.",
+			"severe": "Prune infected clusters aggressively and maintain tight spray intervals through humid weather."
+		},
+		"chemical_treatment": "Myclobutanil 0.3 mL/L or captan 2 g/L; rotate according to label to avoid resistance.",
+		"organic_treatment": "Use sulfur 2 to 3 g/L or copper-based protectants, along with fruit removal and canopy opening.",
+		"prevention": "Remove mummies, prune for airflow, control weeds, and begin protection before bloom in wet seasons.",
+		"urgency": "high",
+		"spread_speed": "moderate",
+		"spread_conditions": "Warm, wet weather, flowering periods, and retained mummified fruit"
+	},
+	"Grape___Esca_(Black_Measles)": {
+		"display_name": "Grape esca (black measles)",
+		"crop": "Grape",
+		"stage_advice": {
+			"early": "Flag symptomatic vines, prune out dead wood, and reduce vine stress to slow decline.",
+			"moderate": "Remove severely affected arms, disinfect tools, and avoid large pruning wounds during wet periods.",
+			"severe": "There is no curative chemical control; remove dead tissue, re-train healthy shoots, or replace badly declined vines."
+		},
+		"chemical_treatment": "No curative fungicide exists; use copper-based wound protectants like Bordeaux paste on pruning cuts where permitted.",
+		"organic_treatment": "Use Trichoderma wound treatments and careful pruning hygiene to reduce wood infection pressure.",
+		"prevention": "Prune in dry weather, sanitize tools, protect large cuts, and reduce trunk stress with balanced irrigation.",
+		"urgency": "high",
+		"spread_speed": "slow",
+		"spread_conditions": "Stress, pruning wounds, drought, and warm weather increase symptom expression"
+	},
+	"Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+		"display_name": "Grape leaf blight / Isariopsis leaf spot",
+		"crop": "Grape",
+		"stage_advice": {
+			"early": "Remove infected leaves and begin protectant sprays once spotting appears.",
+			"moderate": "Repeat sprays after rain and keep the canopy open to accelerate drying.",
+			"severe": "Use repeated fungicide coverage, especially in humid blocks, and remove infected debris after pruning."
+		},
+		"chemical_treatment": "Mancozeb 2.5 g/L or chlorothalonil 2 g/L; repeat at labeled intervals in wet weather.",
+		"organic_treatment": "Copper hydroxide 2 g/L or sulfur-based protectants, combined with debris cleanup.",
+		"prevention": "Prune for airflow, remove fallen leaves, and avoid overhead irrigation late in the day.",
+		"urgency": "medium",
+		"spread_speed": "moderate",
+		"spread_conditions": "Warm, humid conditions, leaf wetness, and dense canopies"
+	},
+	"Grape___healthy": {
+		"display_name": "Healthy grape",
+		"crop": "Grape",
+		"stage_advice": {
+			"early": "Continue routine scouting, pruning, and cluster management.",
+			"moderate": "Keep irrigation balanced and remove excess foliage around clusters for better air flow.",
+			"severe": "No treatment needed; keep monitoring after wet weather for any emerging leaf or fruit symptoms."
+		},
+		"chemical_treatment": "No chemical treatment needed; apply protectants only when local disease pressure requires them.",
+		"organic_treatment": "Use compost, mulch, and approved biologicals as part of preventive vineyard care.",
+		"prevention": "Prune well, manage canopy humidity, remove mummies, and maintain clean vineyard floors.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Disease risk rises with humid canopies, rain, and poor sanitation"
+	},
+	"Orange___Haunglongbing_(Citrus_greening)": {
+		"display_name": "Citrus greening / Huanglongbing",
+		"crop": "Orange",
+		"stage_advice": {
+			"early": "Remove symptomatic trees if confirmed, control psyllid vectors immediately, and prevent spread to healthy blocks.",
+			"moderate": "Increase vector control frequency, remove heavily affected trees, and monitor surrounding citrus closely.",
+			"severe": "There is no cure; remove infected trees, protect nearby trees from psyllids, and replant with disease-free stock."
+		},
+		"chemical_treatment": "Imidacloprid 0.3 mL/L or thiamethoxam 0.25 g/L for psyllid control; rotate insecticide classes per label and local regulations.",
+		"organic_treatment": "Use neem oil 3 to 5 mL/L or insecticidal soap for psyllid suppression, together with sticky traps and biological control.",
+		"prevention": "Plant certified disease-free trees, control citrus psyllids, remove infected trees quickly, and avoid moving infested plant material.",
+		"urgency": "high",
+		"spread_speed": "fast",
+		"spread_conditions": "Warm weather, active psyllid populations, and movement of infected nursery stock"
+	},
+	"Peach___Bacterial_spot": {
+		"display_name": "Peach bacterial spot",
+		"crop": "Peach",
+		"stage_advice": {
+			"early": "Start copper sprays before rainy periods and remove badly affected shoots where feasible.",
+			"moderate": "Continue protectant sprays after storms and avoid stress from excess pruning or drought.",
+			"severe": "Use repeated protective sprays, reduce overhead irrigation, and improve air flow to limit spread on young fruit and leaves."
+		},
+		"chemical_treatment": "Copper hydroxide 2.5 g/L or copper oxychloride 2.5 g/L; streptomycin 0.5 g/L only where locally permitted and labeled.",
+		"organic_treatment": "Use copper-based organic products and maintain strict sanitation, pruning, and irrigation control.",
+		"prevention": "Choose resistant cultivars, avoid overhead irrigation, prune for airflow, and protect trees before rainy weather.",
+		"urgency": "high",
+		"spread_speed": "fast",
+		"spread_conditions": "Warm, rainy, windy weather and young succulent tissue"
+	},
+	"Peach___healthy": {
+		"display_name": "Healthy peach",
+		"crop": "Peach",
+		"stage_advice": {
+			"early": "Keep the canopy open, maintain balanced nutrition, and scout after rain.",
+			"moderate": "Continue pruning and sanitation to maintain tree vigor and dry foliage.",
+			"severe": "No treatment needed; watch for disease pressure during warm, wet spells and act early if symptoms appear."
+		},
+		"chemical_treatment": "No chemical treatment needed; only use preventive sprays when disease risk is high.",
+		"organic_treatment": "Use mulch, compost, and good pruning practices to keep trees healthy.",
+		"prevention": "Prune annually, avoid overfertilizing with nitrogen, and remove fallen fruit and leaves.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Stress increases with overcrowding, humidity, and poor orchard hygiene"
+	},
+	"Pepper,_bell___Bacterial_spot": {
+		"display_name": "Bell pepper bacterial spot",
+		"crop": "Pepper",
+		"stage_advice": {
+			"early": "Apply protectant copper sprays immediately and avoid handling wet plants.",
+			"moderate": "Continue copper-based sprays and remove the most heavily spotted leaves to reduce inoculum.",
+			"severe": "Use tight spray intervals, improve water management, and avoid moving equipment between infected and clean areas."
+		},
+		"chemical_treatment": "Copper oxychloride 2.5 g/L plus mancozeb 2 g/L where label permits; repeat after rain.",
+		"organic_treatment": "Copper soap 2 mL/L or copper hydroxide approved for organic production, combined with sanitation.",
+		"prevention": "Use clean seed and transplants, avoid overhead irrigation, rotate crops, and disinfect tools and trays.",
+		"urgency": "high",
+		"spread_speed": "fast",
+		"spread_conditions": "Warm rain, splashing water, high humidity, and wind-driven storms"
+	},
+	"Pepper,_bell___healthy": {
+		"display_name": "Healthy bell pepper",
+		"crop": "Pepper",
+		"stage_advice": {
+			"early": "Continue scouting and keep foliage dry.",
+			"moderate": "Maintain balanced feeding and remove weeds that harbor pests and diseases.",
+			"severe": "No treatment needed; maintain clean irrigation and inspect transplants before setting them out."
+		},
+		"chemical_treatment": "No chemical treatment needed; use preventive sprays only when regional disease pressure is high.",
+		"organic_treatment": "Use compost, mulch, and approved biological controls as preventive care.",
+		"prevention": "Plant disease-free transplants, rotate crops, and avoid overhead watering late in the day.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Risk rises with wet foliage, dense plantings, and infected transplants"
+	},
+	"Potato___Early_blight": {
+		"display_name": "Potato early blight",
+		"crop": "Potato",
+		"stage_advice": {
+			"early": "Start fungicide protection at first leaf spotting and remove lower infected leaves if practical.",
+			"moderate": "Apply sprays at 7 day intervals during favorable weather and avoid water stress.",
+			"severe": "Protect the canopy aggressively, especially before tuber bulking, and remove crop debris after harvest."
+		},
+		"chemical_treatment": "Mancozeb 2.5 g/L or chlorothalonil 2 g/L; rotate with azoxystrobin 0.5 mL/L as per label.",
+		"organic_treatment": "Use copper hydroxide 2 g/L or Bacillus-based foliar products, combined with good residue management.",
+		"prevention": "Rotate crops, mulch to reduce splash, avoid plant stress, and remove infected lower leaves where possible.",
+		"urgency": "high",
+		"spread_speed": "moderate",
+		"spread_conditions": "Warm temperatures, humidity, repeated leaf wetness, and stressed plants"
+	},
+	"Potato___Late_blight": {
+		"display_name": "Potato late blight",
+		"crop": "Potato",
+		"stage_advice": {
+			"early": "Apply fungicide before cool wet periods and destroy infected volunteer plants.",
+			"moderate": "Use short spray intervals and remove infected foliage to slow spread into stems and tubers.",
+			"severe": "Rogue heavily infected plants, protect remaining foliage immediately, and avoid moving wet plant material."
+		},
+		"chemical_treatment": "Metalaxyl-M + mancozeb 2.5 g/L or cymoxanil + mancozeb per label; rotate modes of action to limit resistance.",
+		"organic_treatment": "Copper hydroxide 2 to 3 g/L or copper oxychloride products approved for organic use; repeat after rain.",
+		"prevention": "Plant certified seed, destroy cull piles and volunteers, hill soil over tubers, and avoid leaf wetness.",
+		"urgency": "high",
+		"spread_speed": "fast",
+		"spread_conditions": "Cool, wet weather, fog, heavy dew, and infected seed or volunteers"
+	},
+	"Potato___healthy": {
+		"display_name": "Healthy potato",
+		"crop": "Potato",
+		"stage_advice": {
+			"early": "Maintain hilling, balanced irrigation, and regular scouting.",
+			"moderate": "Continue removing weeds and monitor for early disease after wet periods.",
+			"severe": "No treatment needed; keep tubers protected from exposure and store only healthy harvest."
+		},
+		"chemical_treatment": "No chemical treatment needed; apply fungicides only when disease pressure and labels require them.",
+		"organic_treatment": "Use crop rotation, compost, and approved biological products as preventive care.",
+		"prevention": "Plant certified seed, rotate away from solanaceous crops, and avoid overwatering.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Disease risk rises in cool, wet fields and from infected seed tubers"
+	},
+	"Raspberry___healthy": {
+		"display_name": "Healthy raspberry",
+		"crop": "Raspberry",
+		"stage_advice": {
+			"early": "Maintain cane pruning, weed control, and consistent moisture.",
+			"moderate": "Continue scouting and remove any dead canes or diseased fruit immediately.",
+			"severe": "No treatment needed; keep rows open and dry to prevent disease build-up."
+		},
+		"chemical_treatment": "No chemical treatment needed; use preventive products only if local disease pressure is high.",
+		"organic_treatment": "Mulch, compost, and balanced nutrition are sufficient for routine preventive care.",
+		"prevention": "Prune old canes, keep fruit dry, and maintain good row spacing and sanitation.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Wet canopies, poor airflow, and crowded canes increase disease risk"
+	},
+	"Soybean___healthy": {
+		"display_name": "Healthy soybean",
+		"crop": "Soybean",
+		"stage_advice": {
+			"early": "Monitor stand vigor, maintain weed control, and inspect leaves weekly.",
+			"moderate": "Continue balanced fertility and avoid unnecessary field traffic when wet.",
+			"severe": "No treatment needed; keep scouting during humid weather and after storms."
+		},
+		"chemical_treatment": "No chemical treatment needed; use crop protection only if disease thresholds are exceeded.",
+		"organic_treatment": "Use rotation, inoculants, and soil health management as preventive care.",
+		"prevention": "Rotate crops, use clean seed, avoid compaction, and maintain good drainage.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Stress rises in wet, compacted, or nutrient-imbalanced fields"
+	},
+	"Squash___Powdery_mildew": {
+		"display_name": "Squash powdery mildew",
+		"crop": "Squash",
+		"stage_advice": {
+			"early": "Start preventive sprays as soon as white spots are seen on older leaves.",
+			"moderate": "Repeat fungicides at short intervals and remove heavily covered leaves if practical.",
+			"severe": "Protect new growth aggressively, thin dense foliage, and continue sprays through peak disease periods."
+		},
+		"chemical_treatment": "Wettable sulfur 2 to 3 g/L or myclobutanil 0.3 mL/L; rotate with potassium bicarbonate where appropriate.",
+		"organic_treatment": "Potassium bicarbonate 5 g/L, sulfur 2 g/L, or neem oil 5 mL/L as early protectants.",
+		"prevention": "Plant resistant varieties, keep spacing wide, and avoid excess nitrogen that creates lush susceptible foliage.",
+		"urgency": "medium",
+		"spread_speed": "fast",
+		"spread_conditions": "Warm days, cool nights, dry-looking but humid weather, and dense vine growth"
+	},
+	"Strawberry___Leaf_scorch": {
+		"display_name": "Strawberry leaf scorch",
+		"crop": "Strawberry",
+		"stage_advice": {
+			"early": "Remove affected leaves, keep rows weed-free, and protect new growth if symptoms are increasing.",
+			"moderate": "Apply fungicide during wet weather and avoid overhead watering.",
+			"severe": "Use frequent sanitation and protect healthy foliage from repeated splash and humidity."
+		},
+		"chemical_treatment": "Captan 2 g/L or myclobutanil 0.3 mL/L according to label for foliar disease suppression.",
+		"organic_treatment": "Copper hydroxide 2 g/L or approved biofungicides, combined with mulching and leaf removal.",
+		"prevention": "Use clean planting stock, mulch rows, remove old leaves, and maintain good spacing and drainage.",
+		"urgency": "medium",
+		"spread_speed": "moderate",
+		"spread_conditions": "Warm, moist conditions, overhead irrigation, and crowded beds"
+	},
+	"Strawberry___healthy": {
+		"display_name": "Healthy strawberry",
+		"crop": "Strawberry",
+		"stage_advice": {
+			"early": "Maintain mulching, runner management, and uniform moisture.",
+			"moderate": "Keep fruit off wet soil and remove old leaves that can harbor disease.",
+			"severe": "No treatment needed; continue monitoring after rain and during warm humid periods."
+		},
+		"chemical_treatment": "No chemical treatment needed; apply fungicides only if disease pressure develops.",
+		"organic_treatment": "Use straw mulch, compost, and biologicals as part of preventive care.",
+		"prevention": "Plant disease-free crowns, improve drainage, and avoid overhead watering late in the day.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Wet foliage, poor drainage, and dense plantings increase risk"
+	},
+	"Tomato___Bacterial_spot": {
+		"display_name": "Tomato bacterial spot",
+		"crop": "Tomato",
+		"stage_advice": {
+			"early": "Apply copper sprays at the first sign of spotting and avoid working plants when wet.",
+			"moderate": "Continue copper-based sprays and remove the worst leaves to reduce spread.",
+			"severe": "Use frequent protectant sprays, avoid overhead irrigation, and disinfect tools and stakes between blocks."
+		},
+		"chemical_treatment": "Copper hydroxide 2.5 g/L or copper oxychloride 2.5 g/L; can be combined with mancozeb 2 g/L where permitted.",
+		"organic_treatment": "Use organic copper formulations and biofungicides, plus strict sanitation and drip irrigation.",
+		"prevention": "Start with clean seed and transplants, rotate crops, avoid splashing water, and sanitize stakes and clips.",
+		"urgency": "high",
+		"spread_speed": "fast",
+		"spread_conditions": "Warm rain, splashing water, high humidity, and wind-driven storms"
+	},
+	"Tomato___Early_blight": {
+		"display_name": "Tomato early blight",
+		"crop": "Tomato",
+		"stage_advice": {
+			"early": "Remove infected lower leaves and begin fungicide coverage before lesions move upward.",
+			"moderate": "Repeat fungicide sprays after rain and keep foliage dry with mulch and drip irrigation.",
+			"severe": "Protect the upper canopy with tight spray intervals and remove heavily infected debris after harvest."
+		},
+		"chemical_treatment": "Chlorothalonil 2 g/L or mancozeb 2.5 g/L; rotate with azoxystrobin 0.5 mL/L as labeled.",
+		"organic_treatment": "Copper hydroxide 2 g/L or Bacillus subtilis products, plus mulching to reduce soil splash.",
+		"prevention": "Rotate crops, stake plants, mulch soil, avoid wet foliage, and remove lower leaves touching the ground.",
+		"urgency": "high",
+		"spread_speed": "moderate",
+		"spread_conditions": "Warm, humid weather, frequent rain, and stress from drought or poor nutrition"
+	},
+	"Tomato___Late_blight": {
+		"display_name": "Tomato late blight",
+		"crop": "Tomato",
+		"stage_advice": {
+			"early": "Act immediately at first water-soaked lesions and protect all nearby plants.",
+			"moderate": "Use short spray intervals and remove infected leaves or plants to slow epidemic spread.",
+			"severe": "Destroy badly affected plants, avoid movement of wet foliage, and continue protective sprays on surrounding plants."
+		},
+		"chemical_treatment": "Cymoxanil + mancozeb per label or metalaxyl-M + mancozeb 2.5 g/L; rotate to prevent resistance.",
+		"organic_treatment": "Copper hydroxide 2 to 3 g/L or copper oxychloride products allowed in organic production.",
+		"prevention": "Use disease-free transplants, avoid overhead irrigation, destroy volunteers, and monitor during cool wet weather.",
+		"urgency": "high",
+		"spread_speed": "fast",
+		"spread_conditions": "Cool, wet weather, fog, heavy dew, and infected plant material"
+	},
+	"Tomato___Leaf_Mold": {
+		"display_name": "Tomato leaf mold",
+		"crop": "Tomato",
+		"stage_advice": {
+			"early": "Improve greenhouse ventilation and begin fungicide protection at the first yellow spots.",
+			"moderate": "Remove severely infected leaves and maintain low humidity to slow sporulation.",
+			"severe": "Use repeated sprays, reduce condensation, and space plants to improve drying."
+		},
+		"chemical_treatment": "Chlorothalonil 2 g/L or copper hydroxide 2 g/L; in protected cultivation, apply cyprodinil + fludioxonil per label.",
+		"organic_treatment": "Copper-based organic products and Bacillus subtilis sprays, combined with ventilation and leaf removal.",
+		"prevention": "Ventilate greenhouses, avoid overhead watering, space plants properly, and keep humidity below disease thresholds.",
+		"urgency": "medium",
+		"spread_speed": "moderate",
+		"spread_conditions": "High humidity, poor ventilation, and warm protected-crop environments"
+	},
+	"Tomato___Septoria_leaf_spot": {
+		"display_name": "Tomato septoria leaf spot",
+		"crop": "Tomato",
+		"stage_advice": {
+			"early": "Remove the oldest spotted leaves and apply fungicide before defoliation accelerates.",
+			"moderate": "Repeat sprays after rain and maintain mulch to prevent soil splash onto lower leaves.",
+			"severe": "Protect remaining foliage aggressively and remove infected debris after the season."
+		},
+		"chemical_treatment": "Chlorothalonil 2 g/L or mancozeb 2.5 g/L; rotate with copper hydroxide 2 g/L where appropriate.",
+		"organic_treatment": "Copper hydroxide 2 g/L and approved biological fungicides, plus mulch and sanitation.",
+		"prevention": "Mulch soil, rotate crops, avoid overhead irrigation, and remove lower infected leaves promptly.",
+		"urgency": "medium",
+		"spread_speed": "moderate",
+		"spread_conditions": "Warm, wet weather, splashing rain, and crowded lower canopies"
+	},
+	"Tomato___Spider_mites Two-spotted_spider_mite": {
+		"display_name": "Tomato two-spotted spider mite",
+		"crop": "Tomato",
+		"stage_advice": {
+			"early": "Rinse foliage where possible, remove heavily infested leaves, and release beneficial mites if available.",
+			"moderate": "Apply miticide coverage to the undersides of leaves and repeat based on scouting results.",
+			"severe": "Treat the entire block, improve dust and heat management, and avoid broad-spectrum insecticides that worsen mite flare-ups."
+		},
+		"chemical_treatment": "Abamectin 0.5 mL/L or spiromesifen 0.75 mL/L according to label; rotate modes of action.",
+		"organic_treatment": "Horticultural oil 10 mL/L or insecticidal soap 10 mL/L, applied to leaf undersides and repeated if needed.",
+		"prevention": "Control weeds and dust, maintain adequate irrigation, and preserve beneficial predators.",
+		"urgency": "high",
+		"spread_speed": "fast",
+		"spread_conditions": "Hot, dry weather, dusty conditions, and water-stressed plants"
+	},
+	"Tomato___Target_Spot": {
+		"display_name": "Tomato target spot",
+		"crop": "Tomato",
+		"stage_advice": {
+			"early": "Start fungicide protection as soon as circular lesions appear on lower leaves.",
+			"moderate": "Repeat sprays after rain and remove infected debris to slow spread.",
+			"severe": "Protect healthy foliage aggressively and reduce canopy moisture with pruning and airflow."
+		},
+		"chemical_treatment": "Azoxystrobin 0.5 mL/L or chlorothalonil 2 g/L; rotate with mancozeb 2.5 g/L as labeled.",
+		"organic_treatment": "Copper hydroxide 2 g/L and Bacillus-based products, combined with mulching and sanitation.",
+		"prevention": "Keep foliage dry, mulch soil, rotate crops, and destroy infected residue after harvest.",
+		"urgency": "medium",
+		"spread_speed": "moderate",
+		"spread_conditions": "Warm, humid weather, leaf wetness, and dense foliage"
+	},
+	"Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+		"display_name": "Tomato yellow leaf curl virus",
+		"crop": "Tomato",
+		"stage_advice": {
+			"early": "Remove infected plants immediately and intensify whitefly control in the surrounding crop.",
+			"moderate": "Continue insecticide and physical barrier strategies to protect healthy plants from whitefly transmission.",
+			"severe": "Rogue infected plants, use reflective mulches or insect netting if possible, and maintain strict vector control."
+		},
+		"chemical_treatment": "Imidacloprid 0.3 mL/L or thiamethoxam 0.25 g/L for whitefly control; rotate with different insecticide groups.",
+		"organic_treatment": "Neem oil 3 to 5 mL/L, insecticidal soap, reflective mulch, and beneficial insect conservation.",
+		"prevention": "Use virus-free transplants, whitefly exclusion, early vector control, and remove weeds that harbor vectors.",
+		"urgency": "high",
+		"spread_speed": "fast",
+		"spread_conditions": "Warm weather, abundant whiteflies, weeds, and infected transplant stock"
+	},
+	"Tomato___Tomato_mosaic_virus": {
+		"display_name": "Tomato mosaic virus",
+		"crop": "Tomato",
+		"stage_advice": {
+			"early": "Remove infected plants quickly and disinfect tools, hands, and stakes.",
+			"moderate": "Increase sanitation and avoid handling plants after touching tobacco or infected material.",
+			"severe": "There is no cure; remove and destroy infected plants and prevent mechanical spread to healthy rows."
+		},
+		"chemical_treatment": "No curative chemical treatment exists; use disinfectants and vector-control helpers only if secondary pests are present.",
+		"organic_treatment": "Use strict sanitation, milk or biological disinfectant washes on tools, and remove infected plants.",
+		"prevention": "Use resistant varieties, sanitize hands and tools, avoid tobacco handling, and keep transplants virus-free.",
+		"urgency": "high",
+		"spread_speed": "moderate",
+		"spread_conditions": "Mechanical contact, contaminated tools, infected seed, and handling after tobacco exposure"
+	},
+	"Tomato___healthy": {
+		"display_name": "Healthy tomato",
+		"crop": "Tomato",
+		"stage_advice": {
+			"early": "Maintain drip irrigation, stake plants, and scout weekly for early disease or pest pressure.",
+			"moderate": "Continue pruning lower leaves, mulching soil, and removing weeds to reduce risk.",
+			"severe": "No treatment needed; keep plants dry and act quickly if new spots or insect pressure appear."
+		},
+		"chemical_treatment": "No chemical treatment needed; use only preventive products when local risk increases.",
+		"organic_treatment": "Use compost, mulch, and approved biologicals as part of routine preventive care.",
+		"prevention": "Use disease-free transplants, rotate crops, keep foliage dry, and remove symptomatic tissue promptly.",
+		"urgency": "low",
+		"spread_speed": "slow",
+		"spread_conditions": "Risk rises with warm wet weather, crowded plants, and poor sanitation"
+	},
+	"Cherry___healthy": {"display_name":"Healthy cherry","crop":"Cherry","stage_advice":{"early":"Maintain airflow and scout weekly.","moderate":"Continue sanitation and balanced irrigation.","severe":"No treatment needed; inspect new growth regularly."},"chemical_treatment":"No chemical treatment needed; use products only if a local diagnosis confirms disease.","organic_treatment":"Use compost, mulch, and approved biologicals for preventive care.","prevention":"Prune for airflow, remove fallen leaves, and avoid prolonged leaf wetness.","urgency":"low","spread_speed":"slow","spread_conditions":"Risk rises with wet foliage, crowding, and poor sanitation"},
+	"Corn___healthy": {"display_name":"Healthy corn","crop":"Corn","stage_advice":{"early":"Scout weekly and keep rows well ventilated.","moderate":"Maintain balanced nutrition and remove unusual plants.","severe":"No treatment needed; continue monitoring during humid weather."},"chemical_treatment":"No chemical treatment needed; use crop protection only after a confirmed diagnosis.","organic_treatment":"Use compost, approved biologicals, and residue management.","prevention":"Plant resistant hybrids, rotate crops, and manage residue after harvest.","urgency":"low","spread_speed":"slow","spread_conditions":"Risk rises with dense stands, wet leaves, and excess nitrogen"},
+	"Cotton___bacterial_blight": {"display_name":"Cotton bacterial blight","crop":"Cotton","stage_advice":{"early":"Remove affected leaves and reduce splash from irrigation.","moderate":"Increase sanitation and avoid moving wet plant material.","severe":"Remove heavily affected plants where practical and seek local advice."},"chemical_treatment":"Use copper-based bactericides only where locally registered and label-approved.","organic_treatment":"Use approved copper products and strict sanitation.","prevention":"Use certified seed, rotate crops, avoid overhead irrigation, and destroy infected residue.","urgency":"high","spread_speed":"fast","spread_conditions":"Warm rain, leaf wetness, wind-driven splash, and infected residue"},
+	"Cotton___curl_virus": {"display_name":"Cotton curl virus","crop":"Cotton","stage_advice":{"early":"Remove symptomatic plants and control whitefly vectors.","moderate":"Increase vector scouting and remove infected plants promptly.","severe":"Remove severely affected plants and consult a local agronomist."},"chemical_treatment":"Use locally registered whitefly insecticides and rotate modes of action according to the label.","organic_treatment":"Use neem-based products, reflective mulch, traps, and biological controls where approved.","prevention":"Plant clean seed, control weeds and whiteflies, and remove infected plants early.","urgency":"high","spread_speed":"fast","spread_conditions":"Warm weather, whitefly pressure, infected plants, and nearby weeds"},
+	"Cotton___fussarium_wilt": {"display_name":"Cotton fusarium wilt","crop":"Cotton","stage_advice":{"early":"Remove severely wilted plants and improve drainage.","moderate":"Stop moving contaminated soil and sanitize equipment.","severe":"Remove affected plants and plan a resistant, rotated crop."},"chemical_treatment":"No reliable curative treatment; use registered seed treatments and follow local recommendations.","organic_treatment":"Use compost, biological soil amendments, and clean cultivation practices.","prevention":"Plant resistant varieties, rotate crops, avoid waterlogging, and clean equipment.","urgency":"high","spread_speed":"moderate","spread_conditions":"Warm soil, infected residue, contaminated soil, and plant stress"},
+	"Cotton___healthy": {"display_name":"Healthy cotton","crop":"Cotton","stage_advice":{"early":"Scout for insects and leaf spots weekly.","moderate":"Maintain balanced nutrition and canopy airflow.","severe":"No treatment needed; continue monitoring during humid weather."},"chemical_treatment":"No chemical treatment needed; treat only after a confirmed pest or disease diagnosis.","organic_treatment":"Use compost, approved biologicals, and habitat for beneficial insects.","prevention":"Use clean seed, scout regularly, manage weeds, and avoid excess nitrogen.","urgency":"low","spread_speed":"slow","spread_conditions":"Risk rises with pest pressure, dense canopy, and humid weather"},
+	"Pepper___healthy": {"display_name":"Healthy pepper","crop":"Pepper","stage_advice":{"early":"Scout leaves and fruit weekly.","moderate":"Maintain airflow and consistent irrigation.","severe":"No treatment needed; monitor new growth closely."},"chemical_treatment":"No chemical treatment needed; use products only after a confirmed diagnosis.","organic_treatment":"Use compost, mulch, and approved biological controls.","prevention":"Use clean transplants, avoid overhead irrigation, rotate crops, and remove damaged fruit.","urgency":"low","spread_speed":"slow","spread_conditions":"Risk rises with wet foliage, crowding, and poor sanitation"},
+	"Rice___Bacterial_leaf_blight": {"display_name":"Rice bacterial leaf blight","crop":"Rice","stage_advice":{"early":"Remove volunteer hosts and avoid excess nitrogen.","moderate":"Improve drainage and reduce movement through wet fields.","severe":"Seek local advice and remove heavily affected residue after harvest."},"chemical_treatment":"Use registered copper or bactericide products only where permitted; follow local labels.","organic_treatment":"Use resistant varieties, compost, and strict field sanitation.","prevention":"Plant resistant varieties, balance nitrogen, improve drainage, and avoid contaminated irrigation water.","urgency":"high","spread_speed":"fast","spread_conditions":"Warm rain, standing water, wind-driven splash, and excess nitrogen"},
+	"Rice___Brown_spot": {"display_name":"Rice brown spot","crop":"Rice","stage_advice":{"early":"Improve nutrition and remove heavily spotted leaves where practical.","moderate":"Apply a registered protectant and improve field drainage.","severe":"Protect remaining foliage and consult a local rice specialist."},"chemical_treatment":"Use registered mancozeb, propiconazole, or equivalent products according to local labels.","organic_treatment":"Use compost, balanced nutrition, and approved biological protectants.","prevention":"Use clean seed, balanced fertilizer, good drainage, and remove infected residue.","urgency":"medium","spread_speed":"moderate","spread_conditions":"Nutrient stress, warm humidity, leaf wetness, and infected seed"},
+	"Rice___Leaf_blast": {"display_name":"Rice leaf blast","crop":"Rice","stage_advice":{"early":"Scout new leaves and reduce excess nitrogen.","moderate":"Apply a registered blast fungicide at the labeled timing.","severe":"Protect the flag leaf and panicles and seek local advice urgently."},"chemical_treatment":"Use registered tricyclazole, azoxystrobin, or equivalent products according to local labels.","organic_treatment":"Use resistant varieties, approved biologicals, and balanced nutrition.","prevention":"Plant resistant seed, avoid excess nitrogen, improve spacing, and manage residue.","urgency":"high","spread_speed":"fast","spread_conditions":"Warm humid nights, dew, cloudy weather, excess nitrogen, and dense plants"},
+	"Rice___Leaf_scald": {"display_name":"Rice leaf scald","crop":"Rice","stage_advice":{"early":"Improve airflow and avoid prolonged leaf wetness.","moderate":"Remove infected residue and use a registered protectant if advised.","severe":"Consult a local specialist to protect remaining foliage."},"chemical_treatment":"Use only locally registered rice fungicides according to label directions.","organic_treatment":"Use approved biologicals, compost, and residue sanitation.","prevention":"Use clean seed, rotate crops, manage water, and reduce dense wet canopy conditions.","urgency":"medium","spread_speed":"moderate","spread_conditions":"Warm wet weather, dense canopy, standing water, and infected residue"},
+	"Rice___Sheath_blight": {"display_name":"Rice sheath blight","crop":"Rice","stage_advice":{"early":"Reduce dense canopy humidity and scout lower sheaths.","moderate":"Apply a registered fungicide before the disease reaches upper sheaths.","severe":"Protect the crop promptly and seek local agronomy advice."},"chemical_treatment":"Use registered azoxystrobin, validamycin, or equivalent products according to local labels.","organic_treatment":"Use approved biologicals and reduce residue and canopy humidity.","prevention":"Avoid excess nitrogen, manage spacing, improve drainage, and remove infected residue.","urgency":"high","spread_speed":"fast","spread_conditions":"Warm humid canopy, dense planting, standing water, and excess nitrogen"},
+	"Rice___healthy": {"display_name":"Healthy rice","crop":"Rice","stage_advice":{"early":"Scout weekly and keep water and nutrition balanced.","moderate":"Continue sanitation and monitor after humid weather.","severe":"No treatment needed; inspect new leaves and panicles regularly."},"chemical_treatment":"No chemical treatment needed; use products only after a confirmed diagnosis.","organic_treatment":"Use compost, approved biologicals, and balanced soil nutrition.","prevention":"Use clean seed, balanced nitrogen, good water management, and remove infected residue.","urgency":"low","spread_speed":"slow","spread_conditions":"Risk rises with dense wet canopy, excess nitrogen, and infected residue"},
+	"Wheat___aphid": {"display_name":"Wheat aphid","crop":"Wheat","stage_advice":{"early":"Scout leaf undersides and remove volunteer hosts.","moderate":"Use thresholds to decide whether treatment is needed.","severe":"Control promptly with a registered product and protect beneficial insects."},"chemical_treatment":"Use a locally registered aphicide only when thresholds are exceeded; rotate modes of action.","organic_treatment":"Use neem or insecticidal soap where approved and conserve lady beetles and parasitoids.","prevention":"Scout weekly, manage volunteer wheat, rotate crops, and use resistant varieties.","urgency":"medium","spread_speed":"fast","spread_conditions":"Warm dry weather, dense growth, volunteer hosts, and low beneficial-insect activity"},
+	"Wheat___black_rust": {"display_name":"Wheat black rust","crop":"Wheat","stage_advice":{"early":"Remove volunteer wheat and scout stems and leaves frequently.","moderate":"Apply a registered rust fungicide at the labeled timing.","severe":"Protect the flag leaf and seek local agronomy advice immediately."},"chemical_treatment":"Use registered triazole or strobilurin fungicides according to local labels and resistance guidance.","organic_treatment":"Use resistant varieties, approved biologicals, and remove volunteer hosts.","prevention":"Plant resistant varieties, destroy volunteer wheat, rotate crops, and scout during humid weather.","urgency":"high","spread_speed":"fast","spread_conditions":"Warm humid weather, dew, windborne spores, and susceptible varieties"},
+	"Wheat___blast": {"display_name":"Wheat blast","crop":"Wheat","stage_advice":{"early":"Remove affected heads and contact local crop advisers.","moderate":"Protect flowering heads with only locally registered products.","severe":"Separate affected grain and seek urgent local advice."},"chemical_treatment":"Use only locally registered fungicides at the labeled flowering timing; curative control is limited.","organic_treatment":"Use clean seed, resistant varieties, and strict residue sanitation.","prevention":"Plant clean seed, rotate away from wheat, use resistant varieties, and avoid humid dense canopies.","urgency":"high","spread_speed":"fast","spread_conditions":"Warm humid flowering weather, rain, infected seed, and crop residue"},
+	"Wheat___brown_rust": {"display_name":"Wheat brown rust","crop":"Wheat","stage_advice":{"early":"Scout upper leaves and remove volunteer wheat.","moderate":"Apply a registered rust fungicide before the flag leaf is damaged.","severe":"Protect the flag leaf and consult local advice."},"chemical_treatment":"Use registered triazole or strobilurin products according to label and resistance guidance.","organic_treatment":"Use resistant varieties, approved biologicals, and sanitation.","prevention":"Plant resistant cultivars, remove volunteers, rotate crops, and scout regularly.","urgency":"high","spread_speed":"fast","spread_conditions":"Moderate temperatures, dew, humidity, windborne spores, and susceptible varieties"},
+	"Wheat___common_root_rot": {"display_name":"Wheat common root rot","crop":"Wheat","stage_advice":{"early":"Improve drainage and reduce plant stress.","moderate":"Remove volunteer hosts and avoid moving contaminated soil.","severe":"Plan rotation and resistant varieties with local advice."},"chemical_treatment":"Use registered seed treatments where recommended; foliar sprays do not cure established root rot.","organic_treatment":"Use compost, biological seed treatments, and improved soil structure.","prevention":"Rotate crops, use clean seed, avoid compaction, and manage weeds and residue.","urgency":"medium","spread_speed":"moderate","spread_conditions":"Dry stressed soil, compaction, infected residue, and continuous wheat"},
+	"Wheat___fusarium_head_blight": {"display_name":"Wheat fusarium head blight","crop":"Wheat","stage_advice":{"early":"Scout at flowering and plan protection before rain.","moderate":"Apply a registered flowering-time fungicide where permitted.","severe":"Test grain for mycotoxins and seek local advice before use or sale."},"chemical_treatment":"Use a registered flowering-time triazole according to local label and pre-harvest interval.","organic_treatment":"Use resistant varieties, clean seed, and residue management; no organic cure is reliable.","prevention":"Plant resistant varieties, rotate crops, manage residue, and avoid irrigation during flowering.","urgency":"high","spread_speed":"fast","spread_conditions":"Rain and humidity at flowering, warm temperatures, and infected residue"},
+	"Wheat___healthy": {"display_name":"Healthy wheat","crop":"Wheat","stage_advice":{"early":"Scout weekly for rust, aphids, and leaf spots.","moderate":"Maintain balanced nutrition and manage volunteer wheat.","severe":"No treatment needed; continue monitoring through grain fill."},"chemical_treatment":"No chemical treatment needed; treat only after a confirmed pest or disease diagnosis.","organic_treatment":"Use compost, approved biologicals, and balanced nutrition.","prevention":"Use clean seed, resistant varieties, crop rotation, and residue management.","urgency":"low","spread_speed":"slow","spread_conditions":"Risk rises with humid canopy, volunteer hosts, and infected residue"},
+	"Wheat___leaf_blight": {"display_name":"Wheat leaf blight","crop":"Wheat","stage_advice":{"early":"Remove volunteer hosts and scout the lower leaves.","moderate":"Protect the flag leaf with a registered fungicide when thresholds are met.","severe":"Seek local advice and protect remaining green leaf area."},"chemical_treatment":"Use registered triazole or strobilurin fungicides according to local labels.","organic_treatment":"Use resistant varieties, approved biologicals, and residue sanitation.","prevention":"Rotate crops, use clean seed, manage residue, and avoid dense humid canopies.","urgency":"high","spread_speed":"fast","spread_conditions":"Warm humid weather, frequent rain, leaf wetness, and infected residue"},
+	"Wheat___mildew": {"display_name":"Wheat powdery mildew","crop":"Wheat","stage_advice":{"early":"Improve airflow and reduce excess nitrogen.","moderate":"Apply a registered mildew fungicide when the flag leaf is at risk.","severe":"Protect upper leaves and consult local advice."},"chemical_treatment":"Use registered triazole, sulfur, or other labeled mildew products and rotate modes of action.","organic_treatment":"Use resistant varieties and approved sulfur or biological products.","prevention":"Avoid excess nitrogen, use resistant cultivars, reduce dense growth, and scout early.","urgency":"medium","spread_speed":"moderate","spread_conditions":"Cool humid canopy, dense plants, low airflow, and excess nitrogen"},
+	"Wheat___mite": {"display_name":"Wheat mite","crop":"Wheat","stage_advice":{"early":"Confirm mites with a hand lens and reduce plant stress.","moderate":"Use a registered miticide only when thresholds are exceeded.","severe":"Seek local advice and manage volunteer hosts after harvest."},"chemical_treatment":"Use a locally registered miticide according to label; rotate modes of action.","organic_treatment":"Use neem or approved biological controls where effective and permitted.","prevention":"Control volunteer hosts, rotate crops, reduce dust stress, and scout regularly.","urgency":"medium","spread_speed":"moderate","spread_conditions":"Hot dry weather, drought stress, dust, and volunteer hosts"},
+	"Wheat___septoria": {"display_name":"Wheat septoria","crop":"Wheat","stage_advice":{"early":"Scout lower leaves and manage infected residue.","moderate":"Protect the flag leaf with a registered fungicide when thresholds are met.","severe":"Seek local advice to protect remaining green leaf area."},"chemical_treatment":"Use registered triazole or strobilurin fungicides according to label and resistance guidance.","organic_treatment":"Use resistant varieties, clean seed, and approved biologicals.","prevention":"Rotate crops, bury or manage residue, use clean seed, and avoid prolonged leaf wetness.","urgency":"high","spread_speed":"fast","spread_conditions":"Cool wet weather, repeated rain, leaf wetness, and infected residue"},
+	"Wheat___smut": {"display_name":"Wheat smut","crop":"Wheat","stage_advice":{"early":"Remove affected heads before spores spread and clean equipment.","moderate":"Separate contaminated seed and avoid saving it for planting.","severe":"Destroy affected residue and seek seed-health advice."},"chemical_treatment":"Use registered fungicidal seed treatment before planting; foliar sprays do not cure smut.","organic_treatment":"Use certified clean seed, resistant varieties, and strict equipment sanitation.","prevention":"Plant certified treated seed, rotate crops, clean harvest equipment, and remove volunteer wheat.","urgency":"high","spread_speed":"moderate","spread_conditions":"Infected seed, contaminated equipment, cool wet emergence, and volunteer wheat"},
+	"Wheat___stem_fly": {"display_name":"Wheat stem fly","crop":"Wheat","stage_advice":{"early":"Scout stems and remove volunteer hosts.","moderate":"Use thresholds before applying an insecticide.","severe":"Protect new growth and consult local pest advice."},"chemical_treatment":"Use a locally registered insecticide only when thresholds are exceeded and rotate modes of action.","organic_treatment":"Use biological controls, clean field edges, and resistant varieties where available.","prevention":"Rotate crops, remove volunteer cereals, plant resistant varieties, and scout early.","urgency":"medium","spread_speed":"moderate","spread_conditions":"Warm weather, volunteer hosts, dense cereal growth, and adult fly activity"},
+	"Wheat___tan_spot": {"display_name":"Wheat tan spot","crop":"Wheat","stage_advice":{"early":"Remove infected residue and scout lower leaves after rain.","moderate":"Protect the flag leaf with a registered fungicide at the labeled timing.","severe":"Seek local advice and protect remaining green leaf area."},"chemical_treatment":"Use registered triazole or strobilurin fungicides according to local labels and resistance guidance.","organic_treatment":"Use resistant varieties, approved biologicals, and residue management.","prevention":"Rotate crops, manage wheat residue, use clean seed, and reduce prolonged leaf wetness.","urgency":"medium","spread_speed":"moderate","spread_conditions":"Warm wet weather, repeated rain, leaf wetness, and infected residue"},
+	"Wheat___yellow_rust": {"display_name":"Wheat yellow rust","crop":"Wheat","stage_advice":{"early":"Scout upper leaves and act before stripes spread.","moderate":"Apply a registered rust fungicide promptly at the labeled timing.","severe":"Protect the flag leaf and consult local advice urgently."},"chemical_treatment":"Use registered triazole or strobilurin fungicides according to local labels and resistance guidance.","organic_treatment":"Use resistant varieties, approved biologicals, and remove volunteer wheat.","prevention":"Plant resistant cultivars, remove volunteers, rotate crops, and scout during cool humid weather.","urgency":"high","spread_speed":"fast","spread_conditions":"Cool humid weather, dew, windborne spores, and susceptible varieties"}
+}

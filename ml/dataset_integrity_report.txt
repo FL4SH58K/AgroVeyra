@@ -1,0 +1,74 @@
+======================================================================================================================
+AgroVeyra dataset integrity audit
+======================================================================================================================
+data dir      : C:\ROHIT RAJESH\AgriVeyra\ml\data\merged
+scope         : wheat
+train files   : 13104
+val files     : 1050
+
+======================================================================================================================
+1. TRAIN/VAL OVERLAP
+======================================================================================================================
+  1a. source-image overlap (offline rotations/flips of one photo split across the sets)
+      val images whose source photo also appears in train: 450/1050 (42.9%)
+           50/70    Wheat___aphid
+           50/70    Wheat___black_rust
+           50/70    Wheat___blast
+           50/70    Wheat___common_root_rot
+           50/70    Wheat___leaf_blight
+           50/70    Wheat___mite
+        val\Wheat___aphid\aphid_27.png  (source aphid_27)
+        val\Wheat___aphid\aphid_28.png  (source aphid_28)
+        val\Wheat___aphid\aphid_29.png  (source aphid_29)
+        val\Wheat___aphid\aphid_30.png  (source aphid_30)
+        val\Wheat___aphid\aphid_31.png  (source aphid_31)
+        val\Wheat___aphid\aphid_32.png  (source aphid_32)
+
+  1b. byte-identical overlap (the strictest possible test)
+      leaked val images : 693
+      unique digests    : 486
+        val\Wheat___septoria\septoria_18.png == train\Wheat___septoria\septoria_18.png
+        val\Wheat___leaf_blight\leaf_blight_84.png == train\Wheat___leaf_blight\leaf_blight_526.png
+        val\Wheat___septoria\septoria_19.png == train\Wheat___leaf_blight\leaf_blight_640.png
+        val\Wheat___black_rust\black_rust_9.png == train\Wheat___black_rust\black_rust_153.png
+        val\Wheat___aphid\aphid_34.png == train\Wheat___aphid\aphid_34.png
+        val\Wheat___blast\blast_43.png == train\Wheat___blast\blast_43.png
+
+======================================================================================================================
+2. SAME-CLASS DUPLICATES (same image stored twice in one split)
+======================================================================================================================
+  train duplicate groups: 1448 (2216 redundant files)
+  val duplicate groups  : 297 (309 redundant files)
+    train\Wheat___aphid\aphid_106.png, train\Wheat___aphid\aphid_107.png, train\Wheat___aphid\aphid_28.png
+    train\Wheat___aphid\aphid_130.png, train\Wheat___leaf_blight\leaf_blight_519.png
+    train\Wheat___aphid\aphid_14.png, train\Wheat___aphid\aphid_882.png
+    train\Wheat___aphid\aphid_162.png, train\Wheat___aphid\aphid_418.png
+    train\Wheat___aphid\aphid_180.png, train\Wheat___common_root_rot\common_root_rot_44.png
+    train\Wheat___aphid\aphid_185.png, train\Wheat___aphid\aphid_481.png
+
+======================================================================================================================
+3. CROSS-CLASS DUPLICATES (identical pixels, different labels - unlearnable)
+======================================================================================================================
+  conflicting training groups: 256
+  affected files             : 559
+    train\Wheat___common_root_rot\common_root_rot_23.png , train\Wheat___common_root_rot\common_root_rot_409.png , train\Wheat___smut\smut_1038.png , train\Wheat___smut\smut_111.png
+    train\Wheat___leaf_blight\leaf_blight_601.png , train\Wheat___leaf_blight\leaf_blight_612.png , train\Wheat___leaf_blight\leaf_blight_75.png , train\Wheat___tan_spot\tan_spot_423.png
+    train\Wheat___leaf_blight\leaf_blight_202.png , train\Wheat___smut\smut_1025.png , train\Wheat___smut\smut_642.png , train\Wheat___smut\smut_97.png
+    train\Wheat___leaf_blight\leaf_blight_288.png , train\Wheat___smut\smut_1064.png , train\Wheat___smut\smut_1256.png , train\Wheat___smut\smut_875.png
+    train\Wheat___leaf_blight\leaf_blight_331.png , train\Wheat___smut\smut_1090.png , train\Wheat___smut\smut_1258.png , train\Wheat___smut\smut_877.png
+    train\Wheat___leaf_blight\leaf_blight_435.png , train\Wheat___smut\smut_1087.png , train\Wheat___smut\smut_157.png , train\Wheat___smut\smut_703.png
+
+  label pairs that share pixels (worst first)
+      102 shared images  Wheat___black_rust  <->  Wheat___brown_rust
+       97 shared images  Wheat___leaf_blight  <->  Wheat___septoria
+       25 shared images  Wheat___leaf_blight  <->  Wheat___tan_spot
+        6 shared images  Wheat___aphid  <->  Wheat___leaf_blight
+        4 shared images  Wheat___leaf_blight  <->  Wheat___smut
+        3 shared images  Wheat___blast  <->  Wheat___leaf_blight
+
+======================================================================================================================
+VERDICT: defects found
+======================================================================================================================
+  a source-image overlap means the val split is not held out (the metric is optimistic),
+  and every cross-class duplicate is a training example that cannot be learned correctly.
+

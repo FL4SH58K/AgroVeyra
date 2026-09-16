@@ -1,0 +1,121 @@
+# ---------------------------------------------------------------------------
+# AgroVeyra root .gitignore
+#
+# Rule of thumb: dataset images, model binaries and build output stay out of git;
+# the *small* files that the app and the report depend on stay in
+# (android/app/src/main/assets/agroveyra_model.tflite + class_names.json, the
+# ml/*.py tooling, the ml/*_report.txt findings).
+# ---------------------------------------------------------------------------
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# virtual environments (the 3.10 export env and the 3.14 notebook env)
+.venv/
+venv/
+env/
+ml/.venv/
+ml/.venv-*/
+# `backend/.venv/` is covered by `.venv/` above; listed for readability
+backend/.venv/
+# the dead Python 3.13 venv that used to sit at the repo root (its base interpreter
+# C:\Users\smroh\...\Python313\python.exe was deleted, so it could never launch).
+# Renamed instead of deleted so VS Code stops auto-selecting it as the interpreter.
+.venv_DEAD_DELETE_ME/
+.venv-*/
+
+# --- ML scratch, generated builds and datasets ------------------------------
+# Datasets: ~100k images / multiple GB, reproducible with ml/merge_datasets.py
+ml/data/
+ml/dataset/
+ml/datasets/
+ml/real_world_test/
+# Training runs (best.pt/last.pt per run) and Keras experiments
+ml/runs/
+ml/models/
+# Downloaded / exported model binaries (backbones, checkpoints, backups).
+# The one exception that *is* tracked is android/app/src/main/assets/agroveyra_model.tflite
+ml/weights/
+ml/*.pt
+ml/*.pth
+# Export scratch: onnx2tf build trees, downloaded TF fallback libs, scratch logs
+ml/export_build/
+ml/export_build_*/
+ml/.export-libs/
+ml/.export-libs-*/
+ml/*.onnx
+ml/*_tmp_*
+ml/_tmp_*
+ml/_probe*
+# Hash caches produced by ml/rebuild_split.py / ml/audit_dataset_integrity.py
+ml/.sha256_*.json
+
+# --- Android / Gradle ------------------------------------------------------
+.gradle/
+build/
+android/build/
+android/app/build/
+android/.gradle/
+android/local.properties
+android/captures/
+android/.idea/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+# R8/AAPT output that can go stale mid-iteration
+android/app/release/
+android/app/debug/
+
+# --- Local toolchains, agent state and stray envs (never source) ------------
+# Bundled Gradle distribution + any other locally unpacked toolchain
+.tools/
+# agent/CLI tool state (contains its own node_modules)
+.kilo/
+# vestigial export venv (Linux bin/lib layout, no Scripts/python.exe)
+export-env/
+
+# --- Downloaded datasets / backbones at the repo root ----------------------
+datasets/
+*.pt
+*.pth
+/_tmp_*
+
+# --- IDE / OS ---------------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.iml
+*.hprof
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- LaTeX / docs build output ---------------------------------------------
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.out
+*.nav
+*.snm
+*.vrb
+
+# --- Secrets ---------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key

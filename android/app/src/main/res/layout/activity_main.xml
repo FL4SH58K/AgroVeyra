@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/green_background"
+	tools:context=".MainActivity">
+
+	<androidx.constraintlayout.widget.Guideline
+		android:id="@+id/heroBottomGuideline"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		app:layout_constraintGuide_percent="0.4" />
+
+	<com.google.android.material.card.MaterialCardView
+		android:id="@+id/heroCard"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="16dp"
+		android:layout_marginEnd="16dp"
+		app:cardBackgroundColor="@color/green_primary_variant"
+		app:cardCornerRadius="24dp"
+		app:cardElevation="4dp"
+		android:foreground="?attr/selectableItemBackground"
+		app:layout_constraintBottom_toTopOf="@id/heroBottomGuideline"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:padding="20dp">
+
+			<View
+				android:id="@+id/heroCircleTop"
+				android:layout_width="140dp"
+				android:layout_height="140dp"
+				android:layout_marginTop="-24dp"
+				android:layout_marginEnd="-24dp"
+				android:background="@drawable/hero_circle_overlay"
+				android:alpha="0.16"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<View
+				android:id="@+id/heroCircleBottom"
+				android:layout_width="180dp"
+				android:layout_height="180dp"
+				android:layout_marginStart="-36dp"
+				android:layout_marginBottom="-44dp"
+				android:background="@drawable/hero_circle_overlay"
+				android:alpha="0.1"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toStartOf="parent" />
+
+			<TextView
+				android:id="@+id/heroLogo"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:drawableStart="@android:drawable/ic_menu_gallery"
+				android:drawablePadding="10dp"
+				android:text="@string/home_welcome_title"
+				android:textColor="@color/green_on_primary"
+				android:textSize="30sp"
+				android:textStyle="bold"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<TextView
+				android:id="@+id/heroSubtitle"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="12dp"
+				android:text="@string/home_welcome_subtitle"
+				android:textColor="#F2F8F2"
+				android:textSize="18sp"
+				android:lineSpacingExtra="3dp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/heroLogo" />
+
+			<TextView
+				android:id="@+id/heroDescription"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/home_description"
+				android:textColor="#DDE8D8"
+				android:textSize="14sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/heroSubtitle" />
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</com.google.android.material.card.MaterialCardView>
+
+	<com.google.android.material.card.MaterialCardView
+		android:id="@+id/scanButtonCard"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="16dp"
+		android:layout_marginEnd="16dp"
+		app:cardBackgroundColor="@color/green_surface"
+		app:cardCornerRadius="999dp"
+		app:cardElevation="2dp"
+		android:foreground="?attr/selectableItemBackground"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/heroCard">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:orientation="vertical"
+			android:paddingHorizontal="22dp"
+			android:paddingVertical="18dp">
+
+			<ImageView
+				android:layout_width="32dp"
+				android:layout_height="32dp"
+				android:contentDescription="@string/camera_icon_description"
+				android:src="@android:drawable/ic_menu_camera"
+				android:tint="@color/green_primary" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:text="@string/home_scan_title"
+				android:textColor="@color/green_primary_variant"
+				android:textSize="18sp"
+				android:textStyle="bold" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="4dp"
+				android:text="@string/home_scan_subtitle"
+				android:textColor="@color/green_text_secondary"
+				android:textSize="13sp" />
+		</LinearLayout>
+	</com.google.android.material.card.MaterialCardView>
+
+	<LinearLayout
+		android:id="@+id/quickActionsRow"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="16dp"
+		android:layout_marginTop="16dp"
+		android:layout_marginEnd="16dp"
+		android:orientation="horizontal"
+		android:weightSum="2"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/scanButtonCard">
+
+		<com.google.android.material.card.MaterialCardView
+			android:id="@+id/recentScansCard"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="8dp"
+			android:layout_weight="1"
+			app:cardBackgroundColor="@color/green_card_background"
+			app:cardCornerRadius="12dp"
+			app:cardElevation="2dp"
+			android:foreground="?attr/selectableItemBackground">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				android:padding="16dp">
+
+				<ImageView
+					android:layout_width="28dp"
+					android:layout_height="28dp"
+					android:contentDescription="@string/history_icon_description"
+					android:src="@android:drawable/ic_menu_recent_history"
+					android:tint="@color/green_primary" />
+
+				<LinearLayout
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="12dp"
+					android:layout_weight="1"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/recent_scans"
+						android:textColor="@color/green_text_primary"
+						android:textSize="16sp"
+						android:textStyle="bold" />
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="2dp"
+						android:text="@string/home_recent_scans_subtitle"
+						android:textColor="@color/green_text_secondary"
+						android:textSize="12sp" />
+				</LinearLayout>
+			</LinearLayout>
+		</com.google.android.material.card.MaterialCardView>
+
+		<com.google.android.material.card.MaterialCardView
+			android:id="@+id/diseaseGuideCard"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_weight="1"
+			app:cardBackgroundColor="@color/green_card_background"
+			app:cardCornerRadius="12dp"
+			app:cardElevation="2dp"
+			android:foreground="?attr/selectableItemBackground">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				android:padding="16dp">
+
+				<ImageView
+					android:layout_width="28dp"
+					android:layout_height="28dp"
+					android:contentDescription="@string/book_icon_description"
+					android:src="@android:drawable/ic_menu_info_details"
+					android:tint="@color/green_primary" />
+
+				<LinearLayout
+					android:id="@+id/homeNavItem"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="12dp"
+					android:layout_weight="1"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/disease_guide"
+						android:textColor="@color/green_text_primary"
+						android:textSize="16sp"
+						android:textStyle="bold" />
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="2dp"
+						android:text="@string/home_disease_guide_subtitle"
+						android:textColor="@color/green_text_secondary"
+						android:textSize="12sp" />
+				</LinearLayout>
+			</LinearLayout>
+		</com.google.android.material.card.MaterialCardView>
+	</LinearLayout>
+
+	<com.google.android.material.card.MaterialCardView
+		android:id="@+id/bottomNavCard"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		app:cardBackgroundColor="@color/green_surface"
+		app:cardCornerRadius="18dp"
+		app:cardElevation="4dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:paddingHorizontal="8dp"
+			android:paddingVertical="10dp">
+
+			<LinearLayout
+				android:id="@+id/scanNavItem"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center"
+				android:orientation="vertical">
+
+				<ImageView
+					android:layout_width="22dp"
+					android:layout_height="22dp"
+					android:contentDescription="@string/home_icon_description"
+					android:src="@android:drawable/ic_menu_view"
+					android:tint="@color/green_primary" />
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="4dp"
+					android:text="@string/home_nav"
+					android:textColor="@color/green_primary"
+					android:textSize="12sp"
+					android:textStyle="bold" />
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/historyNavItem"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center"
+				android:orientation="vertical">
+
+				<ImageView
+					android:layout_width="22dp"
+					android:layout_height="22dp"
+					android:contentDescription="@string/scan_icon_description"
+					android:src="@android:drawable/ic_menu_camera"
+					android:tint="@color/green_text_secondary" />
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="4dp"
+					android:text="@string/scan_nav"
+					android:textColor="@color/green_text_secondary"
+					android:textSize="12sp" />
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/infoNavItem"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center"
+				android:orientation="vertical">
+
+				<ImageView
+					android:layout_width="22dp"
+					android:layout_height="22dp"
+					android:contentDescription="@string/history_icon_description"
+					android:src="@android:drawable/ic_menu_recent_history"
+					android:tint="@color/green_text_secondary" />
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="4dp"
+					android:text="@string/history_nav"
+					android:textColor="@color/green_text_secondary"
+					android:textSize="12sp" />
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="center"
+				android:orientation="vertical">
+
+				<ImageView
+					android:layout_width="22dp"
+					android:layout_height="22dp"
+					android:contentDescription="@string/info_icon_description"
+					android:src="@android:drawable/ic_menu_info_details"
+					android:tint="@color/green_text_secondary" />
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="4dp"
+					android:text="@string/info_nav"
+					android:textColor="@color/green_text_secondary"
+					android:textSize="12sp" />
+			</LinearLayout>
+		</LinearLayout>
+	</com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

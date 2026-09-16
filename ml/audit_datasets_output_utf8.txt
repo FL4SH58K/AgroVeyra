@@ -1,0 +1,870 @@
+﻿Dataset audit
+=============
+
+=== plantvillage ===
+Root: C:\Users\smroh\program1\CROP IQ\ml\data\disease\plantvillage
+Folder tree (up to 3 levels):
+plantvillage/  [dirs=2, images=0]  !0img
+    New Plant Diseases Dataset(Augmented)/  [dirs=1, images=0]  !0img
+        New Plant Diseases Dataset(Augmented)/  [dirs=2, images=0]  !0img
+            train/  [dirs=38, images=0]  !0img
+                ... depth limit reached (38 subfolders hidden)
+            valid/  [dirs=38, images=0]  !0img
+                ... depth limit reached (38 subfolders hidden)
+    test/  [dirs=1, images=0]  !0img
+        test/  [dirs=0, images=33]
+Class folders:
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Apple___Apple_scab -> 2016 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Apple___Black_rot -> 1987 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Apple___Cedar_apple_rust -> 1760 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Apple___healthy -> 2008 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Blueberry___healthy -> 1816 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Cherry_(including_sour)___healthy -> 1826 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Cherry_(including_sour)___Powdery_mildew -> 841 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Corn_(maize)___Common_rust_ -> 1907 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Corn_(maize)___healthy -> 1859 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Corn_(maize)___Northern_Leaf_Blight -> 1832 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Grape___Black_rot -> 1888 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Grape___Esca_(Black_Measles) -> 1920 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Grape___healthy -> 1692 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Orange___Haunglongbing_(Citrus_greening) -> 1232 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Peach___Bacterial_spot -> 1838 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Peach___healthy -> 1728 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Pepper,_bell___Bacterial_spot -> 1913 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Pepper,_bell___healthy -> 1988 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Potato___Early_blight -> 1939 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Potato___healthy -> 1824 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Potato___Late_blight -> 1939 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Raspberry___healthy -> 1781 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Soybean___healthy -> 2022 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Squash___Powdery_mildew -> 1736 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Strawberry___healthy -> 1824 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Strawberry___Leaf_scorch -> 1774 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Tomato___Bacterial_spot -> 1702 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Tomato___Early_blight -> 1920 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Tomato___healthy -> 1926 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Tomato___Late_blight -> 1851 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Tomato___Leaf_Mold -> 1882 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Tomato___Septoria_leaf_spot -> 1745 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Tomato___Target_Spot -> 1827 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Tomato___Tomato_mosaic_virus -> 1790 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\train\Tomato___Tomato_Yellow_Leaf_Curl_Virus -> 990 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Apple___Apple_scab -> 504 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Apple___Black_rot -> 497 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Apple___Cedar_apple_rust -> 440 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Apple___healthy -> 502 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Blueberry___healthy -> 454 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Cherry_(including_sour)___healthy -> 456 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Cherry_(including_sour)___Powdery_mildew -> 211 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Corn_(maize)___Common_rust_ -> 477 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Corn_(maize)___healthy -> 465 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Corn_(maize)___Northern_Leaf_Blight -> 457 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Grape___Black_rot -> 472 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Grape___Esca_(Black_Measles) -> 480 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Grape___healthy -> 423 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Orange___Haunglongbing_(Citrus_greening) -> 322 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Peach___Bacterial_spot -> 459 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Peach___healthy -> 432 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Pepper,_bell___Bacterial_spot -> 478 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Pepper,_bell___healthy -> 497 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Potato___Early_blight -> 485 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Potato___healthy -> 456 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Potato___Late_blight -> 485 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Raspberry___healthy -> 445 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Soybean___healthy -> 505 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Squash___Powdery_mildew -> 434 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Strawberry___healthy -> 456 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Strawberry___Leaf_scorch -> 444 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Tomato___Bacterial_spot -> 425 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Tomato___Early_blight -> 480 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Tomato___healthy -> 481 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Tomato___Late_blight -> 463 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Tomato___Leaf_Mold -> 470 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Tomato___Septoria_leaf_spot -> 436 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Tomato___Target_Spot -> 457 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Tomato___Tomato_mosaic_virus -> 448 images
+  - New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)\valid\Tomato___Tomato_Yellow_Leaf_Curl_Virus -> 258 images
+  - test\test -> 33 images
+Class naming pattern: mixed (crop___disease + other)
+Train/val split: yes
+  split root: C:\Users\smroh\program1\CROP IQ\ml\data\disease\plantvillage\New Plant Diseases Dataset(Augmented)\New Plant Diseases Dataset(Augmented)
+Warnings:
+  - [repeated folder name] C:\Users\smroh\program1\CROP IQ\ml\data\disease\plantvillage\New Plant Diseases Dataset(Augmented)
+  - [nested split folder] C:\Users\smroh\program1\CROP IQ\ml\data\disease\plantvillage\test
+  - [repeated folder name] C:\Users\smroh\program1\CROP IQ\ml\data\disease\plantvillage\test
+Summary: total images = 78210 | class count = 36 | train/val split = yes
+
+=== rice ===
+Root: C:\Users\smroh\program1\CROP IQ\ml\data\disease\rice
+Folder tree (up to 3 levels):
+rice/  [dirs=1, images=0]  !0img
+    Rice_Leaf_AUG/  [dirs=6, images=0]  !0img
+        Bacterial Leaf Blight/  [dirs=0, images=636]
+        Brown Spot/  [dirs=0, images=646]
+        Healthy Rice Leaf/  [dirs=0, images=653]
+        Leaf Blast/  [dirs=0, images=634]
+        Leaf scald/  [dirs=0, images=628]
+        Sheath Blight/  [dirs=0, images=632]
+Class folders:
+  - Rice_Leaf_AUG\Bacterial Leaf Blight -> 636 images
+  - Rice_Leaf_AUG\Brown Spot -> 646 images
+  - Rice_Leaf_AUG\Healthy Rice Leaf -> 653 images
+  - Rice_Leaf_AUG\Leaf Blast -> 634 images
+  - Rice_Leaf_AUG\Leaf scald -> 628 images
+  - Rice_Leaf_AUG\Sheath Blight -> 632 images
+Class naming pattern: plain_label_names
+Train/val split: no
+Warnings: none
+Summary: total images = 3829 | class count = 6 | train/val split = no
+
+=== wheat ===
+Root: C:\Users\smroh\program1\CROP IQ\ml\data\disease\wheat
+Folder tree (up to 3 levels):
+wheat/  [dirs=1, images=0]  !0img
+    data/  [dirs=3, images=0]  !0img
+        test/  [dirs=15, images=0]  !0img
+            aphid_test/  [dirs=0, images=50]
+            black_rust_test/  [dirs=0, images=50]
+            blast_test/  [dirs=0, images=50]
+            brown_rust_test/  [dirs=0, images=50]
+            common_root_rot_test/  [dirs=0, images=50]
+            fusarium_head_blight_test/  [dirs=0, images=50]
+            healthy_test/  [dirs=0, images=50]
+            leaf_blight_test/  [dirs=0, images=50]
+            mildew_test/  [dirs=0, images=50]
+            mite_test/  [dirs=0, images=50]
+            septoria_test/  [dirs=0, images=50]
+            smut_test/  [dirs=0, images=50]
+            stem_fly_test/  [dirs=0, images=50]
+            tan_spot_test/  [dirs=0, images=50]
+            yellow_rust_test/  [dirs=0, images=50]
+        train/  [dirs=15, images=0]  !0img
+            Aphid/  [dirs=0, images=903]
+            Black Rust/  [dirs=0, images=576]
+            Blast/  [dirs=0, images=647]
+            Brown Rust/  [dirs=0, images=1271]
+            Common Root Rot/  [dirs=0, images=614]
+            Fusarium Head Blight/  [dirs=0, images=611]
+            Healthy/  [dirs=0, images=1000]
+            Leaf Blight/  [dirs=0, images=842]
+            Mildew/  [dirs=0, images=1081]
+            Mite/  [dirs=0, images=800]
+            Septoria/  [dirs=0, images=1144]
+            Smut/  [dirs=0, images=1310]
+            Stem fly/  [dirs=0, images=234]
+            Tan spot/  [dirs=0, images=770]
+            Yellow Rust/  [dirs=0, images=1301]
+        valid/  [dirs=15, images=0]  !0img
+            aphid_valid/  [dirs=0, images=20]
+            black_rust_valid/  [dirs=0, images=20]
+            blast_test_valid/  [dirs=0, images=20]
+            brown_rust_valid/  [dirs=0, images=20]
+            common_root_rot_valid/  [dirs=0, images=20]
+            fusarium_head_blight_valid/  [dirs=0, images=20]
+            healthy_valid/  [dirs=0, images=20]
+            leaf_blight_valid/  [dirs=0, images=20]
+            mildew_valid/  [dirs=0, images=20]
+            mite_valid/  [dirs=0, images=20]
+            septoria_valid/  [dirs=0, images=20]
+            smut_valid/  [dirs=0, images=20]
+            stem_fly_valid/  [dirs=0, images=20]
+            tan_spot_valid/  [dirs=0, images=20]
+            yellow_rust_valid/  [dirs=0, images=20]
+Class folders:
+  - data\test\aphid_test -> 50 images
+  - data\test\black_rust_test -> 50 images
+  - data\test\blast_test -> 50 images
+  - data\test\brown_rust_test -> 50 images
+  - data\test\common_root_rot_test -> 50 images
+  - data\test\fusarium_head_blight_test -> 50 images
+  - data\test\healthy_test -> 50 images
+  - data\test\leaf_blight_test -> 50 images
+  - data\test\mildew_test -> 50 images
+  - data\test\mite_test -> 50 images
+  - data\test\septoria_test -> 50 images
+  - data\test\smut_test -> 50 images
+  - data\test\stem_fly_test -> 50 images
+  - data\test\tan_spot_test -> 50 images
+  - data\test\yellow_rust_test -> 50 images
+  - data\train\Aphid -> 903 images
+  - data\train\Black Rust -> 576 images
+  - data\train\Blast -> 647 images
+  - data\train\Brown Rust -> 1271 images
+  - data\train\Common Root Rot -> 614 images
+  - data\train\Fusarium Head Blight -> 611 images
+  - data\train\Healthy -> 1000 images
+  - data\train\Leaf Blight -> 842 images
+  - data\train\Mildew -> 1081 images
+  - data\train\Mite -> 800 images
+  - data\train\Septoria -> 1144 images
+  - data\train\Smut -> 1310 images
+  - data\train\Stem fly -> 234 images
+  - data\train\Tan spot -> 770 images
+  - data\train\Yellow Rust -> 1301 images
+  - data\valid\aphid_valid -> 20 images
+  - data\valid\black_rust_valid -> 20 images
+  - data\valid\blast_test_valid -> 20 images
+  - data\valid\brown_rust_valid -> 20 images
+  - data\valid\common_root_rot_valid -> 20 images
+  - data\valid\fusarium_head_blight_valid -> 20 images
+  - data\valid\healthy_valid -> 20 images
+  - data\valid\leaf_blight_valid -> 20 images
+  - data\valid\mildew_valid -> 20 images
+  - data\valid\mite_valid -> 20 images
+  - data\valid\septoria_valid -> 20 images
+  - data\valid\smut_valid -> 20 images
+  - data\valid\stem_fly_valid -> 20 images
+  - data\valid\tan_spot_valid -> 20 images
+  - data\valid\yellow_rust_valid -> 20 images
+Class naming pattern: plain_label_names
+Train/val split: yes
+  split root: C:\Users\smroh\program1\CROP IQ\ml\data\disease\wheat\data
+Warnings: none
+Summary: total images = 14154 | class count = 15 | train/val split = yes
+
+=== cotton ===
+Root: C:\Users\smroh\program1\CROP IQ\ml\data\disease\cotton
+Folder tree (up to 3 levels):
+cotton/  [dirs=1, images=0]  !0img
+    cotton/  [dirs=4, images=0]  !0img
+        bacterial_blight/  [dirs=0, images=448]
+        curl_virus/  [dirs=0, images=418]
+        fussarium_wilt/  [dirs=0, images=419]
+        healthy/  [dirs=0, images=426]
+Class folders:
+  - cotton\bacterial_blight -> 448 images
+  - cotton\curl_virus -> 418 images
+  - cotton\fussarium_wilt -> 419 images
+  - cotton\healthy -> 426 images
+Class naming pattern: plain_label_names
+Train/val split: no
+Warnings:
+  - [repeated folder name] C:\Users\smroh\program1\CROP IQ\ml\data\disease\cotton
+Summary: total images = 1711 | class count = 4 | train/val split = no
+
+=== ip102 ===
+Root: C:\Users\smroh\program1\CROP IQ\ml\data\pest\ip102
+Folder tree (up to 3 levels):
+ip102/  [dirs=1, images=0]  !0img
+    classification/  [dirs=3, images=0]  !0img
+        test/  [dirs=102, images=0]  !0img
+            0/  [dirs=0, images=335]
+            1/  [dirs=0, images=147]
+            10/  [dirs=0, images=257]
+            100/  [dirs=0, images=138]
+            101/  [dirs=0, images=1723]
+            11/  [dirs=0, images=122]
+            12/  [dirs=0, images=52]
+            13/  [dirs=0, images=123]
+            14/  [dirs=0, images=258]
+            15/  [dirs=0, images=495]
+            16/  [dirs=0, images=267]
+            17/  [dirs=0, images=45]
+            18/  [dirs=0, images=257]
+            19/  [dirs=0, images=148]
+            2/  [dirs=0, images=79]
+            20/  [dirs=0, images=144]
+            21/  [dirs=0, images=159]
+            22/  [dirs=0, images=510]
+            23/  [dirs=0, images=322]
+            24/  [dirs=0, images=1229]
+            25/  [dirs=0, images=170]
+            26/  [dirs=0, images=208]
+            27/  [dirs=0, images=197]
+            28/  [dirs=0, images=98]
+            29/  [dirs=0, images=213]
+            3/  [dirs=0, images=316]
+            30/  [dirs=0, images=146]
+            31/  [dirs=0, images=70]
+            32/  [dirs=0, images=74]
+            33/  [dirs=0, images=88]
+            34/  [dirs=0, images=102]
+            35/  [dirs=0, images=42]
+            36/  [dirs=0, images=32]
+            37/  [dirs=0, images=237]
+            38/  [dirs=0, images=257]
+            39/  [dirs=0, images=482]
+            4/  [dirs=0, images=152]
+            40/  [dirs=0, images=90]
+            41/  [dirs=0, images=81]
+            42/  [dirs=0, images=93]
+            43/  [dirs=0, images=58]
+            44/  [dirs=0, images=158]
+            45/  [dirs=0, images=320]
+            46/  [dirs=0, images=197]
+            47/  [dirs=0, images=246]
+            48/  [dirs=0, images=419]
+            49/  [dirs=0, images=197]
+            5/  [dirs=0, images=152]
+            50/  [dirs=0, images=423]
+            51/  [dirs=0, images=570]
+            52/  [dirs=0, images=78]
+            53/  [dirs=0, images=54]
+            54/  [dirs=0, images=264]
+            55/  [dirs=0, images=56]
+            56/  [dirs=0, images=141]
+            57/  [dirs=0, images=115]
+            58/  [dirs=0, images=421]
+            59/  [dirs=0, images=107]
+            6/  [dirs=0, images=111]
+            60/  [dirs=0, images=53]
+            61/  [dirs=0, images=24]
+            62/  [dirs=0, images=85]
+            63/  [dirs=0, images=26]
+            64/  [dirs=0, images=93]
+            65/  [dirs=0, images=42]
+            66/  [dirs=0, images=230]
+            67/  [dirs=0, images=1594]
+            68/  [dirs=0, images=345]
+            69/  [dirs=0, images=384]
+            7/  [dirs=0, images=251]
+            70/  [dirs=0, images=1525]
+            71/  [dirs=0, images=208]
+            72/  [dirs=0, images=22]
+            73/  [dirs=0, images=135]
+            74/  [dirs=0, images=116]
+            75/  [dirs=0, images=52]
+            76/  [dirs=0, images=217]
+            77/  [dirs=0, images=126]
+            78/  [dirs=0, images=78]
+            79/  [dirs=0, images=68]
+            8/  [dirs=0, images=268]
+            80/  [dirs=0, images=23]
+            81/  [dirs=0, images=30]
+            82/  [dirs=0, images=208]
+            83/  [dirs=0, images=117]
+            84/  [dirs=0, images=132]
+            85/  [dirs=0, images=51]
+            86/  [dirs=0, images=392]
+            87/  [dirs=0, images=94]
+            88/  [dirs=0, images=122]
+            89/  [dirs=0, images=57]
+            9/  [dirs=0, images=166]
+            90/  [dirs=0, images=68]
+            91/  [dirs=0, images=106]
+            92/  [dirs=0, images=243]
+            93/  [dirs=0, images=152]
+            94/  [dirs=0, images=174]
+            95/  [dirs=0, images=147]
+            96/  [dirs=0, images=63]
+            97/  [dirs=0, images=92]
+            98/  [dirs=0, images=28]
+            99/  [dirs=0, images=167]
+        train/  [dirs=102, images=0]  !0img
+            0/  [dirs=0, images=669]
+            1/  [dirs=0, images=292]
+            10/  [dirs=0, images=513]
+            100/  [dirs=0, images=274]
+            101/  [dirs=0, images=3444]
+            11/  [dirs=0, images=242]
+            12/  [dirs=0, images=103]
+            13/  [dirs=0, images=245]
+            14/  [dirs=0, images=516]
+            15/  [dirs=0, images=989]
+            16/  [dirs=0, images=532]
+            17/  [dirs=0, images=88]
+            18/  [dirs=0, images=512]
+            19/  [dirs=0, images=294]
+            2/  [dirs=0, images=156]
+            20/  [dirs=0, images=287]
+            21/  [dirs=0, images=317]
+            22/  [dirs=0, images=1018]
+            23/  [dirs=0, images=642]
+            24/  [dirs=0, images=2456]
+            25/  [dirs=0, images=339]
+            26/  [dirs=0, images=414]
+            27/  [dirs=0, images=392]
+            28/  [dirs=0, images=195]
+            29/  [dirs=0, images=424]
+            3/  [dirs=0, images=631]
+            30/  [dirs=0, images=291]
+            31/  [dirs=0, images=139]
+            32/  [dirs=0, images=147]
+            33/  [dirs=0, images=175]
+            34/  [dirs=0, images=203]
+            35/  [dirs=0, images=82]
+            36/  [dirs=0, images=62]
+            37/  [dirs=0, images=473]
+            38/  [dirs=0, images=513]
+            39/  [dirs=0, images=962]
+            4/  [dirs=0, images=302]
+            40/  [dirs=0, images=179]
+            41/  [dirs=0, images=162]
+            42/  [dirs=0, images=184]
+            43/  [dirs=0, images=114]
+            44/  [dirs=0, images=314]
+            45/  [dirs=0, images=639]
+            46/  [dirs=0, images=393]
+            47/  [dirs=0, images=492]
+            48/  [dirs=0, images=836]
+            49/  [dirs=0, images=392]
+            5/  [dirs=0, images=303]
+            50/  [dirs=0, images=845]
+            51/  [dirs=0, images=1138]
+            52/  [dirs=0, images=156]
+            53/  [dirs=0, images=106]
+            54/  [dirs=0, images=527]
+            55/  [dirs=0, images=111]
+            56/  [dirs=0, images=281]
+            57/  [dirs=0, images=228]
+            58/  [dirs=0, images=840]
+            59/  [dirs=0, images=212]
+            6/  [dirs=0, images=221]
+            60/  [dirs=0, images=105]
+            61/  [dirs=0, images=47]
+            62/  [dirs=0, images=169]
+            63/  [dirs=0, images=50]
+            64/  [dirs=0, images=184]
+            65/  [dirs=0, images=84]
+            66/  [dirs=0, images=458]
+            67/  [dirs=0, images=3186]
+            68/  [dirs=0, images=690]
+            69/  [dirs=0, images=767]
+            7/  [dirs=0, images=500]
+            70/  [dirs=0, images=3048]
+            71/  [dirs=0, images=415]
+            72/  [dirs=0, images=42]
+            73/  [dirs=0, images=269]
+            74/  [dirs=0, images=231]
+            75/  [dirs=0, images=103]
+            76/  [dirs=0, images=433]
+            77/  [dirs=0, images=251]
+            78/  [dirs=0, images=154]
+            79/  [dirs=0, images=135]
+            8/  [dirs=0, images=535]
+            80/  [dirs=0, images=44]
+            81/  [dirs=0, images=59]
+            82/  [dirs=0, images=414]
+            83/  [dirs=0, images=232]
+            84/  [dirs=0, images=263]
+            85/  [dirs=0, images=100]
+            86/  [dirs=0, images=782]
+            87/  [dirs=0, images=186]
+            88/  [dirs=0, images=242]
+            89/  [dirs=0, images=113]
+            9/  [dirs=0, images=331]
+            90/  [dirs=0, images=135]
+            91/  [dirs=0, images=210]
+            92/  [dirs=0, images=484]
+            93/  [dirs=0, images=303]
+            94/  [dirs=0, images=346]
+            95/  [dirs=0, images=292]
+            96/  [dirs=0, images=126]
+            97/  [dirs=0, images=183]
+            98/  [dirs=0, images=55]
+            99/  [dirs=0, images=333]
+        val/  [dirs=102, images=0]  !0img
+            0/  [dirs=0, images=111]
+            1/  [dirs=0, images=48]
+            10/  [dirs=0, images=86]
+            100/  [dirs=0, images=46]
+            101/  [dirs=0, images=573]
+            11/  [dirs=0, images=40]
+            12/  [dirs=0, images=18]
+            13/  [dirs=0, images=41]
+            14/  [dirs=0, images=86]
+            15/  [dirs=0, images=165]
+            16/  [dirs=0, images=88]
+            17/  [dirs=0, images=14]
+            18/  [dirs=0, images=85]
+            19/  [dirs=0, images=49]
+            2/  [dirs=0, images=26]
+            20/  [dirs=0, images=48]
+            21/  [dirs=0, images=53]
+            22/  [dirs=0, images=170]
+            23/  [dirs=0, images=107]
+            24/  [dirs=0, images=409]
+            25/  [dirs=0, images=56]
+            26/  [dirs=0, images=69]
+            27/  [dirs=0, images=65]
+            28/  [dirs=0, images=32]
+            29/  [dirs=0, images=71]
+            3/  [dirs=0, images=106]
+            30/  [dirs=0, images=48]
+            31/  [dirs=0, images=24]
+            32/  [dirs=0, images=24]
+            33/  [dirs=0, images=29]
+            34/  [dirs=0, images=34]
+            35/  [dirs=0, images=13]
+            36/  [dirs=0, images=10]
+            37/  [dirs=0, images=79]
+            38/  [dirs=0, images=85]
+            39/  [dirs=0, images=160]
+            4/  [dirs=0, images=50]
+            40/  [dirs=0, images=30]
+            41/  [dirs=0, images=27]
+            42/  [dirs=0, images=31]
+            43/  [dirs=0, images=19]
+            44/  [dirs=0, images=52]
+            45/  [dirs=0, images=107]
+            46/  [dirs=0, images=66]
+            47/  [dirs=0, images=82]
+            48/  [dirs=0, images=139]
+            49/  [dirs=0, images=65]
+            5/  [dirs=0, images=51]
+            50/  [dirs=0, images=141]
+            51/  [dirs=0, images=189]
+            52/  [dirs=0, images=26]
+            53/  [dirs=0, images=17]
+            54/  [dirs=0, images=88]
+            55/  [dirs=0, images=18]
+            56/  [dirs=0, images=47]
+            57/  [dirs=0, images=38]
+            58/  [dirs=0, images=139]
+            59/  [dirs=0, images=35]
+            6/  [dirs=0, images=37]
+            60/  [dirs=0, images=18]
+            61/  [dirs=0, images=8]
+            62/  [dirs=0, images=29]
+            63/  [dirs=0, images=8]
+            64/  [dirs=0, images=30]
+            65/  [dirs=0, images=14]
+            66/  [dirs=0, images=76]
+            67/  [dirs=0, images=530]
+            68/  [dirs=0, images=115]
+            69/  [dirs=0, images=128]
+            7/  [dirs=0, images=83]
+            70/  [dirs=0, images=508]
+            71/  [dirs=0, images=69]
+            72/  [dirs=0, images=7]
+            73/  [dirs=0, images=45]
+            74/  [dirs=0, images=38]
+            75/  [dirs=0, images=17]
+            76/  [dirs=0, images=72]
+            77/  [dirs=0, images=42]
+            78/  [dirs=0, images=26]
+            79/  [dirs=0, images=22]
+            8/  [dirs=0, images=90]
+            80/  [dirs=0, images=7]
+            81/  [dirs=0, images=10]
+            82/  [dirs=0, images=68]
+            83/  [dirs=0, images=39]
+            84/  [dirs=0, images=44]
+            85/  [dirs=0, images=17]
+            86/  [dirs=0, images=130]
+            87/  [dirs=0, images=31]
+            88/  [dirs=0, images=40]
+            89/  [dirs=0, images=19]
+            9/  [dirs=0, images=56]
+            90/  [dirs=0, images=23]
+            91/  [dirs=0, images=35]
+            92/  [dirs=0, images=80]
+            93/  [dirs=0, images=50]
+            94/  [dirs=0, images=58]
+            95/  [dirs=0, images=48]
+            96/  [dirs=0, images=21]
+            97/  [dirs=0, images=30]
+            98/  [dirs=0, images=10]
+            99/  [dirs=0, images=55]
+Class folders:
+  - classification\test\0 -> 335 images
+  - classification\test\1 -> 147 images
+  - classification\test\10 -> 257 images
+  - classification\test\100 -> 138 images
+  - classification\test\101 -> 1723 images
+  - classification\test\11 -> 122 images
+  - classification\test\12 -> 52 images
+  - classification\test\13 -> 123 images
+  - classification\test\14 -> 258 images
+  - classification\test\15 -> 495 images
+  - classification\test\16 -> 267 images
+  - classification\test\17 -> 45 images
+  - classification\test\18 -> 257 images
+  - classification\test\19 -> 148 images
+  - classification\test\2 -> 79 images
+  - classification\test\20 -> 144 images
+  - classification\test\21 -> 159 images
+  - classification\test\22 -> 510 images
+  - classification\test\23 -> 322 images
+  - classification\test\24 -> 1229 images
+  - classification\test\25 -> 170 images
+  - classification\test\26 -> 208 images
+  - classification\test\27 -> 197 images
+  - classification\test\28 -> 98 images
+  - classification\test\29 -> 213 images
+  - classification\test\3 -> 316 images
+  - classification\test\30 -> 146 images
+  - classification\test\31 -> 70 images
+  - classification\test\32 -> 74 images
+  - classification\test\33 -> 88 images
+  - classification\test\34 -> 102 images
+  - classification\test\35 -> 42 images
+  - classification\test\36 -> 32 images
+  - classification\test\37 -> 237 images
+  - classification\test\38 -> 257 images
+  - classification\test\39 -> 482 images
+  - classification\test\4 -> 152 images
+  - classification\test\40 -> 90 images
+  - classification\test\41 -> 81 images
+  - classification\test\42 -> 93 images
+  - classification\test\43 -> 58 images
+  - classification\test\44 -> 158 images
+  - classification\test\45 -> 320 images
+  - classification\test\46 -> 197 images
+  - classification\test\47 -> 246 images
+  - classification\test\48 -> 419 images
+  - classification\test\49 -> 197 images
+  - classification\test\5 -> 152 images
+  - classification\test\50 -> 423 images
+  - classification\test\51 -> 570 images
+  - classification\test\52 -> 78 images
+  - classification\test\53 -> 54 images
+  - classification\test\54 -> 264 images
+  - classification\test\55 -> 56 images
+  - classification\test\56 -> 141 images
+  - classification\test\57 -> 115 images
+  - classification\test\58 -> 421 images
+  - classification\test\59 -> 107 images
+  - classification\test\6 -> 111 images
+  - classification\test\60 -> 53 images
+  - classification\test\61 -> 24 images
+  - classification\test\62 -> 85 images
+  - classification\test\63 -> 26 images
+  - classification\test\64 -> 93 images
+  - classification\test\65 -> 42 images
+  - classification\test\66 -> 230 images
+  - classification\test\67 -> 1594 images
+  - classification\test\68 -> 345 images
+  - classification\test\69 -> 384 images
+  - classification\test\7 -> 251 images
+  - classification\test\70 -> 1525 images
+  - classification\test\71 -> 208 images
+  - classification\test\72 -> 22 images
+  - classification\test\73 -> 135 images
+  - classification\test\74 -> 116 images
+  - classification\test\75 -> 52 images
+  - classification\test\76 -> 217 images
+  - classification\test\77 -> 126 images
+  - classification\test\78 -> 78 images
+  - classification\test\79 -> 68 images
+  - classification\test\8 -> 268 images
+  - classification\test\80 -> 23 images
+  - classification\test\81 -> 30 images
+  - classification\test\82 -> 208 images
+  - classification\test\83 -> 117 images
+  - classification\test\84 -> 132 images
+  - classification\test\85 -> 51 images
+  - classification\test\86 -> 392 images
+  - classification\test\87 -> 94 images
+  - classification\test\88 -> 122 images
+  - classification\test\89 -> 57 images
+  - classification\test\9 -> 166 images
+  - classification\test\90 -> 68 images
+  - classification\test\91 -> 106 images
+  - classification\test\92 -> 243 images
+  - classification\test\93 -> 152 images
+  - classification\test\94 -> 174 images
+  - classification\test\95 -> 147 images
+  - classification\test\96 -> 63 images
+  - classification\test\97 -> 92 images
+  - classification\test\98 -> 28 images
+  - classification\test\99 -> 167 images
+  - classification\train\0 -> 669 images
+  - classification\train\1 -> 292 images
+  - classification\train\10 -> 513 images
+  - classification\train\100 -> 274 images
+  - classification\train\101 -> 3444 images
+  - classification\train\11 -> 242 images
+  - classification\train\12 -> 103 images
+  - classification\train\13 -> 245 images
+  - classification\train\14 -> 516 images
+  - classification\train\15 -> 989 images
+  - classification\train\16 -> 532 images
+  - classification\train\17 -> 88 images
+  - classification\train\18 -> 512 images
+  - classification\train\19 -> 294 images
+  - classification\train\2 -> 156 images
+  - classification\train\20 -> 287 images
+  - classification\train\21 -> 317 images
+  - classification\train\22 -> 1018 images
+  - classification\train\23 -> 642 images
+  - classification\train\24 -> 2456 images
+  - classification\train\25 -> 339 images
+  - classification\train\26 -> 414 images
+  - classification\train\27 -> 392 images
+  - classification\train\28 -> 195 images
+  - classification\train\29 -> 424 images
+  - classification\train\3 -> 631 images
+  - classification\train\30 -> 291 images
+  - classification\train\31 -> 139 images
+  - classification\train\32 -> 147 images
+  - classification\train\33 -> 175 images
+  - classification\train\34 -> 203 images
+  - classification\train\35 -> 82 images
+  - classification\train\36 -> 62 images
+  - classification\train\37 -> 473 images
+  - classification\train\38 -> 513 images
+  - classification\train\39 -> 962 images
+  - classification\train\4 -> 302 images
+  - classification\train\40 -> 179 images
+  - classification\train\41 -> 162 images
+  - classification\train\42 -> 184 images
+  - classification\train\43 -> 114 images
+  - classification\train\44 -> 314 images
+  - classification\train\45 -> 639 images
+  - classification\train\46 -> 393 images
+  - classification\train\47 -> 492 images
+  - classification\train\48 -> 836 images
+  - classification\train\49 -> 392 images
+  - classification\train\5 -> 303 images
+  - classification\train\50 -> 845 images
+  - classification\train\51 -> 1138 images
+  - classification\train\52 -> 156 images
+  - classification\train\53 -> 106 images
+  - classification\train\54 -> 527 images
+  - classification\train\55 -> 111 images
+  - classification\train\56 -> 281 images
+  - classification\train\57 -> 228 images
+  - classification\train\58 -> 840 images
+  - classification\train\59 -> 212 images
+  - classification\train\6 -> 221 images
+  - classification\train\60 -> 105 images
+  - classification\train\61 -> 47 images
+  - classification\train\62 -> 169 images
+  - classification\train\63 -> 50 images
+  - classification\train\64 -> 184 images
+  - classification\train\65 -> 84 images
+  - classification\train\66 -> 458 images
+  - classification\train\67 -> 3186 images
+  - classification\train\68 -> 690 images
+  - classification\train\69 -> 767 images
+  - classification\train\7 -> 500 images
+  - classification\train\70 -> 3048 images
+  - classification\train\71 -> 415 images
+  - classification\train\72 -> 42 images
+  - classification\train\73 -> 269 images
+  - classification\train\74 -> 231 images
+  - classification\train\75 -> 103 images
+  - classification\train\76 -> 433 images
+  - classification\train\77 -> 251 images
+  - classification\train\78 -> 154 images
+  - classification\train\79 -> 135 images
+  - classification\train\8 -> 535 images
+  - classification\train\80 -> 44 images
+  - classification\train\81 -> 59 images
+  - classification\train\82 -> 414 images
+  - classification\train\83 -> 232 images
+  - classification\train\84 -> 263 images
+  - classification\train\85 -> 100 images
+  - classification\train\86 -> 782 images
+  - classification\train\87 -> 186 images
+  - classification\train\88 -> 242 images
+  - classification\train\89 -> 113 images
+  - classification\train\9 -> 331 images
+  - classification\train\90 -> 135 images
+  - classification\train\91 -> 210 images
+  - classification\train\92 -> 484 images
+  - classification\train\93 -> 303 images
+  - classification\train\94 -> 346 images
+  - classification\train\95 -> 292 images
+  - classification\train\96 -> 126 images
+  - classification\train\97 -> 183 images
+  - classification\train\98 -> 55 images
+  - classification\train\99 -> 333 images
+  - classification\val\0 -> 111 images
+  - classification\val\1 -> 48 images
+  - classification\val\10 -> 86 images
+  - classification\val\100 -> 46 images
+  - classification\val\101 -> 573 images
+  - classification\val\11 -> 40 images
+  - classification\val\12 -> 18 images
+  - classification\val\13 -> 41 images
+  - classification\val\14 -> 86 images
+  - classification\val\15 -> 165 images
+  - classification\val\16 -> 88 images
+  - classification\val\17 -> 14 images
+  - classification\val\18 -> 85 images
+  - classification\val\19 -> 49 images
+  - classification\val\2 -> 26 images
+  - classification\val\20 -> 48 images
+  - classification\val\21 -> 53 images
+  - classification\val\22 -> 170 images
+  - classification\val\23 -> 107 images
+  - classification\val\24 -> 409 images
+  - classification\val\25 -> 56 images
+  - classification\val\26 -> 69 images
+  - classification\val\27 -> 65 images
+  - classification\val\28 -> 32 images
+  - classification\val\29 -> 71 images
+  - classification\val\3 -> 106 images
+  - classification\val\30 -> 48 images
+  - classification\val\31 -> 24 images
+  - classification\val\32 -> 24 images
+  - classification\val\33 -> 29 images
+  - classification\val\34 -> 34 images
+  - classification\val\35 -> 13 images
+  - classification\val\36 -> 10 images
+  - classification\val\37 -> 79 images
+  - classification\val\38 -> 85 images
+  - classification\val\39 -> 160 images
+  - classification\val\4 -> 50 images
+  - classification\val\40 -> 30 images
+  - classification\val\41 -> 27 images
+  - classification\val\42 -> 31 images
+  - classification\val\43 -> 19 images
+  - classification\val\44 -> 52 images
+  - classification\val\45 -> 107 images
+  - classification\val\46 -> 66 images
+  - classification\val\47 -> 82 images
+  - classification\val\48 -> 139 images
+  - classification\val\49 -> 65 images
+  - classification\val\5 -> 51 images
+  - classification\val\50 -> 141 images
+  - classification\val\51 -> 189 images
+  - classification\val\52 -> 26 images
+  - classification\val\53 -> 17 images
+  - classification\val\54 -> 88 images
+  - classification\val\55 -> 18 images
+  - classification\val\56 -> 47 images
+  - classification\val\57 -> 38 images
+  - classification\val\58 -> 139 images
+  - classification\val\59 -> 35 images
+  - classification\val\6 -> 37 images
+  - classification\val\60 -> 18 images
+  - classification\val\61 -> 8 images
+  - classification\val\62 -> 29 images
+  - classification\val\63 -> 8 images
+  - classification\val\64 -> 30 images
+  - classification\val\65 -> 14 images
+  - classification\val\66 -> 76 images
+  - classification\val\67 -> 530 images
+  - classification\val\68 -> 115 images
+  - classification\val\69 -> 128 images
+  - classification\val\7 -> 83 images
+  - classification\val\70 -> 508 images
+  - classification\val\71 -> 69 images
+  - classification\val\72 -> 7 images
+  - classification\val\73 -> 45 images
+  - classification\val\74 -> 38 images
+  - classification\val\75 -> 17 images
+  - classification\val\76 -> 72 images
+  - classification\val\77 -> 42 images
+  - classification\val\78 -> 26 images
+  - classification\val\79 -> 22 images
+  - classification\val\8 -> 90 images
+  - classification\val\80 -> 7 images
+  - classification\val\81 -> 10 images
+  - classification\val\82 -> 68 images
+  - classification\val\83 -> 39 images
+  - classification\val\84 -> 44 images
+  - classification\val\85 -> 17 images
+  - classification\val\86 -> 130 images
+  - classification\val\87 -> 31 images
+  - classification\val\88 -> 40 images
+  - classification\val\89 -> 19 images
+  - classification\val\9 -> 56 images
+  - classification\val\90 -> 23 images
+  - classification\val\91 -> 35 images
+  - classification\val\92 -> 80 images
+  - classification\val\93 -> 50 images
+  - classification\val\94 -> 58 images
+  - classification\val\95 -> 48 images
+  - classification\val\96 -> 21 images
+  - classification\val\97 -> 30 images
+  - classification\val\98 -> 10 images
+  - classification\val\99 -> 55 images
+Class naming pattern: numeric_class_ids
+Train/val split: yes
+  split root: C:\Users\smroh\program1\CROP IQ\ml\data\pest\ip102\classification
+Warnings: none
+Summary: total images = 75222 | class count = 102 | train/val split = yes
