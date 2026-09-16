@@ -2,12 +2,12 @@
     "java.configuration.updateBuildConfiguration": "interactive",
 
     // --- Python / Pylance ---------------------------------------------------
-    // The workspace root also contains a `.venv` that is DEAD: it was created
-    // from C:\Users\smroh\AppData\Local\Programs\Python\Python313\python.exe,
-    // which no longer exists (pyvenv.cfg still names it). VS Code prefers a
-    // root `.venv` during discovery, and a dead interpreter is exactly why the
-    // Problems panel reported "Import could not be resolved" on files whose
-    // imports are fine. Pin the interpreter to the env that is actually alive.
+    // The repo root used to hold a second `.venv` created from
+    // C:\Users\smroh\AppData\Local\Programs\Python\Python313\python.exe — an interpreter that
+    // no longer exists (its `pyvenv.cfg` still named it). VS Code prefers a root `.venv` during
+    // discovery, and a dead interpreter is exactly why the Problems panel reported
+    // "Import could not be resolved" on files whose imports are fine. That env is now renamed to
+    // `.venv_DEAD_DELETE_ME` (git-ignored) and this setting pins the one that actually works.
     "python.defaultInterpreterPath": "${workspaceFolder}/ml/.venv/Scripts/python.exe",
     "python.terminal.activateEnvironment": true,
 
@@ -16,7 +16,14 @@
     // scripts can import each other the way they do at runtime).
     "python.analysis.extraPaths": [
         "${workspaceFolder}/ml",
-        "${workspaceFolder}/backend"
+        "${workspaceFolder}/backend",
+        // The backend is a second environment with its own pinned stack (tensorflow==2.13.0,
+        // fastapi==0.104.1, numpy==1.24.3, ...). It deliberately is NOT installed into ml/.venv,
+        // whose numpy 2.4 / protobuf 7 the export path depends on (see the docstring in
+        // ml/export_tflite_float32.py). Listing its site-packages here lets Pylance resolve the
+        // backend imports while ml/.venv stays the interpreter, so the Problems panel is accurate
+        // for both stacks in one window. Run the backend itself with backend/.venv.
+        "${workspaceFolder}/backend/.venv/Lib/site-packages"
     ],
 
     // Do not walk the whole tree (ml/data, ml/runs, ml/.export-libs, android/build).
