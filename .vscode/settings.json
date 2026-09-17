@@ -17,7 +17,7 @@
     "python.analysis.extraPaths": [
         "${workspaceFolder}/ml",
         "${workspaceFolder}/backend",
-        // The backend is a second environment with its own pinned stack (tensorflow==2.13.0,
+        // The backend is a second environment with its own pinned stack (tensorflow==2.14.1,
         // fastapi==0.104.1, numpy==1.24.3, ...). It deliberately is NOT installed into ml/.venv,
         // whose numpy 2.4 / protobuf 7 the export path depends on (see the docstring in
         // ml/export_tflite_float32.py). Listing its site-packages here lets Pylance resolve the
