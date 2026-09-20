@@ -286,7 +286,9 @@ class ScanActivity : AppCompatActivity() {
 	 * Shown instead of the result screen when the model's top-1 score is below
 	 * [TFLiteHelper.MIN_CONFIDENCE]. The disease name is deliberately not displayed: the whole point
 	 * of the gate is that the prediction cannot be relied on, so the user is asked to retake the
-	 * photo rather than being handed a diagnosis that was wrong roughly half the time in field tests.
+	 * photo rather than being handed a diagnosis. On the 16-photo field set the ungated classifier
+	 * was wrong 9 times out of 16; at the shipped 0.95 gate every answer that reached the result
+	 * screen was correct (ml/confidence_gate_analysis.txt).
 	 */
 	private fun showLowConfidenceRetake(confidence: Float) {
 		val percent = (confidence * 100f).toInt()

@@ -32,11 +32,19 @@ class TFLiteHelper(context: Context) : Closeable {
 
 		/**
 		 * Below this top-1 softmax score the classifier is guessing rather than reading the leaf.
-		 * Measured on the 16 real field photos (ml/benchmark_preprocessing.py, ml/class_error_report.txt):
-		 * 43.8% precision with no gate, 87.5% at 0.70 and 100% at 0.80 - so the UI asks for a retake
-		 * instead of presenting a diagnosis it cannot stand behind.
+		 * Re-measured for the leak-free model on the 16 real field photos
+		 * (ml/confidence_gate_analysis.txt - post-hoc sweep of ml/real_world_results.csv):
+		 *   no gate  43.8% precision (7/16 correct, 9 wrong answers shown)
+		 *   0.70     54.5% precision (6 correct, 5 wrong) - the previous default, tuned on the
+		 *            model that was replaced in step 6
+		 *   0.90     85.7% precision (7/16)
+		 *   0.95    100.0% precision (6/16, every shown answer correct) and it keeps every correct
+		 *            answer the 0.70 gate kept - it only drops wrong ones
+		 * The cost is coverage: 6 of 16 field photos now ask for a retake instead of 11. In-domain
+		 * the cost is small (ml/data/merged_clean/val: coverage 91.7% -> 84.4%, precision
+		 * 96.4% -> 98.0%). This is tuned on 16 photos, so re-check it as ml/real_world_test grows.
 		 */
-		const val MIN_CONFIDENCE = 0.70f
+		const val MIN_CONFIDENCE = 0.95f
 	}
 
 	init {

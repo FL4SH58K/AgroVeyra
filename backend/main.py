@@ -22,11 +22,13 @@ MODEL_PATH = os.getenv("MODEL_PATH", "models/agroveyra_model.tflite")
 CLASS_NAMES_PATH = os.getenv("CLASS_NAMES_PATH", "models/class_names.json")
 OPENWEATHERMAP_API_KEY = os.getenv("OPENWEATHERMAP_API_KEY", "")
 
-# Below this top-1 probability the classifier is guessing rather than reading the leaf. Measured on
-# the 16 real field photos (ml/benchmark_preprocessing.py, ml/class_error_report.txt): 43.8% precision
-# ungated, 87.5% at 0.70 and 100% at 0.80 - so /predict flags the answer instead of returning a
-# diagnosis the caller cannot stand behind. Override with LOW_CONFIDENCE_THRESHOLD in the env.
-LOW_CONFIDENCE_THRESHOLD = float(os.getenv("LOW_CONFIDENCE_THRESHOLD", "0.70"))
+# Below this top-1 probability the classifier is guessing rather than reading the leaf. Re-measured
+# for the leak-free model on the 16 real field photos (ml/confidence_gate_analysis.txt): 43.8%
+# precision ungated, 54.5% at the old 0.70 default, 85.7% at 0.90 and 100% at 0.95 - where it also
+# keeps every correct answer 0.70 kept, so /predict flags the answer instead of returning a
+# diagnosis the caller cannot stand behind. Costs ~7 points of in-domain coverage
+# (merged_clean/val 91.7% -> 84.4%). Override with LOW_CONFIDENCE_THRESHOLD in the env.
+LOW_CONFIDENCE_THRESHOLD = float(os.getenv("LOW_CONFIDENCE_THRESHOLD", "0.95"))
 
 # Global variables for model and class names
 interpreter = None
