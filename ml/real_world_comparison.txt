@@ -239,31 +239,6 @@ that the leak-free retrain made the model worse.
 
 
 ====================================================================================================================
-APPENDIX - commands run and artifacts
-====================================================================================================================
-  OLD baseline (restored from 15/09, leaky build sha256 c24464eb725661f6):
-      ml\_baseline_15sep\real_world_results.{txt,csv}, val_subset_results.{txt,csv}
-  NEW, your exact command:
-      ml\.venv\Scripts\python.exe ml\evaluate_real_world.py --val-subset 3
-      -> ml\real_world_results.{txt,csv}          (16 field photos)
-      -> ml\val_subset_results.{txt,csv}          (merged\val, 3/class)
-      -> backup: ml\_newmodel_leakyval\
-  NEW, honest-split control (--val-dir ml\data\merged_clean\val):
-      -> ml\val_subset_results_cleanval.{txt,csv}
-  NEW, resize-policy control (--val-dir ml\data\merged_clean\val --center-crop):
-      -> ml\val_subset_results_centercrop.{txt,csv}, ml\real_world_results_centercrop.{txt,csv}
-      -> raw log: ml\_rwcrop.out / .err
-  raw logs of the main run: ml\_rweval.out / .err
-  supporting evidence: ml\dataset_rebuild_report.txt, ml\dataset_rebuild_manifest.csv,
-      ml\dataset_integrity_report_clean.txt, ml\export_parity_report.txt,
-      ml\runs\disease_clean\args.yaml (imgsz 224, 50 epochs, yolo11n-cls, data merged_clean)
-  diagnostic scripts used and then deleted (throwaway): ml\_imgstats.py (pixel stats),
-      ml\_archeck.py (aspect ratios); their findings are recorded in sections 3e and 4.
-
-
-
-
-====================================================================================================================
 7. CONFIDENCE GATE RE-TUNE - what the app should show now
 ====================================================================================================================
 Sections 1-6 established that the rebuild did not move field accuracy. It did change how much a high
@@ -322,6 +297,28 @@ CHANGES SHIPPED WITH THIS SECTION
                                                                      (+ comment re-measured for this model)
   android\app\src\main\java\com\agroveyra\app\ScanActivity.kt        doc comment on showLowConfidenceRetake
   backend\main.py                                                    LOW_CONFIDENCE_THRESHOLD default -> 0.95
-  ml\GPU_RUNBOOK.md                                                  §7 gate value, §9 step-6 results
+  ml\GPU_RUNBOOK.md                                                  Â§7 gate value, Â§9 step-6 results
   ml\confidence_gate_sweep.py                                       the reproducible sweep (writes the report)
 
+
+====================================================================================================================
+APPENDIX - commands run and artifacts
+====================================================================================================================
+  OLD baseline (restored from 15/09, leaky build sha256 c24464eb725661f6):
+      ml\_baseline_15sep\real_world_results.{txt,csv}, val_subset_results.{txt,csv}
+  NEW, your exact command:
+      ml\.venv\Scripts\python.exe ml\evaluate_real_world.py --val-subset 3
+      -> ml\real_world_results.{txt,csv}          (16 field photos)
+      -> ml\val_subset_results.{txt,csv}          (merged\val, 3/class)
+      -> backup: ml\_newmodel_leakyval\
+  NEW, honest-split control (--val-dir ml\data\merged_clean\val):
+      -> ml\val_subset_results_cleanval.{txt,csv}
+  NEW, resize-policy control (--val-dir ml\data\merged_clean\val --center-crop):
+      -> ml\val_subset_results_centercrop.{txt,csv}, ml\real_world_results_centercrop.{txt,csv}
+      -> raw log: ml\_rwcrop.out / .err
+  raw logs of the main run: ml\_rweval.out / .err
+  supporting evidence: ml\dataset_rebuild_report.txt, ml\dataset_rebuild_manifest.csv,
+      ml\dataset_integrity_report_clean.txt, ml\export_parity_report.txt,
+      ml\runs\disease_clean\args.yaml (imgsz 224, 50 epochs, yolo11n-cls, data merged_clean)
+  diagnostic scripts used and then deleted (throwaway): ml\_imgstats.py (pixel stats),
+      ml\_archeck.py (aspect ratios); their findings are recorded in sections 3e and 4.
