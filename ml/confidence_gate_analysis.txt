@@ -1,0 +1,175 @@
+====================================================================================================
+CONFIDENCE GATE SWEEP - AgroVeyra shipped model (disease_clean, float32 re-export)
+====================================================================================================
+model     : backend/models/agroveyra_model.tflite  sha256 6aec2f1afedaf4ec  (60 classes, 224x224)
+source    : post-hoc re-scoring of the CSVs produced by ml/evaluate_real_world.py --val-subset 3
+            no new inference was run; nothing here depends on the GPU or on training
+gate today: android/.../TFLiteHelper.kt MIN_CONFIDENCE = 0.70f (tuned on the replaced model)
+            backend/main.py LOW_CONFIDENCE_THRESHOLD = 0.70 (env-overridable)
+gate after: 0.95 - shipped by ml/real_world_comparison.txt section 7; see section 4 for the rule
+meaning   : 'shown' = the app presents a diagnosis; below the gate it must ask for a retake
+
+  field_new   n= 16   16 real field photos (NEW model)
+  field_crop  n= 16   16 real field photos (center-crop transform)
+  val_clean   n=180   180 files, ml/data/merged_clean/val (honest)
+  val_leaky   n=180   180 files, ml/data/merged/val (LEAKY)
+
+====================================================================================================
+1. SWEEP - field photos (what the user actually sees)
+====================================================================================================
+   gate    photos shown   coverage   of those CORRECT   shown WRONG   PRECISION
+   ------------------------------------------------------------------------------
+   --- 16 real field photos (NEW model)
+    none           16/16      100.00%           7              9        43.75%
+    0.50           14/16      87.50%           7              7        50.00%
+    0.60           12/16      75.00%           6              6        50.00%
+    0.65           11/16      68.75%           6              5        54.55%
+    0.70           11/16      68.75%           6              5        54.55%
+    0.75            9/16      56.25%           6              3        66.67%
+    0.80            8/16      50.00%           6              2        75.00%
+    0.85            8/16      50.00%           6              2        75.00%
+    0.90            7/16      43.75%           6              1        85.71%
+    0.95            6/16      37.50%           6              0        100.00%
+
+   --- 16 real field photos (center-crop transform)
+    none           16/16      100.00%           7              9        43.75%
+    0.50           13/16      81.25%           7              6        53.85%
+    0.60           13/16      81.25%           7              6        53.85%
+    0.65           12/16      75.00%           7              5        58.33%
+    0.70           10/16      62.50%           6              4        60.00%
+    0.75            9/16      56.25%           5              4        55.56%
+    0.80            9/16      56.25%           5              4        55.56%
+    0.85            9/16      56.25%           5              4        55.56%
+    0.90            8/16      50.00%           5              3        62.50%
+    0.95            6/16      37.50%           5              1        83.33%
+
+====================================================================================================
+2. SWEEP - in-domain val sample (the gate must not start rejecting good answers)
+====================================================================================================
+   gate    cleanval shown  coverage  precision   |  leakyval shown  coverage  precision
+   ---------------------------------------------------------------------------------------
+     none   180/180    100.00%    91.11%   |  180/180    100.00%    92.78%
+     0.50   175/180    97.22%    93.14%   |  174/180    96.67%    95.98%
+     0.60   169/180    93.89%    95.27%   |  169/180    93.89%    97.63%
+     0.65   167/180    92.78%    95.21%   |  168/180    93.33%    97.62%
+     0.70   165/180    91.67%    96.36%   |  168/180    93.33%    97.62%
+     0.75   164/180    91.11%    96.34%   |  165/180    91.67%    97.58%
+     0.80   163/180    90.56%    96.32%   |  163/180    90.56%    97.55%
+     0.85   160/180    88.89%    96.88%   |  159/180    88.33%    98.11%
+     0.90   157/180    87.22%    98.09%   |  158/180    87.78%    98.10%
+     0.95   152/180    84.44%    98.03%   |  156/180    86.67%    98.72%
+
+====================================================================================================
+3. WHAT EACH GATE DOES TO THE 16 FIELD ANSWERS, PHOTO BY PHOTO
+====================================================================================================
+   --- gate 0.50   shown 14/16   correct among shown 7   precision 50.00%
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_1.jpg [Rice___Sheath_blight 76.06%]
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_2.jpg [Rice___Sheath_blight 89.09%]
+       SHOWN BUT WRONG : rice_brown_spot_1.jpg [Wheat___leaf_blight 62.46%]
+       SHOWN BUT WRONG : rice_brown_spot_2.jpg [Wheat___blast 74.94%]
+       SHOWN BUT WRONG : tomato_early_blight_2.jpg [Cotton___bacterial_blight 92.30%]
+       SHOWN BUT WRONG : wheat_yellow_rust_1.jpg [Wheat___brown_rust 59.73%]
+       SHOWN BUT WRONG : wheat_yellow_rust_2.jpg [Wheat___brown_rust 70.35%]
+
+   --- gate 0.60   shown 12/16   correct among shown 6   precision 50.00%
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_1.jpg [Rice___Sheath_blight 76.06%]
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_2.jpg [Rice___Sheath_blight 89.09%]
+       SHOWN BUT WRONG : rice_brown_spot_1.jpg [Wheat___leaf_blight 62.46%]
+       SHOWN BUT WRONG : rice_brown_spot_2.jpg [Wheat___blast 74.94%]
+       SHOWN BUT WRONG : tomato_early_blight_2.jpg [Cotton___bacterial_blight 92.30%]
+       SHOWN BUT WRONG : wheat_yellow_rust_2.jpg [Wheat___brown_rust 70.35%]
+       hidden (correct): healthy_wheat_1.jpg [Wheat___healthy 59.86%]
+
+   --- gate 0.65   shown 11/16   correct among shown 6   precision 54.55%
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_1.jpg [Rice___Sheath_blight 76.06%]
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_2.jpg [Rice___Sheath_blight 89.09%]
+       SHOWN BUT WRONG : rice_brown_spot_2.jpg [Wheat___blast 74.94%]
+       SHOWN BUT WRONG : tomato_early_blight_2.jpg [Cotton___bacterial_blight 92.30%]
+       SHOWN BUT WRONG : wheat_yellow_rust_2.jpg [Wheat___brown_rust 70.35%]
+       hidden (correct): healthy_wheat_1.jpg [Wheat___healthy 59.86%]
+
+   --- gate 0.70   shown 11/16   correct among shown 6   precision 54.55%
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_1.jpg [Rice___Sheath_blight 76.06%]
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_2.jpg [Rice___Sheath_blight 89.09%]
+       SHOWN BUT WRONG : rice_brown_spot_2.jpg [Wheat___blast 74.94%]
+       SHOWN BUT WRONG : tomato_early_blight_2.jpg [Cotton___bacterial_blight 92.30%]
+       SHOWN BUT WRONG : wheat_yellow_rust_2.jpg [Wheat___brown_rust 70.35%]
+       hidden (correct): healthy_wheat_1.jpg [Wheat___healthy 59.86%]
+
+   --- gate 0.75   shown 9/16   correct among shown 6   precision 66.67%
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_1.jpg [Rice___Sheath_blight 76.06%]
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_2.jpg [Rice___Sheath_blight 89.09%]
+       SHOWN BUT WRONG : tomato_early_blight_2.jpg [Cotton___bacterial_blight 92.30%]
+       hidden (correct): healthy_wheat_1.jpg [Wheat___healthy 59.86%]
+
+   --- gate 0.80   shown 8/16   correct among shown 6   precision 75.00%
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_2.jpg [Rice___Sheath_blight 89.09%]
+       SHOWN BUT WRONG : tomato_early_blight_2.jpg [Cotton___bacterial_blight 92.30%]
+       hidden (correct): healthy_wheat_1.jpg [Wheat___healthy 59.86%]
+
+   --- gate 0.85   shown 8/16   correct among shown 6   precision 75.00%
+       SHOWN BUT WRONG : rice_bacterial_leaf_blight_2.jpg [Rice___Sheath_blight 89.09%]
+       SHOWN BUT WRONG : tomato_early_blight_2.jpg [Cotton___bacterial_blight 92.30%]
+       hidden (correct): healthy_wheat_1.jpg [Wheat___healthy 59.86%]
+
+   --- gate 0.90   shown 7/16   correct among shown 6   precision 85.71%
+       SHOWN BUT WRONG : tomato_early_blight_2.jpg [Cotton___bacterial_blight 92.30%]
+       hidden (correct): healthy_wheat_1.jpg [Wheat___healthy 59.86%]
+
+   --- gate 0.95   shown 6/16   correct among shown 6   precision 100.00%
+       hidden (correct): healthy_wheat_1.jpg [Wheat___healthy 59.86%]
+
+====================================================================================================
+4. RULE-BASED PICK
+====================================================================================================
+   rule: the LOWEST gate whose field precision is 100% while still showing at least 4 of the
+         16 photos, so the app does not degenerate into an unconditional 'retake' screen.
+
+   pick: 0.95   field 6/16 shown, all 6 correct (100.00% precision),
+                   honest val still shows 152/180 (84.44% coverage, 98.03% precision)
+         withheld correct: healthy_wheat_1.jpg [Wheat___healthy 59.86%]
+
+   caveat: 16 photos means one photo is 6.25% - this pick is tuned on a very small field set
+           and must be re-checked whenever ml/real_world_test grows. It is not overfitting to
+           the val set (val is 99%+ precise at every gate), it is overfitting to 16 images.
+
+====================================================================================================
+5. ROBUSTNESS - stretch vs center-crop, photo by photo
+====================================================================================================
+   the app stretches the bitmap to 224x224; center-crop is the Ultralytics-style alternative.
+   a gate that only holds under one transform is tuned to the resize policy, not to the model.
+
+   threshold    stretch: shown/wrong   center-crop: shown/wrong
+   ---------------------------------------------------------------
+     none              16 /  9                16 /  9
+     0.50              14 /  7                13 /  6
+     0.60              12 /  6                13 /  6
+     0.65              11 /  5                12 /  5
+     0.70              11 /  5                10 /  4
+     0.75               9 /  3                 9 /  4
+     0.80               8 /  2                 9 /  4
+     0.85               8 /  2                 9 /  4
+     0.90               7 /  1                 8 /  3
+     0.95               6 /  0                 6 /  1
+
+   photo (field set)                  truth -> predicted                     stretch   crop
+   ------------------------------------------------------------------------------------
+   rice_brown_spot_2.jpg             Wheat___blast                 74.94%n  34.33%n
+   wheat_powdery_mildew_1.jpg        Wheat___mildew                99.19%Y  67.88%Y
+   wheat_yellow_rust_2.jpg           Wheat___brown_rust            70.35%n  99.70%n
+   rice_bacterial_leaf_blight_1.jpg  Rice___Sheath_blight          76.06%n  94.07%n
+   healthy_wheat_2.jpg               Wheat___leaf_blight           27.59%n  44.60%n
+   healthy_wheat_1.jpg               Wheat___healthy               59.86%Y  73.20%Y
+   wheat_yellow_rust_1.jpg           Wheat___brown_rust            59.73%n  66.23%n
+   tomato_early_blight_2.jpg         Cotton___bacterial_blight     92.30%n  88.84%n
+   rice_bacterial_leaf_blight_2.jpg  Rice___Sheath_blight          89.09%n  91.94%n
+   rice_brown_spot_1.jpg             Wheat___leaf_blight           62.46%n  61.67%n
+   wheat_powdery_mildew_2.jpg        Wheat___mildew                99.92%Y 100.00%Y
+   tomato_early_blight_1.jpg         Wheat___tan_spot              31.00%n  30.98%n
+   healthy_rice_1.jpg                Rice___healthy                99.99%Y 100.00%Y
+   healthy_rice_2.jpg                Rice___healthy                99.99%Y 100.00%Y
+   cotton_bacterial_blight_1.jpg     Cotton___bacterial_blight     99.99%Y 100.00%Y
+   cotton_bacterial_blight_2.jpg     Cotton___bacterial_blight    100.00%Y 100.00%Y
+
+   rows sorted by how much the transform moved the confidence; Y = prediction matched truth.
+   photos wrong under BOTH transforms are a model+data problem, not a gate problem.

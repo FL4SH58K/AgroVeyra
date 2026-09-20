@@ -1,0 +1,113 @@
+======================================================================================================================
+AgroVeyra split rebuild - leak-free train/val from a duplicated, partly mislabeled merge
+======================================================================================================================
+source       : C:\ROHIT RAJESH\AgriVeyra\ml\data\merged
+output       : C:\ROHIT RAJESH\AgriVeyra\ml\data\merged_clean
+quarantine   : C:\ROHIT RAJESH\AgriVeyra\ml\data\quarantine
+scope        : all
+write mode   : link
+val fraction : 0.2 of source photos, split along photo boundaries
+mislabeled   : Wheat___healthy
+hash cache   : C:\ROHIT RAJESH\AgriVeyra\ml\.sha256_cache.json
+
+classes in scope : 60
+images in scope  : 97,869 (sha256 of each; cached after the first run)
+
+
+======================================================================================================================
+1. PER-CLASS RESULT (before -> after)
+======================================================================================================================
+  class                                              train             val   quarantined
+                                          ------------------------------------------------
+  Apple___Apple_scab                        2,016 -> 2,016      504 -> 504             0
+  Apple___Black_rot                         1,987 -> 1,984      497 -> 500             0
+  Apple___Cedar_apple_rust                  1,760 -> 1,760      440 -> 440             0
+  Apple___healthy                           2,008 -> 1,999      502 -> 501            10
+  Blueberry___healthy                       1,816 -> 1,781      454 -> 489             0
+  Cherry_(including_sour)___Powdery_mildew      841 -> 841      211 -> 211             0
+  Cherry___healthy                          1,826 -> 1,845      456 -> 437             0
+  Corn_(maize)___Common_rust_               1,907 -> 1,906      477 -> 478             0
+  Corn_(maize)___Northern_Leaf_Blight       1,832 -> 1,818      457 -> 471             0
+  Corn___healthy                            1,859 -> 1,858      465 -> 466             0
+  Cotton___bacterial_blight                     358 -> 345        90 -> 87            16
+  Cotton___curl_virus                           333 -> 303        84 -> 76            38
+  Cotton___fussarium_wilt                       335 -> 316        84 -> 79            24
+  Cotton___healthy                              340 -> 307        85 -> 77            41
+  Grape___Black_rot                         1,888 -> 1,888      472 -> 472             0
+  Grape___Esca_(Black_Measles)              1,920 -> 1,918      480 -> 482             0
+  Grape___healthy                           1,692 -> 1,690      423 -> 425             0
+  Orange___Haunglongbing_(Citrus_greening)  1,232 -> 1,243      322 -> 311             0
+  Peach___Bacterial_spot                    1,838 -> 1,837      459 -> 460             0
+  Peach___healthy                           1,728 -> 1,728      432 -> 432             0
+  Pepper,_bell___Bacterial_spot             1,913 -> 1,901      478 -> 490             0
+  Pepper___healthy                          1,988 -> 1,997      497 -> 488             0
+  Potato___Early_blight                     1,939 -> 1,940      485 -> 484             0
+  Potato___Late_blight                      1,939 -> 1,928      485 -> 496             0
+  Potato___healthy                          1,824 -> 1,815      456 -> 465             0
+  Raspberry___healthy                       1,781 -> 1,776      445 -> 450             0
+  Rice___Bacterial_leaf_blight                  508 -> 508      128 -> 128             0
+  Rice___Brown_spot                             516 -> 509      130 -> 128             9
+  Rice___Leaf_blast                             507 -> 495      127 -> 124            15
+  Rice___Leaf_scald                             502 -> 502      126 -> 126             0
+  Rice___Sheath_blight                          505 -> 502      127 -> 126             4
+  Rice___healthy                                522 -> 520      131 -> 130             3
+  Soybean___healthy                         2,022 -> 2,021      505 -> 506             0
+  Squash___Powdery_mildew                   1,736 -> 1,746      434 -> 424             0
+  Strawberry___Leaf_scorch                  1,774 -> 1,774      444 -> 444             0
+  Strawberry___healthy                      1,824 -> 1,820      456 -> 460             0
+  Tomato___Bacterial_spot                   1,702 -> 1,701      425 -> 426             0
+  Tomato___Early_blight                     1,920 -> 1,898      480 -> 502             0
+  Tomato___Late_blight                      1,851 -> 1,851      463 -> 453            10
+  Tomato___Leaf_Mold                        1,882 -> 1,867      470 -> 485             0
+  Tomato___Septoria_leaf_spot               1,745 -> 1,758      436 -> 423             0
+  Tomato___Target_Spot                      1,827 -> 1,823      457 -> 461             0
+  Tomato___Tomato_Yellow_Leaf_Curl_Virus        990 -> 998      258 -> 250             0
+  Tomato___Tomato_mosaic_virus              1,790 -> 1,788      448 -> 450             0
+  Tomato___healthy                          1,926 -> 1,935      481 -> 466             6
+  Wheat___aphid                                 903 -> 696       70 -> 174           103
+  Wheat___black_rust                            576 -> 264        70 -> 66           316
+  Wheat___blast                                 647 -> 469       70 -> 118           130
+  Wheat___brown_rust                          1,271 -> 969       70 -> 243           129
+  Wheat___common_root_rot                       614 -> 464       70 -> 116           104
+  Wheat___fusarium_head_blight                  611 -> 516       70 -> 129            36
+  Wheat___healthy                             1,000 -> 788       70 -> 198            84
+  Wheat___leaf_blight                           842 -> 492       70 -> 124           296
+  Wheat___mildew                              1,081 -> 904       70 -> 227            20
+  Wheat___mite                                  800 -> 616       70 -> 155            99
+  Wheat___septoria                            1,144 -> 279        70 -> 70           865
+  Wheat___smut                                1,310 -> 420       70 -> 105           855
+  Wheat___stem_fly                              234 -> 137        70 -> 35           132
+  Wheat___tan_spot                              770 -> 569       70 -> 143           128
+  Wheat___yellow_rust                       1,301 -> 1,080       70 -> 271            20
+
+  totals: train 75,419 images, val 18,957 images, 3,493 quarantined, 27,810 files changed side of the split
+
+======================================================================================================================
+2. QUARANTINE BREAKDOWN (files are moved here, never deleted)
+======================================================================================================================
+  same_class_duplicate                  2861   same image stored twice inside one class
+  cross_class_duplicate                  582   identical pixels under two different labels - unlearnable
+  mislabeled_val_wheat_healthy            50   val/Wheat___healthy: source says healthy, the trained model says yellow_rust
+  TOTAL                                 3493
+  source photos promoted train -> val to keep a class present: 0
+
+======================================================================================================================
+3. VERIFICATION
+======================================================================================================================
+  identical images left on both sides of any class split : 0
+        (before: 486 unique digests leaked in wheat alone, 693 val files byte-identical to train)
+  source photos still spanning train and val             : 0
+        (before: 450/1050 wheat val images, i.e. 42.9% of the wheat val set was already seen)
+  classes with a non-empty train and val split           : 60/60
+  class_names.json contract                              : OK
+        (same class set, same order - so the softmax index -> label mapping is unchanged)
+
+  writing 97,869 files to C:\ROHIT RAJESH\AgriVeyra\ml\data\merged_clean and C:\ROHIT RAJESH\AgriVeyra\ml\data\quarantine (link) ...
+  wrote 97,869 files
+
+======================================================================================================================
+VERDICT: leak-free rebuild, safe to train on
+======================================================================================================================
+  next: train on C:\ROHIT RAJESH\AgriVeyra\ml\data\merged_clean (never on C:\ROHIT RAJESH\AgriVeyra\ml\data\merged, which is still leaky):
+      ml/.venv/Scripts/python.exe ml/train_disease.py --data ml\data\merged_clean --name disease_clean
+

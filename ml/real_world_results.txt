@@ -2,7 +2,7 @@
 AgroVeyra real-world evaluation - agroveyra_model.tflite
 ====================================================================================================================================
 model         : C:\ROHIT RAJESH\AgriVeyra\backend\models\agroveyra_model.tflite
-model size    : 6,452,252 bytes (sha256 c24464eb725661f6)
+model size    : 6,452,252 bytes (sha256 6aec2f1afedaf4ec)
 class names   : C:\ROHIT RAJESH\AgriVeyra\backend\models\class_names.json (60 classes)
 images dir    : C:\ROHIT RAJESH\AgriVeyra\ml\real_world_test (16 images)
 preprocessing : app parity: bilinear stretch 224x224, RGB/255, tensor quantization
@@ -13,22 +13,22 @@ PASS 1 - APP PARITY (pixels fed exactly the way TFLiteHelper feeds them)
 ------------------------------------------------------------------------------------------------------------------------------------
 filename                                  | ground truth                     | predicted class                  |    conf | correct
 ------------------------------------------------------------------------------------------------------------------------------------
-cotton_bacterial_blight_1.jpg             | Cotton___bacterial_blight        | Cotton___bacterial_blight        |  99.82% | yes
+cotton_bacterial_blight_1.jpg             | Cotton___bacterial_blight        | Cotton___bacterial_blight        |  99.99% | yes
 cotton_bacterial_blight_2.jpg             | Cotton___bacterial_blight        | Cotton___bacterial_blight        | 100.00% | yes
-healthy_rice_1.jpg                        | Rice___healthy                   | Rice___healthy                   |  99.80% | yes
-healthy_rice_2.jpg                        | Rice___healthy                   | Rice___healthy                   |  99.97% | yes
-healthy_wheat_1.jpg                       | Wheat___healthy                  | Wheat___healthy                  |  76.18% | yes
-healthy_wheat_2.jpg                       | Wheat___healthy                  | Wheat___aphid                    |  24.67% | NO
-rice_bacterial_leaf_blight_1.jpg          | Rice___Bacterial_leaf_blight     | Rice___Brown_spot                |  32.82% | NO
-rice_bacterial_leaf_blight_2.jpg          | Rice___Bacterial_leaf_blight     | Rice___Sheath_blight             |  66.05% | NO
-rice_brown_spot_1.jpg                     | Rice___Brown_spot                | Wheat___aphid                    |  71.17% | NO
-rice_brown_spot_2.jpg                     | Rice___Brown_spot                | Wheat___mite                     |  34.50% | NO
-tomato_early_blight_1.jpg                 | Tomato___Early_blight            | Wheat___tan_spot                 |  28.44% | NO
-tomato_early_blight_2.jpg                 | Tomato___Early_blight            | Wheat___tan_spot                 |  36.32% | NO
-wheat_powdery_mildew_1.jpg                | Wheat___mildew                   | Wheat___mildew                   |  92.28% | yes
+healthy_rice_1.jpg                        | Rice___healthy                   | Rice___healthy                   |  99.99% | yes
+healthy_rice_2.jpg                        | Rice___healthy                   | Rice___healthy                   |  99.99% | yes
+healthy_wheat_1.jpg                       | Wheat___healthy                  | Wheat___healthy                  |  59.86% | yes
+healthy_wheat_2.jpg                       | Wheat___healthy                  | Wheat___leaf_blight              |  27.59% | NO
+rice_bacterial_leaf_blight_1.jpg          | Rice___Bacterial_leaf_blight     | Rice___Sheath_blight             |  76.06% | NO
+rice_bacterial_leaf_blight_2.jpg          | Rice___Bacterial_leaf_blight     | Rice___Sheath_blight             |  89.09% | NO
+rice_brown_spot_1.jpg                     | Rice___Brown_spot                | Wheat___leaf_blight              |  62.46% | NO
+rice_brown_spot_2.jpg                     | Rice___Brown_spot                | Wheat___blast                    |  74.94% | NO
+tomato_early_blight_1.jpg                 | Tomato___Early_blight            | Wheat___tan_spot                 |  31.00% | NO
+tomato_early_blight_2.jpg                 | Tomato___Early_blight            | Cotton___bacterial_blight        |  92.30% | NO
+wheat_powdery_mildew_1.jpg                | Wheat___mildew                   | Wheat___mildew                   |  99.19% | yes
 wheat_powdery_mildew_2.jpg                | Wheat___mildew                   | Wheat___mildew                   |  99.92% | yes
-wheat_yellow_rust_1.jpg                   | Wheat___yellow_rust              | Wheat___black_rust               |  67.07% | NO
-wheat_yellow_rust_2.jpg                   | Wheat___yellow_rust              | Wheat___brown_rust               |  64.90% | NO
+wheat_yellow_rust_1.jpg                   | Wheat___yellow_rust              | Wheat___brown_rust               |  59.73% | NO
+wheat_yellow_rust_2.jpg                   | Wheat___yellow_rust              | Wheat___brown_rust               |  70.35% | NO
 
 SUMMARY - PASS 1 - APP PARITY (pixels fed exactly the way TFLiteHelper feeds them)
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -51,15 +51,15 @@ Wheat___yellow_rust                        0/2 correct (  0.0%)
 
 MISCLASSIFICATIONS (top-3 candidates)
 ------------------------------------------------------------------------------------------------------------------------------------
-healthy_wheat_2.jpg                       truth=Wheat___healthy                    -> Wheat___aphid 24.67% | Wheat___blast 17.27% | Rice___healthy 9.35%
-rice_bacterial_leaf_blight_1.jpg          truth=Rice___Bacterial_leaf_blight       -> Rice___Brown_spot 32.82% | Rice___healthy 22.46% | Rice___Leaf_scald 11.19%
-rice_bacterial_leaf_blight_2.jpg          truth=Rice___Bacterial_leaf_blight       -> Rice___Sheath_blight 66.05% | Rice___Brown_spot 19.00% | Rice___Leaf_blast 5.94%
-rice_brown_spot_1.jpg                     truth=Rice___Brown_spot                  -> Wheat___aphid 71.17% | Wheat___leaf_blight 18.58% | Wheat___mite 8.95%
-rice_brown_spot_2.jpg                     truth=Rice___Brown_spot                  -> Wheat___mite 34.50% | Wheat___smut 30.41% | Wheat___blast 13.35%
-tomato_early_blight_1.jpg                 truth=Tomato___Early_blight              -> Wheat___tan_spot 28.44% | Wheat___leaf_blight 16.11% | Wheat___mite 13.25%
-tomato_early_blight_2.jpg                 truth=Tomato___Early_blight              -> Wheat___tan_spot 36.32% | Cotton___bacterial_blight 28.65% | Wheat___mite 26.02%
-wheat_yellow_rust_1.jpg                   truth=Wheat___yellow_rust                -> Wheat___black_rust 67.07% | Wheat___brown_rust 19.51% | Wheat___leaf_blight 9.24%
-wheat_yellow_rust_2.jpg                   truth=Wheat___yellow_rust                -> Wheat___brown_rust 64.90% | Wheat___yellow_rust 32.92% | Wheat___black_rust 0.85%
+healthy_wheat_2.jpg                       truth=Wheat___healthy                    -> Wheat___leaf_blight 27.59% | Wheat___aphid 26.64% | Wheat___blast 10.20%
+rice_bacterial_leaf_blight_1.jpg          truth=Rice___Bacterial_leaf_blight       -> Rice___Sheath_blight 76.06% | Rice___healthy 10.22% | Rice___Brown_spot 6.78%
+rice_bacterial_leaf_blight_2.jpg          truth=Rice___Bacterial_leaf_blight       -> Rice___Sheath_blight 89.09% | Rice___Brown_spot 3.05% | Wheat___leaf_blight 2.76%
+rice_brown_spot_1.jpg                     truth=Rice___Brown_spot                  -> Wheat___leaf_blight 62.46% | Wheat___tan_spot 22.40% | Wheat___mite 3.92%
+rice_brown_spot_2.jpg                     truth=Rice___Brown_spot                  -> Wheat___blast 74.94% | Wheat___smut 15.84% | Corn___healthy 2.86%
+tomato_early_blight_1.jpg                 truth=Tomato___Early_blight              -> Wheat___tan_spot 31.00% | Wheat___leaf_blight 15.50% | Wheat___mite 8.77%
+tomato_early_blight_2.jpg                 truth=Tomato___Early_blight              -> Cotton___bacterial_blight 92.30% | Wheat___mite 3.14% | Wheat___tan_spot 2.27%
+wheat_yellow_rust_1.jpg                   truth=Wheat___yellow_rust                -> Wheat___brown_rust 59.73% | Wheat___leaf_blight 17.36% | Wheat___tan_spot 10.76%
+wheat_yellow_rust_2.jpg                   truth=Wheat___yellow_rust                -> Wheat___brown_rust 70.35% | Wheat___yellow_rust 29.27% | Wheat___mildew 0.18%
 
 CSV/TXT report written for: app parity
 

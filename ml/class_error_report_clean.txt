@@ -1,0 +1,179 @@
+======================================================================================================================
+AgroVeyra classifier error diagnosis
+======================================================================================================================
+model          : C:\ROHIT RAJESH\AgriVeyra\backend\models\agroveyra_model.tflite
+preprocessing  : app parity (stretch resize)
+classes        : 60
+sample         : 10038 val images (198/class) from ml\data\merged_clean\val
+top-1          : 9872/10038 (98.35%)
+
+======================================================================================================================
+1. DATASET BALANCE (images per class; a class under half the median cannot be learned well)
+======================================================================================================================
+  median train count: 1714    weak classes (< 857): 23/60
+  class                                      |   train |    val | vs median
+  Wheat___stem_fly                           |     137 |     35 |     0.08x  <-- weak
+  Wheat___black_rust                         |     264 |     66 |     0.15x  <-- weak
+  Wheat___septoria                           |     279 |     70 |     0.16x  <-- weak
+  Cotton___curl_virus                        |     303 |     76 |     0.18x  <-- weak
+  Cotton___healthy                           |     307 |     77 |     0.18x  <-- weak
+  Cotton___fussarium_wilt                    |     316 |     79 |     0.18x  <-- weak
+  Cotton___bacterial_blight                  |     345 |     87 |     0.20x  <-- weak
+  Wheat___smut                               |     420 |    105 |     0.24x  <-- weak
+  Wheat___common_root_rot                    |     464 |    116 |     0.27x  <-- weak
+  Wheat___blast                              |     469 |    118 |     0.27x  <-- weak
+  Wheat___leaf_blight                        |     492 |    124 |     0.29x  <-- weak
+  Rice___Leaf_blast                          |     495 |    124 |     0.29x  <-- weak
+  Rice___Leaf_scald                          |     502 |    126 |     0.29x  <-- weak
+  Rice___Sheath_blight                       |     502 |    126 |     0.29x  <-- weak
+  Rice___Bacterial_leaf_blight               |     508 |    128 |     0.30x  <-- weak
+  Rice___Brown_spot                          |     509 |    128 |     0.30x  <-- weak
+  Wheat___fusarium_head_blight               |     516 |    129 |     0.30x  <-- weak
+  Rice___healthy                             |     520 |    130 |     0.30x  <-- weak
+  Wheat___tan_spot                           |     569 |    143 |     0.33x  <-- weak
+  Wheat___mite                               |     616 |    155 |     0.36x  <-- weak
+  Wheat___aphid                              |     696 |    174 |     0.41x  <-- weak
+  Wheat___healthy                            |     788 |    198 |     0.46x  <-- weak
+  Cherry_(including_sour)___Powdery_mildew   |     841 |    211 |     0.49x  <-- weak
+  Wheat___mildew                             |     904 |    227 |     0.53x
+  Wheat___brown_rust                         |     969 |    243 |     0.57x
+  Tomato___Tomato_Yellow_Leaf_Curl_Virus     |     998 |    250 |     0.58x
+  Wheat___yellow_rust                        |    1080 |    271 |     0.63x
+  Orange___Haunglongbing_(Citrus_greening)   |    1243 |    311 |     0.72x
+  Grape___healthy                            |    1690 |    425 |     0.99x
+  Tomato___Bacterial_spot                    |    1701 |    426 |     0.99x
+  Peach___healthy                            |    1728 |    432 |     1.01x
+  Squash___Powdery_mildew                    |    1746 |    424 |     1.02x
+  Tomato___Septoria_leaf_spot                |    1758 |    423 |     1.03x
+  Apple___Cedar_apple_rust                   |    1760 |    440 |     1.03x
+  Strawberry___Leaf_scorch                   |    1774 |    444 |     1.03x
+  Raspberry___healthy                        |    1776 |    450 |     1.04x
+  Blueberry___healthy                        |    1781 |    489 |     1.04x
+  Tomato___Tomato_mosaic_virus               |    1788 |    450 |     1.04x
+  Potato___healthy                           |    1815 |    465 |     1.06x
+  Corn_(maize)___Northern_Leaf_Blight        |    1818 |    471 |     1.06x
+  Strawberry___healthy                       |    1820 |    460 |     1.06x
+  Tomato___Target_Spot                       |    1823 |    461 |     1.06x
+  Peach___Bacterial_spot                     |    1837 |    460 |     1.07x
+  Cherry___healthy                           |    1845 |    437 |     1.08x
+  Tomato___Late_blight                       |    1851 |    453 |     1.08x
+  Corn___healthy                             |    1858 |    466 |     1.08x
+  Tomato___Leaf_Mold                         |    1867 |    485 |     1.09x
+  Grape___Black_rot                          |    1888 |    472 |     1.10x
+  Tomato___Early_blight                      |    1898 |    502 |     1.11x
+  Pepper,_bell___Bacterial_spot              |    1901 |    490 |     1.11x
+  Corn_(maize)___Common_rust_                |    1906 |    478 |     1.11x
+  Grape___Esca_(Black_Measles)               |    1918 |    482 |     1.12x
+  Potato___Late_blight                       |    1928 |    496 |     1.12x
+  Tomato___healthy                           |    1935 |    466 |     1.13x
+  Potato___Early_blight                      |    1940 |    484 |     1.13x
+  Apple___Black_rot                          |    1984 |    500 |     1.16x
+  Pepper___healthy                           |    1997 |    488 |     1.16x
+  Apple___healthy                            |    1999 |    501 |     1.17x
+  Apple___Apple_scab                         |    2016 |    504 |     1.18x
+  Soybean___healthy                          |    2021 |    506 |     1.18x
+
+======================================================================================================================
+2. PREDICTION PRIOR vs TRUE PRIOR (top 15; ratio > 1 = over-predicted)
+======================================================================================================================
+  class                                      |  truth | predicted |  ratio |  share
+  Wheat___black_rust                         |     66 |        80 |   1.21 |   0.8%
+  Wheat___smut                               |    105 |       117 |   1.11 |   1.2%
+  Wheat___blast                              |    118 |       127 |   1.08 |   1.3%
+  Wheat___septoria                           |     70 |        74 |   1.06 |   0.7%
+  Wheat___mildew                             |    198 |       206 |   1.04 |   2.1%
+  Cotton___healthy                           |     77 |        79 |   1.03 |   0.8%
+  Rice___healthy                             |    130 |       133 |   1.02 |   1.3%
+  Wheat___healthy                            |    198 |       202 |   1.02 |   2.0%
+  Rice___Leaf_blast                          |    124 |       126 |   1.02 |   1.3%
+  Rice___Leaf_scald                          |    126 |       128 |   1.02 |   1.3%
+  Rice___Brown_spot                          |    128 |       130 |   1.02 |   1.3%
+  Wheat___common_root_rot                    |    116 |       117 |   1.01 |   1.2%
+  Wheat___tan_spot                           |    143 |       144 |   1.01 |   1.4%
+  Apple___healthy                            |    198 |       199 |   1.01 |   2.0%
+  Wheat___yellow_rust                        |    198 |       198 |   1.00 |   2.0%
+
+
+======================================================================================================================
+3. CONFUSION PAIRS (166 of 10038 images wrong; top 15)
+======================================================================================================================
+  truth                                  -> predicted                              |   n | mean conf | mean margin
+  Wheat___leaf_blight                    -> Wheat___tan_spot                       |  13 |     54.7% |       23.1%
+  Rice___Bacterial_leaf_blight           -> Rice___Leaf_scald                      |   7 |     62.5% |       43.6%
+  Wheat___tan_spot                       -> Wheat___black_rust                     |   7 |     54.6% |       29.6%
+  Rice___Leaf_scald                      -> Rice___Bacterial_leaf_blight           |   6 |     55.3% |       23.4%
+  Wheat___brown_rust                     -> Wheat___black_rust                     |   5 |     70.0% |       46.1%
+  Rice___Sheath_blight                   -> Rice___Bacterial_leaf_blight           |   4 |     80.5% |       67.0%
+  Wheat___fusarium_head_blight           -> Wheat___blast                          |   4 |     68.3% |       41.7%
+  Wheat___leaf_blight                    -> Wheat___mildew                         |   4 |     90.0% |       84.0%
+  Wheat___mite                           -> Wheat___aphid                          |   4 |     51.5% |       13.4%
+  Wheat___mite                           -> Wheat___tan_spot                       |   4 |     68.5% |       49.5%
+  Wheat___tan_spot                       -> Wheat___leaf_blight                    |   4 |     66.5% |       39.7%
+  Rice___Bacterial_leaf_blight           -> Rice___Leaf_blast                      |   3 |     48.2% |       10.2%
+  Wheat___aphid                          -> Wheat___mildew                         |   3 |     46.4% |       21.0%
+  Wheat___aphid                          -> Wheat___smut                           |   3 |     34.2% |       12.4%
+  Wheat___aphid                          -> Wheat___leaf_blight                    |   3 |     43.8% |       21.7%
+
+  confident mistakes (>= 50% while wrong): 103
+    Sheath_Blight (25).jpg             truth=Rice___Sheath_blight               -> Rice___Bacterial_leaf_blight        99.9%
+    aug_0_8933.jpg                     truth=Rice___Sheath_blight               -> Rice___Bacterial_leaf_blight        98.9%
+    fusarium_head_blight_438.png       truth=Wheat___fusarium_head_blight       -> Wheat___blast                       98.5%
+    leaf_blight_253.png                truth=Wheat___leaf_blight                -> Wheat___mildew                      96.7%
+    tan_spot_466.png                   truth=Wheat___tan_spot                   -> Wheat___smut                        94.8%
+    leaf_blight_574.png                truth=Wheat___leaf_blight                -> Wheat___mildew                      94.4%
+    brown_rust_157.png                 truth=Wheat___brown_rust                 -> Wheat___yellow_rust                 94.2%
+    brown_rust_731.png                 truth=Wheat___brown_rust                 -> Rice___healthy                      94.0%
+    common_root_rot_55.png             truth=Wheat___common_root_rot            -> Wheat___smut                        93.2%
+    leaf_blight_819.png                truth=Wheat___leaf_blight                -> Wheat___brown_rust                  92.2%
+    brown_rust_4.png                   truth=Wheat___brown_rust                 -> Wheat___black_rust                  92.1%
+    mite_300.png                       truth=Wheat___mite                       -> Wheat___tan_spot                    90.8%
+    leaf_blight_257.png                truth=Wheat___leaf_blight                -> Wheat___septoria                    90.4%
+    aug_0_5749.jpg                     truth=Rice___Brown_spot                  -> Rice___Leaf_scald                   90.3%
+    mite_42.png                        truth=Wheat___mite                       -> Wheat___tan_spot                    89.2%
+
+======================================================================================================================
+4. CROP-LEVEL ROLLUP (does a wrong disease still name the right plant?)
+======================================================================================================================
+  disease-level accuracy: 9872/10038 (98.35%)
+  crop-level accuracy   : 10031/10038 (99.93%)
+  off-crop errors       : 7 (the app shows the wrong plant entirely)
+
+  crop           | images |        disease |           crop
+  Wheat          |   2027 |   1890/2027  93.2% |   2020/2027  99.7%
+  Apple          |    792 |    791/792   99.9% |    792/792  100.0%
+  Blueberry      |    198 |    198/198  100.0% |    198/198  100.0%
+  Cherry         |    396 |    396/396  100.0% |    396/396  100.0%
+  Corn           |    594 |    594/594  100.0% |    594/594  100.0%
+  Cotton         |    319 |    319/319  100.0% |    319/319  100.0%
+  Grape          |    594 |    594/594  100.0% |    594/594  100.0%
+  Orange         |    198 |    198/198  100.0% |    198/198  100.0%
+  Peach          |    396 |    396/396  100.0% |    396/396  100.0%
+  Pepper         |    396 |    396/396  100.0% |    396/396  100.0%
+  Potato         |    594 |    594/594  100.0% |    594/594  100.0%
+  Raspberry      |    198 |    198/198  100.0% |    198/198  100.0%
+  Rice           |    762 |    734/762   96.3% |    762/762  100.0%
+  Soybean        |    198 |    198/198  100.0% |    198/198  100.0%
+  Squash         |    198 |    198/198  100.0% |    198/198  100.0%
+  Strawberry     |    396 |    396/396  100.0% |    396/396  100.0%
+  Tomato         |   1782 |   1782/1782 100.0% |   1782/1782 100.0%
+
+======================================================================================================================
+5. WEAKEST CLASSES (bottom 15 by accuracy at this sample size)
+======================================================================================================================
+  class                                      |       accuracy | most common wrong answer                  
+  Wheat___leaf_blight                        |   95/124   76.6% | Wheat___tan_spot (x13)
+  Wheat___tan_spot                           |  119/143   83.2% | Wheat___black_rust (x7)
+  Wheat___mite                               |  135/155   87.1% | Wheat___aphid (x4)
+  Wheat___black_rust                         |   59/66    89.4% | Wheat___brown_rust (x3)
+  Wheat___aphid                              |  156/174   89.7% | Wheat___mildew (x3)
+  Rice___Bacterial_leaf_blight               |  118/128   92.2% | Rice___Leaf_scald (x7)
+  Wheat___fusarium_head_blight               |  120/129   93.0% | Wheat___blast (x4)
+  Rice___Leaf_scald                          |  118/126   93.7% | Rice___Bacterial_leaf_blight (x6)
+  Wheat___stem_fly                           |   33/35    94.3% | Wheat___blast
+  Wheat___brown_rust                         |  187/198   94.4% | Wheat___black_rust (x5)
+  Wheat___common_root_rot                    |  110/116   94.8% | Wheat___smut (x2)
+  Rice___Sheath_blight                       |  120/126   95.2% | Rice___Bacterial_leaf_blight (x4)
+  Wheat___blast                              |  115/118   97.5% | Wheat___tan_spot (x2)
+  Wheat___mildew                             |  194/198   98.0% | Wheat___black_rust (x3)
+  Rice___Leaf_blast                          |  122/124   98.4% | Rice___Brown_spot
+

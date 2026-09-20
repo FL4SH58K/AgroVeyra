@@ -1,0 +1,327 @@
+====================================================================================================================
+AgroVeyra real-world evaluation - BEFORE vs AFTER the leak-free retrain + float32 re-export
+====================================================================================================================
+command        : ml\.venv\Scripts\python.exe ml\evaluate_real_world.py --val-subset 3
+OLD model      : backend\models\agroveyra_model.tflite  6,452,252 B  sha256 c24464eb725661f6
+                 (leaky P1b build, trained on ml\data\merged)
+NEW model      : backend\models\agroveyra_model.tflite  6,452,252 B  sha256 6aec2f1afedaf4ec
+                 (disease_clean, trained on ml\data\merged_clean, exported in step 6)
+field photos   : ml\real_world_test (16 images, ground truth from file name)
+val sample     : ml\data\merged\val, first 3 images per class = 180 files
+                 (collect_val_images takes sorted()[:N], so both runs scored the SAME 180 files;
+                  verified: filename sets identical, 180 rows each)
+reports        : OLD -> ml\_baseline_15sep\*.{txt,csv}      NEW -> ml\_newmodel_leakyval\*.{txt,csv}
+                 canonical ml\val_subset_results.* / ml\real_world_results.* = the NEW run (your command)
+                 clean-split control kept as ml\val_subset_results_cleanval.*
+
+
+====================================================================================================================
+1. HEADLINE
+====================================================================================================================
+                                              OLD (leaky)        NEW (clean)        delta
+  field top-1 (16 field photos)              43.75%   7/16      43.75%   7/16      unchanged
+  field top-3                                50.00%   8/16      50.00%   8/16      unchanged
+  field photos the app SHOWS (conf >= 0.70)   8                 11                +3
+  field photos shown AND correct              7                 6                 -1
+  field photos shown but WRONG                1                 5                 +4
+  field gated precision (shown&right/shown)  87.5%             54.5%              -33.0 pts
+  val subset top-1 (180, same files)         96.67% 174/180     92.78% 167/180     -3.89 pts
+  val subset top-3 (180, same files)         98.33% 177/180     97.22% 175/180     -1.11 pts
+  val subset shown / shown&correct / wrong   168 / 166 / 2     168 / 164 / 4
+
+  in-domain control (NEW model, honest split)      91.11% 164/180 (ml\data\merged_clean\val, 3/class)
+  in-domain reference (step 6 parity run)          93.92%        (ml\data\merged_clean\val, 20/class, 1200 imgs)
+
+VERDICT
+  * Real-world (field) accuracy is IDENTICAL: 7/16 before and after. The domain gap is
+    unchanged and remains the dominant limitation - cleaning the dataset did not move it.
+  * The leaky-val subset fell 96.67% -> 92.78% on the SAME 180 files. Section 3 shows this is
+    the leak being removed, not the model getting worse: 12 of the 13 new misses are files the
+    rebuild quarantined, 0 are files the new model trained on.
+  * The app experience got noisier: 3 more photos now clear the 0.70 gate, but only 6 of the 11
+    shown are correct, so a user sees a confident wrong answer 5 times instead of once.
+
+
+====================================================================================================================
+2. FIELD PHOTOS - the error count held, the error composition and the confidences moved
+====================================================================================================================
+field photo                        | OLD prediction               conf | NEW prediction               conf
+--------------------------------------------------------------------------------------------------------------------
+cotton_bacterial_blight_1.jpg      | Cotton___bacterial_blight  0.9982 yes| Cotton___bacterial_blight  0.9999 yes
+cotton_bacterial_blight_2.jpg      | Cotton___bacterial_blight       1 yes| Cotton___bacterial_blight       1 yes
+healthy_rice_1.jpg                 | Rice___healthy              0.998 yes| Rice___healthy             0.9999 yes
+healthy_rice_2.jpg                 | Rice___healthy             0.9997 yes| Rice___healthy             0.9999 yes
+healthy_wheat_1.jpg                | Wheat___healthy            0.7618 yes| Wheat___healthy            0.5986 yes
+healthy_wheat_2.jpg                | Wheat___aphid              0.2467 no | Wheat___leaf_blight        0.2759 no
+rice_bacterial_leaf_blight_1.jpg   | Rice___Brown_spot          0.3282 no | Rice___Sheath_blight       0.7606 no
+rice_bacterial_leaf_blight_2.jpg   | Rice___Sheath_blight       0.6605 no | Rice___Sheath_blight       0.8909 no
+rice_brown_spot_1.jpg              | Wheat___aphid              0.7117 no | Wheat___leaf_blight        0.6246 no
+rice_brown_spot_2.jpg              | Wheat___mite                0.345 no | Wheat___blast              0.7494 no
+tomato_early_blight_1.jpg          | Wheat___tan_spot           0.2844 no | Wheat___tan_spot            0.31 no
+tomato_early_blight_2.jpg          | Wheat___tan_spot           0.3632 no | Cotton___bacterial_blight   0.923 no
+wheat_powdery_mildew_1.jpg         | Wheat___mildew             0.9228 yes| Wheat___mildew             0.9919 yes
+wheat_powdery_mildew_2.jpg         | Wheat___mildew             0.9992 yes| Wheat___mildew             0.9992 yes
+wheat_yellow_rust_1.jpg            | Wheat___black_rust         0.6707 no | Wheat___brown_rust         0.5973 no
+wheat_yellow_rust_2.jpg            | Wheat___brown_rust          0.649 no | Wheat___brown_rust         0.7035 no
+
+9 field photos are wrong before AND after - only the wrong answers changed:
+  * rice_brown_spot_1: Wheat___aphid 71% -> Wheat___leaf_blight 62% (still a wheat answer for rice)
+  * rice_brown_spot_2: Wheat___mite 35% -> Wheat___blast 75%
+  * rice_bacterial_leaf_blight_1/2: Rice___Sheath_blight both times (66% -> 89%)
+  * wheat_yellow_rust_1/2: brown_rust both times (near-miss black_rust for photo 1, 65% -> 70%)
+  * tomato_early_blight_1/2: Wheat___tan_spot 28% -> tan_spot 31% / Cotton___bacterial_blight 92%
+  * healthy_wheat_2: Wheat___aphid 25% -> Wheat___leaf_blight 28%
+the three things that genuinely changed:
+  * healthy_wheat_1: still CORRECT but confidence fell 76.18% -> 59.86%, so it now sits below
+    TFLiteHelper.MIN_CONFIDENCE = 0.70 and the app will show "Retake" instead of the right label.
+    This is the only field measurement that moved the wrong way.
+  * rice_brown_spot_1: wrong answer dropped below the gate (71.17% -> 62.46%) -> now withheld.
+    A gate win (the user is spared one confident wrong answer).
+  * five confident-but-wrong photos now pass the gate and are displayed (shown-wrong 1 -> 5):
+    Sheath_blight 76.06%, Sheath_blight 89.09%, Wheat___blast 74.94%,
+    Cotton___bacterial_blight 92.30%, brown_rust 70.35%.
+
+RESOLUTION WARNING: with 16 photos one image is 6.25%. 7/16 vs 7/16 and top-3 8/16 vs 8/16 are
+the same measurement, not a movement - do not read a trend into them. Section 3 is where the
+informative comparison lives.
+
+====================================================================================================================
+3. WHY THE LEAKY-VAL SUBSET FELL 96.67% -> 92.78%
+====================================================================================================================
+The comparison is sound: both runs scored the SAME 180 files (deterministic sorted()[:3] per class,
+filename sets verified identical), same preprocessing, same 60-class list. Only the model differs.
+
+3a. What the rebuild did to those 180 files (ml\dataset_rebuild_manifest.csv, 178/180 matched)
+    train,      split_rebuilt                  85   are now training images of the NEW model
+    val,        split_rebuilt                  53   still val in the clean split
+    quarantine, same_class_duplicate           37   deleted from the dataset (duplicate)
+    quarantine, mislabeled_val_wheat_healthy    2   deleted from the dataset (bad label, section 5)
+    quarantine, cross_class_duplicate           1   deleted from the dataset (same pixels, other label)
+
+3b. NEW model accuracy by that disposition (measured from the CSV, not inferred)
+    train,      split_rebuilt                  85 files   correct 85   wrong  0   (100.0%)
+    val,        split_rebuilt                  53 files   correct 52   wrong  1   ( 98.1%)
+    quarantine, same_class_duplicate           37 files   correct 27   wrong 10   ( 73.0%)
+    quarantine, mislabeled_val_wheat_healthy    2 files   correct  1   wrong  1
+    quarantine, cross_class_duplicate           1 file    correct  0   wrong  1
+    => every one of the 13 wrong rows is a file the rebuild deleted or an honest val photo;
+       ZERO are files whose own path the rebuild moved into the NEW model's training set.
+
+3c. The whole delta sits in one place: the .png (augmented wheat) tail
+    extension   files   NEW wrong   NEW acc      OLD wrong   OLD acc
+    .jpg          135        1       99.3%          1        99.3%
+    .png           45       12       73.3%          5        88.9%
+    On the 135 .jpg frames the two models are IDENTICAL (134/135 each). All 12 .png misses are
+    wheat classes (aphid, common_root_rot, leaf_blight, mite, stem_fly, tan_spot, healthy), and the
+    45 .png frames are exactly 3 per class from the 15 wheat classes.
+
+3d. Why the wheat .png frames got worse - the rebuild cut those classes hardest
+    (the wheat set was the duplicated/mislabeled part of the merge; dataset_rebuild_report.txt)
+    class                   train before -> after       quarantined   val before -> after
+    Wheat___septoria         1,144 -> 279   (-76%)          865          70 ->  70
+    Wheat___smut             1,310 -> 420   (-68%)          855          70 -> 105
+    Wheat___black_rust         576 -> 264   (-54%)          316          70 ->  66
+    Wheat___leaf_blight        842 -> 492   (-42%)          296          70 -> 124
+    Wheat___stem_fly           234 -> 137   (-41%)          132          70 ->  35
+    Wheat___mite               800 -> 616   (-23%)           99          70 -> 155
+    Wheat___tan_spot           770 -> 569   (-26%)          128          70 -> 143
+    The frames this sample picks are largely the duplicate-removed ones: the OLD model had many
+    redundant copies of them in its leaky train split, the NEW model has 23-76% fewer wheat training
+    frames and no longer memorises them.
+
+3e. The decisive caveat - the new model was scored on pixels it had TRAINED on
+    6 of the 12 quarantined misses (mite_18, mite_19, tan_spot_10, common_root_rot_119,
+    leaf_blight_101, aphid_27) have a BYTE-IDENTICAL copy in merged_clean\train, verified by
+    SHA-256: merged_clean\train\Wheat___mite\mite_18.png is a HardLink whose digest
+    9B67DD83A808B66968DCBC9700FAE82F8663D26FFD0A9974B41A70180D6C4B55 equals the leaky-val file's.
+    The model still misclassifies images that are pixel-identical to its training data. Checks that
+    rule out the obvious explanations:
+      * PIL vs cv2 decode of those .pngs is IDENTICAL (max pixel difference 0) - not a loader
+        mismatch between the training pipeline and the eval script;
+      * the images are not degenerate: the 12 wrong .pngs have median std 68.1 vs 50.6 for the 33
+        correct ones, and none is near-flat;
+      * it is not the resize: the Ultralytics resize+center-crop transform changes the clean-val
+        result by only +1.1 pts and the field set not at all (section 4).
+    The OLD model trained on the same pixels (the old merged\train held the same hardlinks) and also
+    fails them, so the most likely reading is label noise inside the augmented wheat subset - the
+    same defect that made the rebuild quarantine 1,000+ wheat files. Treat the .png tail of this
+    sample as unreliable ground truth, NOT as a model regression.
+
+BOTTOM LINE for 3: the -3.89 pts is the leak evaporating plus the wheat duplicate tail losing its
+memorised copies. On the honest .jpg frames the two models score the same, so this is not evidence
+that the leak-free retrain made the model worse.
+
+
+====================================================================================================================
+4. THE HONEST IN-DOMAIN NUMBERS, AND THE PREPROCESSING CHECKS
+====================================================================================================================
+  run / sample                                                        n            top-1      top-3
+  NEW, ml\data\merged\val (leaky; 47% of it now in the NEW train)      180 (3/class)  92.78%     97.22%
+  NEW, ml\data\merged_clean\val (honest split)                         180 (3/class)  91.11%     95.56%
+  NEW, ml\data\merged_clean\val, Ultralytics resize + center crop      180 (3/class)  92.22%     97.78%
+  NEW, ml\data\merged_clean\val (step 6 parity run)                  1,200 (20/class) 93.92%        -
+  OLD, ml\data\merged\val (leaky)                                      180 (3/class)  96.67%     98.33%
+  OLD, 16 field photos                                                 16             43.75%     50.00%
+  NEW, 16 field photos                                                 16             43.75%     50.00%
+  NEW, 16 field photos, center-crop transform                          16             43.75%     50.00%
+
+  * the honest in-domain figure for the shipped model is 91-94%, NOT the 97.6% val top-1 printed in
+    training: that was measured with Ultralytics' own val transform on the full 18,957-image val
+    split. The 1,200-image parity run (93.92%, app preprocessing, 0.00 point gap on all 60 classes
+    between checkpoint and flatbuffer) is the most trustworthy of the app-side numbers.
+  * the 3-per-class draw is the alphabetically-first 3 files per class and is harder than the split
+    as a whole (91.11% vs 93.92%), so do not read that difference as damage.
+  * resize policy is NOT the field bottleneck: switching from the app's stretch to Ultralytics'
+    resize+center-crop leaves the 16 field photos at exactly 43.75% (7/16) / top-3 50.00% and moves
+    the clean-val sample by +1.1 pts - even though every field photo is non-square (median aspect
+    1.48, max 2.23, all 16 above 1.15) and the stretch maps them all to 1:1.
+  * PIL and cv2 decode these files identically, so the harness is not mis-reading images.
+  * still untested: whether the app's /255-only scaling (no ImageNet mean/std) costs accuracy.
+    Step 6 parity proves the flatbuffer matches the checkpoint under that same scaling, but nothing
+    here compares it against Ultralytics' normalized val transform. One experiment on the
+    checkpoint would settle it - worth doing before blaming the data.
+
+
+====================================================================================================================
+5. WHAT THE "WHEAT LABEL FIX" ACTUALLY DID
+====================================================================================================================
+  * it was a QUARANTINE (removal), not a relabel: dataset_rebuild_report.txt records
+    "mislabeled : Wheat___healthy" with quarantine reason mislabeled_val_wheat_healthy = 50 files,
+    described as "val/Wheat___healthy: source says healthy, the trained model says yellow_rust".
+    Those 50 files now sit in ml\data\quarantine and are in NEITHER split.
+  * the trigger was the model's own vote, so it is a heuristic and it is self-fulfilling: both the
+    OLD and the NEW model label the one sampled example (val\Wheat___healthy\healthy_test_1.png)
+    Wheat___yellow_rust at 100.00%. If that picture really is yellow rust, removing it is right; if
+    it is a hard healthy-wheat photo, the class lost 50 val images of a rare appearance.
+  * the field evidence shows no benefit for healthy wheat: healthy_wheat_1.jpg is still correct but
+    its confidence fell 76.18% -> 59.86% (now below the app's 0.70 gate, so it is withheld), and
+    healthy_wheat_2.jpg is still wrong (Wheat___aphid 24.7% -> Wheat___leaf_blight 27.6%).
+  * that class went from train 1,000 -> 788 and val 70 -> 198, with 84 files quarantined in total.
+    Whether the confidence drop comes from the smaller training class or from those extra val
+    images is NOT established by this run - it needs the class-wise confusion report
+    (ml\class_error_report_clean.txt), not a 16-photo field set. OPEN ITEM.
+
+
+====================================================================================================================
+6. VERDICT - domain gap or dataset?
+====================================================================================================================
+  The DOMAIN GAP is the dominant limitation, and dataset cleanliness does not touch it:
+    * 43.75% (7/16) before, 43.75% (7/16) after; top-3 50.00% both times. Deleting 3,493
+      duplicate/mislabeled files, re-splitting so that no photo spans train and val, retraining
+      leak-free and re-exporting changed NOTHING about behaviour on real farm photos.
+    * the errors are cross-crop / cross-disease confusions the training distribution cannot teach
+      away: rice_brown_spot -> Wheat___leaf_blight, tomato_early_blight ->
+      Cotton___bacterial_blight 92.3%, wheat_yellow_rust -> brown_rust, rice leaf blight ->
+      Rice___Sheath_blight both times. The curated photos are close-up single leaves, evenly lit;
+      the field photos are whole-canopy phone shots with mixed backgrounds and framing.
+    * the same model scores 91-94% in its own domain, so the network and the export are healthy.
+    * neither dataset cleaning nor the app's resize policy moves the field number, and the leaky
+      val subset cannot be used to argue otherwise (sections 3 and 4).
+
+  What the step-6 work DID buy: data integrity (0 leaks, 0 in-split duplicate groups, 0 cross-class
+  conflicts), a verified 60-class contract, a flatbuffer proven faithful to the checkpoint, and an
+  honest baseline to measure against. What it cost: on these 16 photos the app now shows 11 answers
+  instead of 8 while only 6 are right (gated precision 87.5% -> 54.5%), and healthy_wheat_1.jpg is
+  withheld even though it is correct.
+
+  Recommendations, highest expected payoff first:
+    1. grow ml\real_world_test well beyond 16 photos - one photo is 6.25% and every field
+       conclusion in this report is one image away from flipping;
+    2. treat the field gap as a COLLECTION problem, not a cleaning problem: real phone photos of the
+       crops that matter, labelled, added to the training mix (or a second fine-tune stage on them);
+    3. re-tune the 0.70 gate against the field set - today it displays 5 wrong answers and hides 1
+       right one;
+    4. the augmented wheat .png subset is the in-domain weak spot (black_rust 0/3, tan_spot 0/3 on
+       the clean val sample; smut 17/20 in the parity run) and it is the subset the rebuild cut by
+       23-76%. Fresh real wheat photos are the fix, not more augmentation;
+    5. retire ml\data\merged\val as a test set - it is still leaky, and 47% of the sample used here
+       is now inside the new model's own training data. Use ml\data\merged_clean\val.
+
+
+====================================================================================================================
+APPENDIX - commands run and artifacts
+====================================================================================================================
+  OLD baseline (restored from 15/09, leaky build sha256 c24464eb725661f6):
+      ml\_baseline_15sep\real_world_results.{txt,csv}, val_subset_results.{txt,csv}
+  NEW, your exact command:
+      ml\.venv\Scripts\python.exe ml\evaluate_real_world.py --val-subset 3
+      -> ml\real_world_results.{txt,csv}          (16 field photos)
+      -> ml\val_subset_results.{txt,csv}          (merged\val, 3/class)
+      -> backup: ml\_newmodel_leakyval\
+  NEW, honest-split control (--val-dir ml\data\merged_clean\val):
+      -> ml\val_subset_results_cleanval.{txt,csv}
+  NEW, resize-policy control (--val-dir ml\data\merged_clean\val --center-crop):
+      -> ml\val_subset_results_centercrop.{txt,csv}, ml\real_world_results_centercrop.{txt,csv}
+      -> raw log: ml\_rwcrop.out / .err
+  raw logs of the main run: ml\_rweval.out / .err
+  supporting evidence: ml\dataset_rebuild_report.txt, ml\dataset_rebuild_manifest.csv,
+      ml\dataset_integrity_report_clean.txt, ml\export_parity_report.txt,
+      ml\runs\disease_clean\args.yaml (imgsz 224, 50 epochs, yolo11n-cls, data merged_clean)
+  diagnostic scripts used and then deleted (throwaway): ml\_imgstats.py (pixel stats),
+      ml\_archeck.py (aspect ratios); their findings are recorded in sections 3e and 4.
+
+
+
+
+====================================================================================================================
+7. CONFIDENCE GATE RE-TUNE - what the app should show now
+====================================================================================================================
+Sections 1-6 established that the rebuild did not move field accuracy. It did change how much a high
+score is worth, so the 0.70 gate - tuned on the model that was replaced in step 6 - had to be
+re-measured before shipping. This section is pure post-hoc analysis of the CSVs section 1 already
+wrote; no new inference, no GPU, no retrain.
+
+    ml\.venv\Scripts\python.exe ml\confidence_gate_sweep.py   ->  ml\confidence_gate_analysis.txt
+    inputs: real_world_results.csv, real_world_results_centercrop.csv,
+            val_subset_results_cleanval.csv, val_subset_results.csv
+
+"shown" = the gate lets the answer reach the result screen; below the gate the app asks for a retake.
+
+THE SWEEP - 16 field photos (app pipeline: stretch to 224x224)
+----------------------------------------------------------------------------------------------------
+   gate   shown  coverage  correct among shown  wrong shown  PRECISION | honest val (n=180): coverage / precision
+   none   16/16  100.00%         7                  9          43.75%  |  100.00% / 91.11%
+   0.50   14/16   87.50%         7                  7          50.00%  |   97.22% / 93.14%
+   0.60   12/16   75.00%         6                  6          50.00%  |   93.89% / 95.27%
+   0.65   11/16   68.75%         6                  5          54.55%  |   92.78% / 95.21%
+   0.70   11/16   68.75%         6                  5          54.55%  |   91.67% / 96.36%   <- shipped until now
+   0.75    9/16   56.25%         6                  3          66.67%  |   91.11% / 96.34%
+   0.80    8/16   50.00%         6                  2          75.00%  |   90.56% / 96.32%
+   0.85    8/16   50.00%         6                  2          75.00%  |   88.89% / 96.88%
+   0.90    7/16   43.75%         6                  1          85.71%  |   87.22% / 98.09%
+   0.95    6/16   37.50%         6                  0         100.00%  |   84.44% / 98.03%   <- SHIPPED NOW
+
+DECISION: 0.95. It dominates the old 0.70 on this set rather than trading against it:
+
+  * every correct answer 0.70 showed is still shown (6 of them). healthy_wheat_1 (59.86%) was already
+    being withheld by 0.70, so raising the gate to 0.95 costs no correct field answer at all;
+  * all 5 wrong answers 0.70 let through are now withheld - rice_bacterial_leaf_blight_1 (76.06%),
+    rice_bacterial_leaf_blight_2 (89.09%), rice_brown_spot_2 (74.94%), tomato_early_blight_2 (92.30%),
+    wheat_yellow_rust_1 (59.73%);
+  * the in-domain price is 13 of 180 photos (coverage 91.67% -> 84.44%) and precision goes up
+    96.36% -> 98.03%, i.e. the gate does not start rejecting good in-domain answers wholesale;
+  * the real price is retake rate: 6 of 16 field photos now get a diagnosis, 10 ask for a retake.
+
+WHY NOT 0.90, WHY NOT HIGHER
+  0.90 would show exactly one more answer than 0.95 - tomato_early_blight_2 at 92.30% - and that answer
+  is wrong, so it buys nothing but a 20-point precision loss on this set. Nothing above 0.95 is needed:
+  no photo in the 16 sits between 0.95 and 1.00 except the correct ones.
+
+THE CAVEAT THAT MATTERS (sweep section 5)
+  The 100% is a property of the resize path, not of the model. The same 16 photos scored with
+  Ultralytics resize+center-crop show 6 answers and 1 wrong at 0.95 (83.33%), because
+  wheat_yellow_rust_2 moves from 70.35% to 99.70% - still wrong - under that transform. A confidently
+  wrong answer therefore exists above any usable gate, and in-domain the ceiling is ~98% precision
+  (3 of 152 shown val answers are wrong at 0.95). Treat the gate as a UX guard, not a correctness
+  guarantee. It is also tuned on 16 photos, where one photo is 6.25%: re-check it as
+  ml\real_world_test grows. The backend keeps its env override so the value can be lowered without a
+  rebuild.
+
+CHANGES SHIPPED WITH THIS SECTION
+  android\app\src\main\java\com\agroveyra\app\utils\TFLiteHelper.kt   MIN_CONFIDENCE 0.70f -> 0.95f
+                                                                     (+ comment re-measured for this model)
+  android\app\src\main\java\com\agroveyra\app\ScanActivity.kt        doc comment on showLowConfidenceRetake
+  backend\main.py                                                    LOW_CONFIDENCE_THRESHOLD default -> 0.95
+  ml\GPU_RUNBOOK.md                                                  §7 gate value, §9 step-6 results
+  ml\confidence_gate_sweep.py                                       the reproducible sweep (writes the report)
+

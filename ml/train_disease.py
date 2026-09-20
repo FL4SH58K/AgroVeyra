@@ -10,10 +10,17 @@ the machine it is actually running on. Before the first epoch it prints the inte
 GPU name, VRAM and ultralytics version, so moving to another laptop is visible in the log instead of
 failing 40 minutes into epoch 1.
 
+It also refuses to start unless `ml/verify_class_contract.py` passes: `backend/models/class_names.json`
+(and its byte-identical Android copy) *is* the softmax index -> label mapping, so a dataset whose class
+folders had drifted from that list would train happily and then predict the wrong crop with full
+confidence. The 60-class set is the implementation target (the "52 categories" line in
+GROUP_5_PROJECT.pdf is documentation only). `--skip-contract-check` bypasses the gate.
+
 Usage:
     ml/.venv/Scripts/python.exe ml/train_disease.py --env-only
     ml/.venv/Scripts/python.exe ml/train_disease.py --data data/merged_clean --name disease_clean
     ml/.venv/Scripts/python.exe ml/train_disease.py --data data/merged_clean --batch 16
+    ml/.venv/Scripts/python.exe ml/verify_class_contract.py --data ml/data/merged_clean
 """
 
 from __future__ import annotations
@@ -91,6 +98,24 @@ def suggest_batch(vram_gb: float) -> tuple[int, str]:
     return 8, ""
 
 
+def class_contract_preflight(data_dir: Path, expect_count: int, dataset_ready: bool) -> int:
+    """Run ml/verify_class_contract.py in-process; 0 means the shipping class contract holds.
+
+    The check is imported instead of re-implemented so the two can never drift. It asserts the contract
+    JSON (60 names, Python sorted order), the Android copies of `class_names.json`,
+    `treatment_db.json` and `agroveyra_model.tflite`, the flatbuffer fingerprint recorded in
+    `ml/export_parity_report.txt`, and the `train/` + `val/` class folders of the dataset being used -
+    which is what stops a dataset that disagrees with the app from being trained on at all.
+    """
+    if str(HERE) not in sys.path:
+        sys.path.insert(0, str(HERE))
+    from verify_class_contract import main as contract_main
+
+    argv = ["--expect-count", str(expect_count)]
+    argv += ["--data", str(data_dir)] if dataset_ready else ["--no-dataset"]
+    return contract_main(argv)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--data", default="data/merged_clean", help="classification dataset root (train/ + val/)")
@@ -109,6 +134,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--resume", default=None, help="checkpoint to continue from (off by default)")
     parser.add_argument("--env-only", action="store_true", help="print the preflight and exit")
     parser.add_argument("--allow-missing-data", action="store_true", help="skip the dataset existence check")
+    parser.add_argument("--skip-contract-check", action="store_true",
+                        help="do not verify class_names.json against the dataset (unsafe)")
+    parser.add_argument("--expect-count", type=int, default=60,
+                        help="number of classes the contract must have (default 60)")
     return parser.parse_args()
 
 
@@ -134,11 +163,25 @@ def main() -> int:
     project_dir = Path(args.project)
     if not project_dir.is_absolute():
         project_dir = (HERE / project_dir).resolve()
-    if not args.allow_missing_data and not ((data_dir / "train").is_dir() and (data_dir / "val").is_dir()):
+    data_ready = (data_dir / "train").is_dir() and (data_dir / "val").is_dir()
+    if not args.allow_missing_data and not data_ready:
         print("")
         print(f"dataset not found: {data_dir}")
         print("  build the cleaned split first (ml/GPU_RUNBOOK.md, step 2), or pass --allow-missing-data.")
         return 2
+
+    # Contract gate: class_names.json decides what softmax index 0..59 means, so a split whose folders
+    # disagree with it would train fine and be labelled wrongly by the app with no visible symptom.
+    if args.skip_contract_check:
+        print("")
+        print("  class contract : SKIPPED (--skip-contract-check) - index -> label mapping unverified")
+    else:
+        print("")
+        if class_contract_preflight(data_dir, args.expect_count, data_ready) != 0:
+            print("")
+            print("  refusing to train: the class contract does not hold (violations listed above).")
+            print("  fix the dataset or the class list, then re-run; --skip-contract-check overrides this.")
+            return 3
 
     print("")
     if args.batch == "auto":

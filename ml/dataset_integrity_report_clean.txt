@@ -1,0 +1,35 @@
+======================================================================================================================
+AgroVeyra dataset integrity audit
+======================================================================================================================
+data dir      : C:\ROHIT RAJESH\AgriVeyra\ml\data\merged_clean
+scope         : all
+train files   : 75419
+val files     : 18957
+
+======================================================================================================================
+1. TRAIN/VAL OVERLAP
+======================================================================================================================
+  1a. source-image overlap (offline rotations/flips of one photo split across the sets)
+      val images whose source photo also appears in train: 0/18957 (0.0%)
+      not counted: 105 val file name(s) also exist in train under a different class - those are different photos, and identical bytes are section 3's job
+
+  1b. byte-identical overlap (the strictest possible test)
+      leaked val images : 0
+      unique digests    : 0
+
+======================================================================================================================
+2. SAME-CLASS DUPLICATES (same image stored twice in one split)
+======================================================================================================================
+  train duplicate groups: 0 (0 redundant files)
+  val duplicate groups  : 0 (0 redundant files)
+
+======================================================================================================================
+3. CROSS-CLASS DUPLICATES (identical pixels, different labels - unlearnable)
+======================================================================================================================
+  conflicting training groups: 0
+  affected files             : 0
+
+======================================================================================================================
+VERDICT: clean
+======================================================================================================================
+

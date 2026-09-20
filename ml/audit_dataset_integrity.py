@@ -9,9 +9,10 @@ whether the validation metric means anything.
 the data underneath it can be learned at all. Three defects are looked for:
 
   1. TRAIN/VAL OVERLAP       val images that are not really held out, measured two ways:
-                             (a) same *source photo* as a training image - the merge step wrote
-                                 offline rotations/flips (`..._270deg.JPG`, `..._FlipLR.JPG`) as
-                                 separate files and then split them across train/val;
+                             (a) same *source photo* as a training image of the same class - the merge
+                                 step wrote offline rotations/flips (`..._270deg.JPG`, `..._FlipLR.JPG`)
+                                 as separate files and then split them across train/val; a file name
+                                 that merely repeats in another class is a different photo, not a leak;
                              (b) byte-identical files on both sides of the split
   2. SAME-CLASS DUPLICATES   the same file kept twice inside one split (skews per-class counts)
   3. CROSS-CLASS DUPLICATES  identical pixels carrying two different labels - unlearnable, and the
@@ -129,11 +130,29 @@ def main() -> int:
     emit("=" * 118)
     emit("1. TRAIN/VAL OVERLAP")
     emit("=" * 118)
-    train_sources = {source_key(path) for path in train_files}
-    leaked_val = [(path, source_key(path)) for path in val_files if source_key(path) in train_sources]
+    # Scoped per class on purpose. A file stem is only unique *inside* one class folder: the rice sets
+    # name every augmentation `aug_0_<n>.jpg` in each of their six class folders, so comparing stems
+    # globally flags 104 honest val images as leaked (measured on data/merged_clean: 0 of them
+    # byte-identical, every one in a different class from its namesake). Real cross-class duplication is
+    # found by digest in section 3, which a shared file name would otherwise mask.
+    train_sources = {(path.parent.name, source_key(path)) for path in train_files}
+    leaked_val = [
+        (path, source_key(path))
+        for path in val_files
+        if (path.parent.name, source_key(path)) in train_sources
+    ]
+    train_names = {source_key(path) for path in train_files}
+    cross_class_names = [
+        path
+        for path in val_files
+        if source_key(path) in train_names and (path.parent.name, source_key(path)) not in train_sources
+    ]
     emit("  1a. source-image overlap (offline rotations/flips of one photo split across the sets)")
     emit(f"      val images whose source photo also appears in train: {len(leaked_val)}/{len(val_files)} "
          f"({len(leaked_val) / len(val_files) * 100:.1f}%)")
+    if cross_class_names:
+        emit(f"      not counted: {len(cross_class_names)} val file name(s) also exist in train under a "
+             "different class - those are different photos, and identical bytes are section 3's job")
     per_class: dict[str, int] = defaultdict(int)
     for path, _key in leaked_val:
         per_class[path.parent.name] += 1

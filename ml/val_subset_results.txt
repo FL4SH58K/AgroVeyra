@@ -12,7 +12,7 @@ filename                                  | ground truth                     | p
 00075aa8-d81a-4184-8541-b692b78d398a___FREC_Scab 3335_90deg.JPG | Apple___Apple_scab               | Apple___Apple_scab               | 100.00% | yes
 00075aa8-d81a-4184-8541-b692b78d398a___FREC_Scab 3335_new30degFlipLR.JPG | Apple___Apple_scab               | Apple___Apple_scab               | 100.00% | yes
 0139bc6d-391c-4fd1-bcae-cc74dabfddd7___JR_FrgE.S 2734_270deg.JPG | Apple___Black_rot                | Apple___Black_rot                | 100.00% | yes
-01e94c43-0879-4e8c-9b61-c48cfed88dab___JR_FrgE.S 3024.JPG | Apple___Black_rot                | Apple___Black_rot                |  99.95% | yes
+01e94c43-0879-4e8c-9b61-c48cfed88dab___JR_FrgE.S 3024.JPG | Apple___Black_rot                | Apple___Black_rot                |  99.97% | yes
 02168189-aa75-4284-a7f0-8ca5901ea783___JR_FrgE.S 2948_90deg.JPG | Apple___Black_rot                | Apple___Black_rot                | 100.00% | yes
 025b2b9a-0ec4-4132-96ac-7f2832d0db4a___FREC_C.Rust 3655_newGRR.JPG | Apple___Cedar_apple_rust         | Apple___Cedar_apple_rust         | 100.00% | yes
 025b2b9a-0ec4-4132-96ac-7f2832d0db4a___FREC_C.Rust 3655_newPixel25.JPG | Apple___Cedar_apple_rust         | Apple___Cedar_apple_rust         | 100.00% | yes
@@ -22,7 +22,7 @@ filename                                  | ground truth                     | p
 023810b0-18e6-4352-9dfa-c2f4c034cda5___RS_HL 7538.JPG | Apple___healthy                  | Apple___healthy                  | 100.00% | yes
 008c85d0-a954-4127-bd26-861dc8a1e6ff___RS_HL 2431.JPG | Blueberry___healthy              | Blueberry___healthy              | 100.00% | yes
 00fee259-67b7-4dd7-8b36-12503bbdba14___RS_HL 2681.JPG | Blueberry___healthy              | Blueberry___healthy              | 100.00% | yes
-00fee259-67b7-4dd7-8b36-12503bbdba14___RS_HL 2681_new30degFlipLR.JPG | Blueberry___healthy              | Blueberry___healthy              |  99.94% | yes
+00fee259-67b7-4dd7-8b36-12503bbdba14___RS_HL 2681_new30degFlipLR.JPG | Blueberry___healthy              | Blueberry___healthy              |  99.86% | yes
 00e0a4ab-ecbd-4560-a71c-b19d86bb087c___FREC_Pwd.M 4917.JPG | Cherry_(including_sour)___Powdery_mildew | Cherry_(including_sour)___Powdery_mildew | 100.00% | yes
 02ecd449-7b27-44d7-b59e-7e31813f0c18___FREC_Pwd.M 0450.JPG | Cherry_(including_sour)___Powdery_mildew | Cherry_(including_sour)___Powdery_mildew | 100.00% | yes
 0325a93a-4fa1-4eae-a6a9-fc6baa82ca7f___FREC_Pwd.M 0434.JPG | Cherry_(including_sour)___Powdery_mildew | Cherry_(including_sour)___Powdery_mildew | 100.00% | yes
@@ -36,21 +36,21 @@ RS_Rust 1574.JPG                          | Corn_(maize)___Common_rust_      | C
 00a14441-7a62-4034-bc40-b196aeab2785___RS_NLB 3932.JPG | Corn_(maize)___Northern_Leaf_Blight | Corn_(maize)___Northern_Leaf_Blight | 100.00% | yes
 00a55069-3fa3-405b-8d87-4d3408a6ed98___RS_NLB 3645.JPG | Corn_(maize)___Northern_Leaf_Blight | Corn_(maize)___Northern_Leaf_Blight | 100.00% | yes
 028ed539-32f5-4540-a6af-466179837de9___R.S_HL 8212 copy.jpg | Corn___healthy                   | Corn___healthy                   | 100.00% | yes
-0292a37f-07d0-401f-83d8-cde4c98547d8___R.S_HL 0630 copy 2_flipLR.jpg | Corn___healthy                   | Corn___healthy                   | 100.00% | yes
+0292a37f-07d0-401f-83d8-cde4c98547d8___R.S_HL 0630 copy 2_flipLR.jpg | Corn___healthy                   | Corn___healthy                   |  99.98% | yes
 02ab8d66-0385-43db-855a-ea5f8811ebd5___R.S_HL 7954 copy.jpg | Corn___healthy                   | Corn___healthy                   | 100.00% | yes
 bact1.jpg                                 | Cotton___bacterial_blight        | Cotton___bacterial_blight        | 100.00% | yes
-bact107.jpg                               | Cotton___bacterial_blight        | Cotton___bacterial_blight        |  98.58% | yes
-bact108.jpg                               | Cotton___bacterial_blight        | Cotton___bacterial_blight        |  99.97% | yes
+bact107.jpg                               | Cotton___bacterial_blight        | Cotton___bacterial_blight        |  99.97% | yes
+bact108.jpg                               | Cotton___bacterial_blight        | Cotton___bacterial_blight        |  99.96% | yes
 curl00.jpg                                | Cotton___curl_virus              | Cotton___curl_virus              | 100.00% | yes
-curl105.jpg                               | Cotton___curl_virus              | Cotton___curl_virus              | 100.00% | yes
+curl105.jpg                               | Cotton___curl_virus              | Cotton___curl_virus              |  99.89% | yes
 curl106.jpg                               | Cotton___curl_virus              | Cotton___curl_virus              | 100.00% | yes
-done10.jpg                                | Cotton___fussarium_wilt          | Cotton___fussarium_wilt          |  99.78% | yes
-done19.jpg                                | Cotton___fussarium_wilt          | Cotton___fussarium_wilt          |  62.72% | yes
-done20.jpg                                | Cotton___fussarium_wilt          | Cotton___fussarium_wilt          |  99.99% | yes
-h101.jpg                                  | Cotton___healthy                 | Cotton___healthy                 |  99.98% | yes
-h11.jpg                                   | Cotton___healthy                 | Cotton___healthy                 |  99.76% | yes
-h110.jpg                                  | Cotton___healthy                 | Cotton___healthy                 |  99.99% | yes
-00090b0f-c140-4e77-8d20-d39f67b75fcc___FAM_B.Rot 0376.JPG | Grape___Black_rot                | Grape___Black_rot                | 100.00% | yes
+done10.jpg                                | Cotton___fussarium_wilt          | Cotton___fussarium_wilt          |  99.35% | yes
+done19.jpg                                | Cotton___fussarium_wilt          | Cotton___fussarium_wilt          |  91.01% | yes
+done20.jpg                                | Cotton___fussarium_wilt          | Cotton___fussarium_wilt          |  99.98% | yes
+h101.jpg                                  | Cotton___healthy                 | Cotton___healthy                 |  99.99% | yes
+h11.jpg                                   | Cotton___healthy                 | Cotton___healthy                 |  99.65% | yes
+h110.jpg                                  | Cotton___healthy                 | Cotton___healthy                 | 100.00% | yes
+00090b0f-c140-4e77-8d20-d39f67b75fcc___FAM_B.Rot 0376.JPG | Grape___Black_rot                | Grape___Black_rot                |  99.99% | yes
 003d09ef-e16c-4e8a-badf-847d46cb3dc0___FAM_B.Rot 3184.JPG | Grape___Black_rot                | Grape___Black_rot                | 100.00% | yes
 00905d40-bddf-460e-b348-1dbb6a34653b___FAM_B.Rot 0664.JPG | Grape___Black_rot                | Grape___Black_rot                | 100.00% | yes
 0075b632-2e34-4e4f-9697-fe2b332b7ef8___FAM_B.Msls 4399_flipLR.JPG | Grape___Esca_(Black_Measles)     | Grape___Esca_(Black_Measles)     | 100.00% | yes
@@ -75,7 +75,7 @@ h110.jpg                                  | Cotton___healthy                 | C
 002f87b7-e1a5-49e5-a422-bb423630ded5___JR_HL 8068.JPG | Pepper___healthy                 | Pepper___healthy                 | 100.00% | yes
 002f87b7-e1a5-49e5-a422-bb423630ded5___JR_HL 8068_flipTB.JPG | Pepper___healthy                 | Pepper___healthy                 | 100.00% | yes
 002a55fb-7a3d-4a3a-aca8-ce2d5ebc6925___RS_Early.B 8170.JPG | Potato___Early_blight            | Potato___Early_blight            | 100.00% | yes
-00d8f10f-5038-4e0f-bb58-0b885ddc0cc5___RS_Early.B 8722.JPG | Potato___Early_blight            | Potato___Early_blight            |  99.99% | yes
+00d8f10f-5038-4e0f-bb58-0b885ddc0cc5___RS_Early.B 8722.JPG | Potato___Early_blight            | Potato___Early_blight            | 100.00% | yes
 034959c1-f1e8-4a79-a6d5-3c1d14efa2f3___RS_Early.B 7136_180deg.JPG | Potato___Early_blight            | Potato___Early_blight            | 100.00% | yes
 00fc2ee5-729f-4757-8aeb-65c3355874f2___RS_HL 1864_180deg.JPG | Potato___healthy                 | Potato___healthy                 | 100.00% | yes
 00fc2ee5-729f-4757-8aeb-65c3355874f2___RS_HL 1864_flipLR.JPG | Potato___healthy                 | Potato___healthy                 | 100.00% | yes
@@ -86,23 +86,23 @@ h110.jpg                                  | Cotton___healthy                 | C
 00a3fc0e-64cc-4e35-ac2f-aef04fda9b22___Mary_HL 9177_new30degFlipLR.JPG | Raspberry___healthy              | Raspberry___healthy              | 100.00% | yes
 020e14fb-6016-4d7f-b489-445e0021b58e___Mary_HL 6324.JPG | Raspberry___healthy              | Raspberry___healthy              | 100.00% | yes
 020e14fb-6016-4d7f-b489-445e0021b58e___Mary_HL 6324_180deg.JPG | Raspberry___healthy              | Raspberry___healthy              | 100.00% | yes
-aug_0_1031.jpg                            | Rice___Bacterial_leaf_blight     | Rice___Bacterial_leaf_blight     |  99.29% | yes
-aug_0_1090.jpg                            | Rice___Bacterial_leaf_blight     | Rice___Bacterial_leaf_blight     |  99.22% | yes
-aug_0_1121.jpg                            | Rice___Bacterial_leaf_blight     | Rice___Bacterial_leaf_blight     |  99.87% | yes
-20231006_165615.jpg                       | Rice___Brown_spot                | Rice___Brown_spot                |  99.55% | yes
-20231006_165801(0).jpg                    | Rice___Brown_spot                | Rice___Brown_spot                |  99.76% | yes
-aug_0_131.jpg                             | Rice___Brown_spot                | Rice___Brown_spot                |  93.23% | yes
-20231006_165517(0).jpg                    | Rice___healthy                   | Rice___healthy                   |  99.98% | yes
-aug_0_1016.jpg                            | Rice___healthy                   | Rice___healthy                   |  99.99% | yes
-aug_0_1118.jpg                            | Rice___healthy                   | Rice___healthy                   |  99.99% | yes
-aug_0_112.jpg                             | Rice___Leaf_blast                | Rice___Leaf_blast                |  93.10% | yes
-aug_0_153.jpg                             | Rice___Leaf_blast                | Rice___Leaf_blast                |  96.32% | yes
-aug_0_1688.jpg                            | Rice___Leaf_blast                | Rice___Leaf_blast                |  98.91% | yes
-aug_0_1012.jpg                            | Rice___Leaf_scald                | Rice___Leaf_scald                |  94.92% | yes
-aug_0_1060.jpg                            | Rice___Leaf_scald                | Rice___Leaf_scald                |  99.78% | yes
-aug_0_1119.jpg                            | Rice___Leaf_scald                | Rice___Bacterial_leaf_blight     |  54.44% | NO
-aug_0_106.jpg                             | Rice___Sheath_blight             | Rice___Sheath_blight             | 100.00% | yes
-aug_0_149.jpg                             | Rice___Sheath_blight             | Rice___Sheath_blight             |  68.66% | yes
+aug_0_1031.jpg                            | Rice___Bacterial_leaf_blight     | Rice___Bacterial_leaf_blight     |  96.24% | yes
+aug_0_1090.jpg                            | Rice___Bacterial_leaf_blight     | Rice___Bacterial_leaf_blight     |  95.15% | yes
+aug_0_1121.jpg                            | Rice___Bacterial_leaf_blight     | Rice___Bacterial_leaf_blight     |  99.27% | yes
+20231006_165615.jpg                       | Rice___Brown_spot                | Rice___Brown_spot                |  98.62% | yes
+20231006_165801(0).jpg                    | Rice___Brown_spot                | Rice___Brown_spot                |  99.28% | yes
+aug_0_131.jpg                             | Rice___Brown_spot                | Rice___Brown_spot                |  98.03% | yes
+20231006_165517(0).jpg                    | Rice___healthy                   | Rice___healthy                   |  99.99% | yes
+aug_0_1016.jpg                            | Rice___healthy                   | Rice___healthy                   | 100.00% | yes
+aug_0_1118.jpg                            | Rice___healthy                   | Rice___healthy                   |  99.98% | yes
+aug_0_112.jpg                             | Rice___Leaf_blast                | Rice___Leaf_blast                |  98.39% | yes
+aug_0_153.jpg                             | Rice___Leaf_blast                | Rice___Leaf_blast                |  76.35% | yes
+aug_0_1688.jpg                            | Rice___Leaf_blast                | Rice___Leaf_blast                |  96.70% | yes
+aug_0_1012.jpg                            | Rice___Leaf_scald                | Rice___Leaf_scald                |  84.22% | yes
+aug_0_1060.jpg                            | Rice___Leaf_scald                | Rice___Leaf_scald                |  99.14% | yes
+aug_0_1119.jpg                            | Rice___Leaf_scald                | Rice___Leaf_scald                |  82.31% | yes
+aug_0_106.jpg                             | Rice___Sheath_blight             | Rice___Sheath_blight             |  99.95% | yes
+aug_0_149.jpg                             | Rice___Sheath_blight             | Rice___Bacterial_leaf_blight     |  57.95% | NO
 aug_0_19.jpg                              | Rice___Sheath_blight             | Rice___Sheath_blight             |  99.97% | yes
 00457581-0077-442d-b19a-0dc6027e8cfc___RS_HL 5635.JPG | Soybean___healthy                | Soybean___healthy                | 100.00% | yes
 06749d1b-4105-4f44-be82-98e45dae13fe___RS_HL 3586.JPG | Soybean___healthy                | Soybean___healthy                | 100.00% | yes
@@ -116,14 +116,14 @@ aug_0_19.jpg                              | Rice___Sheath_blight             | R
 018eaeaf-82a5-407c-87f2-fc7edfc89ecc___RS_L.Scorch 0951_flipLR.JPG | Strawberry___Leaf_scorch         | Strawberry___Leaf_scorch         | 100.00% | yes
 01b7dc2e-af4a-4708-a6ea-4cb19d6f167c___RS_L.Scorch 0072_flipLR.JPG | Strawberry___Leaf_scorch         | Strawberry___Leaf_scorch         | 100.00% | yes
 01cff44f-9564-42f7-9a29-3daa487b306a___RS_L.Scorch 1333_flipLR.JPG | Strawberry___Leaf_scorch         | Strawberry___Leaf_scorch         | 100.00% | yes
-014b58ae-091b-408a-ab4a-5a780cd1c3f3___GCREC_Bact.Sp 2971.JPG | Tomato___Bacterial_spot          | Tomato___Bacterial_spot          |  99.99% | yes
+014b58ae-091b-408a-ab4a-5a780cd1c3f3___GCREC_Bact.Sp 2971.JPG | Tomato___Bacterial_spot          | Tomato___Bacterial_spot          | 100.00% | yes
 01d7f4fe-793f-4a9b-bc8b-8aa05200984f___GCREC_Bact.Sp 2984.JPG | Tomato___Bacterial_spot          | Tomato___Bacterial_spot          | 100.00% | yes
 01d9fc8d-5083-468d-a583-885f33517cdd___GCREC_Bact.Sp 3422.JPG | Tomato___Bacterial_spot          | Tomato___Bacterial_spot          | 100.00% | yes
-0012b9d2-2130-4a06-a834-b1f3af34f57e___RS_Erly.B 8389.JPG | Tomato___Early_blight            | Tomato___Early_blight            |  99.98% | yes
-004cbe60-8ff9-4965-92df-e86694d5e9ba___RS_Erly.B 8253.JPG | Tomato___Early_blight            | Tomato___Early_blight            | 100.00% | yes
+0012b9d2-2130-4a06-a834-b1f3af34f57e___RS_Erly.B 8389.JPG | Tomato___Early_blight            | Tomato___Early_blight            |  99.69% | yes
+004cbe60-8ff9-4965-92df-e86694d5e9ba___RS_Erly.B 8253.JPG | Tomato___Early_blight            | Tomato___Early_blight            |  99.98% | yes
 0114f7b3-7f56-4bef-aa47-7a82da142d4b___RS_Erly.B 7437.JPG | Tomato___Early_blight            | Tomato___Early_blight            | 100.00% | yes
 00bce074-967b-4d50-967a-31fdaa35e688___RS_HL 0223_flipTB.JPG | Tomato___healthy                 | Tomato___healthy                 | 100.00% | yes
-014b5e19-7917-4d76-b632-b5dd31d999ec___RS_HL 9640.JPG | Tomato___healthy                 | Tomato___healthy                 |  99.99% | yes
+014b5e19-7917-4d76-b632-b5dd31d999ec___RS_HL 9640.JPG | Tomato___healthy                 | Tomato___healthy                 | 100.00% | yes
 01f98912-9627-4ce0-8f0f-e451b7acbb6c___RS_HL 0509_flipTB.JPG | Tomato___healthy                 | Tomato___healthy                 | 100.00% | yes
 005a2c1f-4e15-49e4-9e5c-61dc3ecf9708___RS_Late.B 5096.JPG | Tomato___Late_blight             | Tomato___Late_blight             | 100.00% | yes
 005a2c1f-4e15-49e4-9e5c-61dc3ecf9708___RS_Late.B 5096_flipLR.JPG | Tomato___Late_blight             | Tomato___Late_blight             | 100.00% | yes
@@ -132,59 +132,59 @@ aug_0_19.jpg                              | Rice___Sheath_blight             | R
 02a29ab9-8cba-47a0-bc2f-e7af7dbae149___Crnl_L.Mold 7165.JPG | Tomato___Leaf_Mold               | Tomato___Leaf_Mold               | 100.00% | yes
 0462054e-f0aa-41a7-a9cc-95d0784b9767___Crnl_L.Mold 6547.JPG | Tomato___Leaf_Mold               | Tomato___Leaf_Mold               | 100.00% | yes
 021f9747-f308-4694-859b-10f541a0e63c___JR_Sept.L.S 2506.JPG | Tomato___Septoria_leaf_spot      | Tomato___Septoria_leaf_spot      | 100.00% | yes
-02ab6821-757a-401b-ac04-919fdceee1f0___Matt.S_CG 1653_180deg.JPG | Tomato___Septoria_leaf_spot      | Tomato___Septoria_leaf_spot      |  99.99% | yes
-02ab6821-757a-401b-ac04-919fdceee1f0___Matt.S_CG 1653_flipTB.JPG | Tomato___Septoria_leaf_spot      | Tomato___Septoria_leaf_spot      |  99.99% | yes
-003a5321-0430-42dd-a38d-30ac4563f4ba___Com.G_TgS_FL 8121_180deg.JPG | Tomato___Target_Spot             | Tomato___Target_Spot             |  99.99% | yes
+02ab6821-757a-401b-ac04-919fdceee1f0___Matt.S_CG 1653_180deg.JPG | Tomato___Septoria_leaf_spot      | Tomato___Septoria_leaf_spot      | 100.00% | yes
+02ab6821-757a-401b-ac04-919fdceee1f0___Matt.S_CG 1653_flipTB.JPG | Tomato___Septoria_leaf_spot      | Tomato___Septoria_leaf_spot      | 100.00% | yes
+003a5321-0430-42dd-a38d-30ac4563f4ba___Com.G_TgS_FL 8121_180deg.JPG | Tomato___Target_Spot             | Tomato___Target_Spot             |  99.98% | yes
 003a5321-0430-42dd-a38d-30ac4563f4ba___Com.G_TgS_FL 8121_newPixel25.JPG | Tomato___Target_Spot             | Tomato___Target_Spot             | 100.00% | yes
-0197df47-a9cb-4b6c-b72c-ac0e9af6d135___Com.G_TgS_FL 0779.JPG | Tomato___Target_Spot             | Tomato___Target_Spot             |  99.99% | yes
+0197df47-a9cb-4b6c-b72c-ac0e9af6d135___Com.G_TgS_FL 0779.JPG | Tomato___Target_Spot             | Tomato___Target_Spot             |  99.93% | yes
 000ec6ea-9063-4c33-8abe-d58ca8a88878___PSU_CG 2169_270deg.JPG | Tomato___Tomato_mosaic_virus     | Tomato___Tomato_mosaic_virus     | 100.00% | yes
 006e354b-c054-4b72-a83c-e3feb038942e___PSU_CG 2330_newPixel25.JPG | Tomato___Tomato_mosaic_virus     | Tomato___Tomato_mosaic_virus     | 100.00% | yes
 00c07a77-15e6-4815-92d4-8d1e1afb7f3c___PSU_CG 2052_180deg.JPG | Tomato___Tomato_mosaic_virus     | Tomato___Tomato_mosaic_virus     | 100.00% | yes
 01933767-8827-4a46-b089-76b1d8397eb6___YLCV_GCREC 2539.JPG | Tomato___Tomato_Yellow_Leaf_Curl_Virus | Tomato___Tomato_Yellow_Leaf_Curl_Virus | 100.00% | yes
 0351992b-8156-4f08-ba42-72f111c7e0db___YLCV_NREC 0198.JPG | Tomato___Tomato_Yellow_Leaf_Curl_Virus | Tomato___Tomato_Yellow_Leaf_Curl_Virus | 100.00% | yes
 0383249b-008c-4e0b-b8ee-7eae08be99d3___YLCV_GCREC 2722.JPG | Tomato___Tomato_Yellow_Leaf_Curl_Virus | Tomato___Tomato_Yellow_Leaf_Curl_Virus |  99.97% | yes
-aphid_27.png                              | Wheat___aphid                    | Wheat___aphid                    |  69.46% | yes
-aphid_28.png                              | Wheat___aphid                    | Wheat___aphid                    |  99.96% | yes
-aphid_29.png                              | Wheat___aphid                    | Wheat___aphid                    | 100.00% | yes
-black_rust_0.png                          | Wheat___black_rust               | Wheat___black_rust               |  90.30% | yes
-black_rust_0__1.png                       | Wheat___black_rust               | Wheat___black_rust               |  90.30% | yes
+aphid_27.png                              | Wheat___aphid                    | Wheat___blast                    |  83.87% | NO
+aphid_28.png                              | Wheat___aphid                    | Wheat___aphid                    |  99.87% | yes
+aphid_29.png                              | Wheat___aphid                    | Wheat___aphid                    |  99.68% | yes
+black_rust_0.png                          | Wheat___black_rust               | Wheat___black_rust               |  98.34% | yes
+black_rust_0__1.png                       | Wheat___black_rust               | Wheat___black_rust               |  98.34% | yes
 black_rust_1.png                          | Wheat___black_rust               | Wheat___black_rust               | 100.00% | yes
-blast_0.png                               | Wheat___blast                    | Wheat___blast                    |  99.97% | yes
-blast_0__1.png                            | Wheat___blast                    | Wheat___blast                    |  99.97% | yes
+blast_0.png                               | Wheat___blast                    | Wheat___blast                    | 100.00% | yes
+blast_0__1.png                            | Wheat___blast                    | Wheat___blast                    | 100.00% | yes
 blast_1.png                               | Wheat___blast                    | Wheat___blast                    | 100.00% | yes
-brown_rust_test_0.png                     | Wheat___brown_rust               | Wheat___brown_rust               |  75.39% | yes
-brown_rust_test_1.png                     | Wheat___brown_rust               | Wheat___brown_rust               |  99.98% | yes
-brown_rust_test_10.png                    | Wheat___brown_rust               | Wheat___brown_rust               |  88.79% | yes
-common_root_rot_119.png                   | Wheat___common_root_rot          | Wheat___common_root_rot          |  93.18% | yes
-common_root_rot_119__1.png                | Wheat___common_root_rot          | Wheat___common_root_rot          |  93.18% | yes
-common_root_rot_120.png                   | Wheat___common_root_rot          | Wheat___common_root_rot          |  74.75% | yes
-fusarium_head_blight_test_0.png           | Wheat___fusarium_head_blight     | Wheat___fusarium_head_blight     |  99.95% | yes
-fusarium_head_blight_test_0__1.png        | Wheat___fusarium_head_blight     | Wheat___fusarium_head_blight     |  99.95% | yes
-fusarium_head_blight_test_1.png           | Wheat___fusarium_head_blight     | Wheat___fusarium_head_blight     |  87.45% | yes
-healthy_test_0.png                        | Wheat___healthy                  | Wheat___healthy                  |  67.40% | yes
-healthy_test_0__1.png                     | Wheat___healthy                  | Wheat___healthy                  |  67.40% | yes
+brown_rust_test_0.png                     | Wheat___brown_rust               | Wheat___brown_rust               |  60.19% | yes
+brown_rust_test_1.png                     | Wheat___brown_rust               | Wheat___brown_rust               |  99.72% | yes
+brown_rust_test_10.png                    | Wheat___brown_rust               | Wheat___brown_rust               |  79.01% | yes
+common_root_rot_119.png                   | Wheat___common_root_rot          | Wheat___mildew                   |  44.74% | NO
+common_root_rot_119__1.png                | Wheat___common_root_rot          | Wheat___mildew                   |  44.74% | NO
+common_root_rot_120.png                   | Wheat___common_root_rot          | Wheat___common_root_rot          |  70.04% | yes
+fusarium_head_blight_test_0.png           | Wheat___fusarium_head_blight     | Wheat___fusarium_head_blight     |  98.95% | yes
+fusarium_head_blight_test_0__1.png        | Wheat___fusarium_head_blight     | Wheat___fusarium_head_blight     |  98.95% | yes
+fusarium_head_blight_test_1.png           | Wheat___fusarium_head_blight     | Wheat___fusarium_head_blight     |  84.86% | yes
+healthy_test_0.png                        | Wheat___healthy                  | Wheat___healthy                  |  58.04% | yes
+healthy_test_0__1.png                     | Wheat___healthy                  | Wheat___healthy                  |  58.04% | yes
 healthy_test_1.png                        | Wheat___healthy                  | Wheat___yellow_rust              | 100.00% | NO
-leaf_blight_100.png                       | Wheat___leaf_blight              | Wheat___leaf_blight              |  98.88% | yes
-leaf_blight_101.png                       | Wheat___leaf_blight              | Wheat___leaf_blight              |  52.37% | yes
-leaf_blight_102.png                       | Wheat___leaf_blight              | Wheat___black_rust               |  89.61% | NO
-mildew_test_0.png                         | Wheat___mildew                   | Wheat___mildew                   |  99.35% | yes
-mildew_test_0__1.png                      | Wheat___mildew                   | Wheat___mildew                   |  99.35% | yes
-mildew_test_1.png                         | Wheat___mildew                   | Wheat___mildew                   |  99.97% | yes
-mite_18.png                               | Wheat___mite                     | Wheat___aphid                    |  50.55% | NO
-mite_18__1.png                            | Wheat___mite                     | Wheat___aphid                    |  50.55% | NO
-mite_19.png                               | Wheat___mite                     | Wheat___common_root_rot          |  57.46% | NO
-septoria_0.png                            | Wheat___septoria                 | Wheat___septoria                 |  99.78% | yes
-septoria_0__1.png                         | Wheat___septoria                 | Wheat___septoria                 |  99.78% | yes
-septoria_1.png                            | Wheat___septoria                 | Wheat___septoria                 |  99.97% | yes
-smut_test_0.png                           | Wheat___smut                     | Wheat___smut                     | 100.00% | yes
-smut_test_0__1.png                        | Wheat___smut                     | Wheat___smut                     | 100.00% | yes
-smut_test_1.png                           | Wheat___smut                     | Wheat___smut                     |  98.77% | yes
-stem_fly_0.png                            | Wheat___stem_fly                 | Wheat___stem_fly                 |  99.79% | yes
-stem_fly_0__1.png                         | Wheat___stem_fly                 | Wheat___stem_fly                 |  99.79% | yes
-stem_fly_1.png                            | Wheat___stem_fly                 | Wheat___stem_fly                 |  98.14% | yes
-tan_spot_10.png                           | Wheat___tan_spot                 | Wheat___tan_spot                 |  45.07% | yes
-tan_spot_10__1.png                        | Wheat___tan_spot                 | Wheat___tan_spot                 |  45.07% | yes
-tan_spot_11.png                           | Wheat___tan_spot                 | Wheat___tan_spot                 |  95.34% | yes
+leaf_blight_100.png                       | Wheat___leaf_blight              | Wheat___leaf_blight              |  88.77% | yes
+leaf_blight_101.png                       | Wheat___leaf_blight              | Wheat___tan_spot                 |  57.77% | NO
+leaf_blight_102.png                       | Wheat___leaf_blight              | Wheat___black_rust               |  96.04% | NO
+mildew_test_0.png                         | Wheat___mildew                   | Wheat___mildew                   |  99.28% | yes
+mildew_test_0__1.png                      | Wheat___mildew                   | Wheat___mildew                   |  99.28% | yes
+mildew_test_1.png                         | Wheat___mildew                   | Wheat___mildew                   |  99.99% | yes
+mite_18.png                               | Wheat___mite                     | Wheat___aphid                    |  21.85% | NO
+mite_18__1.png                            | Wheat___mite                     | Wheat___aphid                    |  21.85% | NO
+mite_19.png                               | Wheat___mite                     | Wheat___common_root_rot          |  92.65% | NO
+septoria_0.png                            | Wheat___septoria                 | Wheat___septoria                 |  97.48% | yes
+septoria_0__1.png                         | Wheat___septoria                 | Wheat___septoria                 |  97.48% | yes
+septoria_1.png                            | Wheat___septoria                 | Wheat___septoria                 |  99.49% | yes
+smut_test_0.png                           | Wheat___smut                     | Wheat___smut                     |  99.95% | yes
+smut_test_0__1.png                        | Wheat___smut                     | Wheat___smut                     |  99.95% | yes
+smut_test_1.png                           | Wheat___smut                     | Wheat___smut                     |  96.09% | yes
+stem_fly_0.png                            | Wheat___stem_fly                 | Wheat___stem_fly                 |  73.01% | yes
+stem_fly_0__1.png                         | Wheat___stem_fly                 | Wheat___stem_fly                 |  73.01% | yes
+stem_fly_1.png                            | Wheat___stem_fly                 | Wheat___brown_rust               |  52.50% | NO
+tan_spot_10.png                           | Wheat___tan_spot                 | Cotton___fussarium_wilt          |  42.30% | NO
+tan_spot_10__1.png                        | Wheat___tan_spot                 | Cotton___fussarium_wilt          |  42.30% | NO
+tan_spot_11.png                           | Wheat___tan_spot                 | Wheat___tan_spot                 |  99.90% | yes
 yellow_rust_test_0.png                    | Wheat___yellow_rust              | Wheat___yellow_rust              | 100.00% | yes
 yellow_rust_test_0__1.png                 | Wheat___yellow_rust              | Wheat___yellow_rust              | 100.00% | yes
 yellow_rust_test_1.png                    | Wheat___yellow_rust              | Wheat___yellow_rust              | 100.00% | yes
@@ -193,9 +193,9 @@ SUMMARY - PASS 3 - VAL SPLIT SUMMARY
 ------------------------------------------------------------------------------------------------------------------------------------
 images evaluated      : 180
 ground truth resolved : 180
-correct top-1         : 174
-OVERALL ACCURACY      : 96.67%  (174/180)
-top-3 accuracy        : 98.33%  (177/180)
+correct top-1         : 167
+OVERALL ACCURACY      : 92.78%  (167/180)
+top-3 accuracy        : 97.22%  (175/180)
 
 PER-LABEL ACCURACY
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -228,8 +228,8 @@ Raspberry___healthy                        3/3 correct (100.0%)
 Rice___Bacterial_leaf_blight               3/3 correct (100.0%)
 Rice___Brown_spot                          3/3 correct (100.0%)
 Rice___Leaf_blast                          3/3 correct (100.0%)
-Rice___Leaf_scald                          2/3 correct ( 66.7%)
-Rice___Sheath_blight                       3/3 correct (100.0%)
+Rice___Leaf_scald                          3/3 correct (100.0%)
+Rice___Sheath_blight                       2/3 correct ( 66.7%)
 Rice___healthy                             3/3 correct (100.0%)
 Soybean___healthy                          3/3 correct (100.0%)
 Squash___Powdery_mildew                    3/3 correct (100.0%)
@@ -244,30 +244,37 @@ Tomato___Target_Spot                       3/3 correct (100.0%)
 Tomato___Tomato_Yellow_Leaf_Curl_Virus     3/3 correct (100.0%)
 Tomato___Tomato_mosaic_virus               3/3 correct (100.0%)
 Tomato___healthy                           3/3 correct (100.0%)
-Wheat___aphid                              3/3 correct (100.0%)
+Wheat___aphid                              2/3 correct ( 66.7%)
 Wheat___black_rust                         3/3 correct (100.0%)
 Wheat___blast                              3/3 correct (100.0%)
 Wheat___brown_rust                         3/3 correct (100.0%)
-Wheat___common_root_rot                    3/3 correct (100.0%)
+Wheat___common_root_rot                    1/3 correct ( 33.3%)
 Wheat___fusarium_head_blight               3/3 correct (100.0%)
 Wheat___healthy                            2/3 correct ( 66.7%)
-Wheat___leaf_blight                        2/3 correct ( 66.7%)
+Wheat___leaf_blight                        1/3 correct ( 33.3%)
 Wheat___mildew                             3/3 correct (100.0%)
 Wheat___mite                               0/3 correct (  0.0%)
 Wheat___septoria                           3/3 correct (100.0%)
 Wheat___smut                               3/3 correct (100.0%)
-Wheat___stem_fly                           3/3 correct (100.0%)
-Wheat___tan_spot                           3/3 correct (100.0%)
+Wheat___stem_fly                           2/3 correct ( 66.7%)
+Wheat___tan_spot                           1/3 correct ( 33.3%)
 Wheat___yellow_rust                        3/3 correct (100.0%)
 
 MISCLASSIFICATIONS (top-3 candidates)
 ------------------------------------------------------------------------------------------------------------------------------------
-aug_0_1119.jpg                            truth=Rice___Leaf_scald                  -> Rice___Bacterial_leaf_blight 54.44% | Rice___Leaf_scald 45.47% | Rice___Leaf_blast 0.03%
-healthy_test_1.png                        truth=Wheat___healthy                    -> Wheat___yellow_rust 100.00% | Corn___healthy 0.00% | Wheat___brown_rust 0.00%
-leaf_blight_102.png                       truth=Wheat___leaf_blight                -> Wheat___black_rust 89.61% | Wheat___leaf_blight 6.32% | Wheat___aphid 1.70%
-mite_18.png                               truth=Wheat___mite                       -> Wheat___aphid 50.55% | Wheat___mildew 15.12% | Wheat___healthy 9.51%
-mite_18__1.png                            truth=Wheat___mite                       -> Wheat___aphid 50.55% | Wheat___mildew 15.12% | Wheat___healthy 9.51%
-mite_19.png                               truth=Wheat___mite                       -> Wheat___common_root_rot 57.46% | Wheat___tan_spot 15.75% | Wheat___mite 14.77%
+aug_0_149.jpg                             truth=Rice___Sheath_blight               -> Rice___Bacterial_leaf_blight 57.95% | Rice___Sheath_blight 41.48% | Rice___Leaf_blast 0.49%
+aphid_27.png                              truth=Wheat___aphid                      -> Wheat___blast 83.87% | Wheat___aphid 7.13% | Wheat___tan_spot 2.69%
+common_root_rot_119.png                   truth=Wheat___common_root_rot            -> Wheat___mildew 44.74% | Wheat___common_root_rot 42.32% | Wheat___tan_spot 8.36%
+common_root_rot_119__1.png                truth=Wheat___common_root_rot            -> Wheat___mildew 44.74% | Wheat___common_root_rot 42.32% | Wheat___tan_spot 8.36%
+healthy_test_1.png                        truth=Wheat___healthy                    -> Wheat___yellow_rust 100.00% | Corn___healthy 0.00% | Potato___healthy 0.00%
+leaf_blight_101.png                       truth=Wheat___leaf_blight                -> Wheat___tan_spot 57.77% | Wheat___leaf_blight 32.66% | Wheat___brown_rust 3.76%
+leaf_blight_102.png                       truth=Wheat___leaf_blight                -> Wheat___black_rust 96.04% | Wheat___leaf_blight 1.29% | Wheat___smut 1.20%
+mite_18.png                               truth=Wheat___mite                       -> Wheat___aphid 21.85% | Wheat___stem_fly 21.03% | Wheat___mildew 13.97%
+mite_18__1.png                            truth=Wheat___mite                       -> Wheat___aphid 21.85% | Wheat___stem_fly 21.03% | Wheat___mildew 13.97%
+mite_19.png                               truth=Wheat___mite                       -> Wheat___common_root_rot 92.65% | Wheat___tan_spot 4.98% | Wheat___leaf_blight 0.83%
+stem_fly_1.png                            truth=Wheat___stem_fly                   -> Wheat___brown_rust 52.50% | Wheat___mite 10.71% | Corn___healthy 9.65%
+tan_spot_10.png                           truth=Wheat___tan_spot                   -> Cotton___fussarium_wilt 42.30% | Wheat___tan_spot 30.11% | Wheat___common_root_rot 12.66%
+tan_spot_10__1.png                        truth=Wheat___tan_spot                   -> Cotton___fussarium_wilt 42.30% | Wheat___tan_spot 30.11% | Wheat___common_root_rot 12.66%
 
 
 CSV: C:\ROHIT RAJESH\AgriVeyra\ml\val_subset_results.csv

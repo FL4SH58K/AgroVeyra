@@ -1,0 +1,17 @@
+filename,label,ground_truth,truth_source,predicted_class,confidence,correct,top2_class,top2_confidence,top3_class,top3_confidence
+cotton_bacterial_blight_1.jpg,cotton_bacterial_blight,Cotton___bacterial_blight,alias,Cotton___bacterial_blight,1.000000,yes,Wheat___tan_spot,0.000000,Cotton___healthy,0.000000
+cotton_bacterial_blight_2.jpg,cotton_bacterial_blight,Cotton___bacterial_blight,alias,Cotton___bacterial_blight,1.000000,yes,Wheat___tan_spot,0.000000,Potato___Early_blight,0.000000
+healthy_rice_1.jpg,healthy_rice,Rice___healthy,alias,Rice___healthy,0.999999,yes,Rice___Sheath_blight,0.000000,Rice___Brown_spot,0.000000
+healthy_rice_2.jpg,healthy_rice,Rice___healthy,alias,Rice___healthy,0.999994,yes,Rice___Brown_spot,0.000004,Rice___Leaf_blast,0.000000
+healthy_wheat_1.jpg,healthy_wheat,Wheat___healthy,alias,Wheat___healthy,0.731978,yes,Rice___healthy,0.116459,Wheat___stem_fly,0.060684
+healthy_wheat_2.jpg,healthy_wheat,Wheat___healthy,alias,Wheat___leaf_blight,0.446048,no,Wheat___aphid,0.257939,Wheat___tan_spot,0.078352
+rice_bacterial_leaf_blight_1.jpg,rice_bacterial_leaf_blight,Rice___Bacterial_leaf_blight,alias,Rice___Sheath_blight,0.940697,no,Rice___Leaf_scald,0.050029,Rice___Leaf_blast,0.005879
+rice_bacterial_leaf_blight_2.jpg,rice_bacterial_leaf_blight,Rice___Bacterial_leaf_blight,alias,Wheat___leaf_blight,0.919390,no,Rice___Sheath_blight,0.027110,Wheat___tan_spot,0.009660
+rice_brown_spot_1.jpg,rice_brown_spot,Rice___Brown_spot,alias,Wheat___leaf_blight,0.616678,no,Wheat___tan_spot,0.324378,Wheat___smut,0.035340
+rice_brown_spot_2.jpg,rice_brown_spot,Rice___Brown_spot,alias,Wheat___blast,0.343279,no,Wheat___smut,0.247444,Wheat___mite,0.140848
+tomato_early_blight_1.jpg,tomato_early_blight,Tomato___Early_blight,alias,Wheat___smut,0.309785,no,Wheat___leaf_blight,0.164292,Wheat___tan_spot,0.114732
+tomato_early_blight_2.jpg,tomato_early_blight,Tomato___Early_blight,alias,Cotton___bacterial_blight,0.888430,no,Wheat___mite,0.073381,Wheat___tan_spot,0.017676
+wheat_powdery_mildew_1.jpg,wheat_powdery_mildew,Wheat___mildew,alias,Wheat___mildew,0.678765,yes,Wheat___leaf_blight,0.194454,Wheat___tan_spot,0.046883
+wheat_powdery_mildew_2.jpg,wheat_powdery_mildew,Wheat___mildew,alias,Wheat___mildew,0.999974,yes,Wheat___leaf_blight,0.000014,Wheat___tan_spot,0.000008
+wheat_yellow_rust_1.jpg,wheat_yellow_rust,Wheat___yellow_rust,alias,Wheat___brown_rust,0.662266,no,Wheat___tan_spot,0.110102,Wheat___leaf_blight,0.078062
+wheat_yellow_rust_2.jpg,wheat_yellow_rust,Wheat___yellow_rust,alias,Wheat___brown_rust,0.997048,no,Wheat___yellow_rust,0.001175,Wheat___tan_spot,0.001144

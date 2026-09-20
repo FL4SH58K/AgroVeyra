@@ -1,0 +1,100 @@
+{
+  "ok": true,
+  "contract": "C:\\ROHIT RAJESH\\AgriVeyra\\backend\\models\\class_names.json",
+  "android_asset": "C:\\ROHIT RAJESH\\AgriVeyra\\android\\app\\src\\main\\assets\\class_names.json",
+  "dataset": "ml\\data\\merged_clean",
+  "expect_count": 60,
+  "expect_crops": 17,
+  "checks": [
+    {
+      "name": "contract file parses as JSON",
+      "ok": true,
+      "detail": "list of 60 names"
+    },
+    {
+      "name": "no blank class names",
+      "ok": true,
+      "detail": "0 blank"
+    },
+    {
+      "name": "no duplicate class names",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no stray whitespace in names",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "class count is 60",
+      "ok": true,
+      "detail": "found 60"
+    },
+    {
+      "name": "already in Python sorted() order (is the TFLite index order)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "crop coverage is 17 species",
+      "ok": true,
+      "detail": "found 17: Apple, Blueberry, Cherry, Corn, Cotton, Grape, Orange, Peach, Pepper, Potato, Raspberry, Rice, Soybean, Squash, Strawberry, Tomato, Wheat"
+    },
+    {
+      "name": "android class_names.json == backend class_names.json",
+      "ok": true,
+      "detail": "sha256 7e61c31f2a65a4d8 vs 7e61c31f2a65a4d8"
+    },
+    {
+      "name": "treatment_db.json parses as JSON",
+      "ok": true,
+      "detail": "66 keys"
+    },
+    {
+      "name": "every class has a treatment entry",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android treatment_db.json == backend treatment_db.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "android tflite == backend tflite",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "matches the fingerprint in export_parity_report.txt",
+      "ok": true,
+      "detail": "on disk c24464eb725661f6, report c24464eb725661f6"
+    },
+    {
+      "name": "parity report says 60 classes",
+      "ok": true,
+      "detail": "report says 60"
+    },
+    {
+      "name": "train/ holds exactly the 60 contract classes",
+      "ok": true,
+      "detail": "60 folders"
+    },
+    {
+      "name": "train/ has no empty class folder",
+      "ok": true,
+      "detail": "0 empty: "
+    },
+    {
+      "name": "val/ holds exactly the 60 contract classes",
+      "ok": true,
+      "detail": "60 folders"
+    },
+    {
+      "name": "val/ has no empty class folder",
+      "ok": true,
+      "detail": "0 empty: "
+    }
+  ]
+}
