@@ -292,11 +292,17 @@ class ScanActivity : AppCompatActivity() {
 	 */
 	private fun showLowConfidenceRetake(confidence: Float) {
 		val percent = (confidence * 100f).toInt()
+		// LENGTH_INDEFINITE, not LENGTH_LONG: after the 0.95 re-tune this is the *common* outcome on
+		// unfamiliar field photos (10 of the 16 in ml/real_world_test ask for a retake), and the app's
+		// other retry prompt - showSnackbar() - is already indefinite. It would be odd for the path
+		// users hit most often to be the least persistent one. Retake and swipe-to-dismiss both still
+		// work, and the camera preview stays live behind the bar, so the shutter button is usable
+		// without dismissing anything.
 		val snackbar = Snackbar.make(
 			binding.root,
 			"Could not read this leaf clearly (best match only $percent% confident). " +
 				"Fill the frame with a single leaf in good light and retake.",
-			Snackbar.LENGTH_LONG
+			Snackbar.LENGTH_INDEFINITE
 		)
 		snackbar.setAction("Retake") { capturePhoto() }
 		snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.green_secondary))
