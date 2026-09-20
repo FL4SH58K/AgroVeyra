@@ -56,6 +56,12 @@ ml/_tmp_*
 ml/_probe*
 # Hash caches produced by ml/rebuild_split.py / ml/audit_dataset_integrity.py
 ml/.sha256_*.json
+# Step 6/7 run scratch: live logs, pidfiles and pre-run result backups kept as evidence
+# (referenced by ml/real_world_comparison.txt and GPU_RUNBOOK.md section 9)
+ml/_*
+# 28.8 MB per-file audit manifest for the rebuilt split; regenerate with
+# ml/rebuild_split.py --apply (the summary report ml/dataset_rebuild_report.txt *is* tracked)
+ml/dataset_rebuild_manifest.csv
 
 # --- Android / Gradle ------------------------------------------------------
 .gradle/
