@@ -529,3 +529,63 @@ honest threshold. No gate fixes a confidently wrong answer — the same 16 photo
 put `wheat_yellow_rust_2` at 99.70% and wrong — so treat the gate as a UX guard, not a correctness
 guarantee.
 
+## 10. Pest model (the second model) - scope, data, and the leak that was found
+
+The architecture always called for two models: `yolo11n-cls` for disease (shipped, §9) and a second
+model for pests. This is what the data on this machine actually allows.
+
+**IP102 as downloaded is classification-only.** `ml/data/pest/ip102/` plus the original `ip102.zip`
+(3.0 GB) contain `classification/{train,val,test}` with 102 numeric class folders and no annotation
+files at all: reading the zip's central directory gives 75,226 entries - 75,222 JPEGs and 4 text
+files, **zero XML/COCO/YOLO boxes**. `yolo11n.pt` in detection mode (bounding boxes) is therefore not
+trainable on this data, and the app has no `YOLODetector.kt` either, so pest *detection* as a
+box-drawing feature does not exist in the codebase. What can be built is a pest *species* classifier -
+the same architecture as the disease model.
+
+Integrity (`ml/validate_pest_dataset.py`): all 75,222 IP102 images verified with PIL `verify()` in
+88 s - **0 corrupt**, 102 class dirs per split, 0 empty. train 45,095 / val 7,508 / test 22,619.
+
+**Approved scope: 41 classes, 27,551 images** via `ml/build_pest_scoped.py` ->
+`ml/data/pest/ip102_scoped/` (train 16,513 / val 2,752 / test 8,286). The full 102-class mapping and
+the rejected candidate scopes are in `ml/pest_scope_report.txt` (`ml/pest_scope.py`). In scope:
+rice 13, wheat 7, citrus 14, grape 5, corn 1, peach 1. A class qualified if its name names a crop the
+app's 60-class contract diagnoses, or if the named species' documented principal host is one of those
+crops. Excluded: 26 classes whose host crop the app does not diagnose (beet, alfalfa, flax, cabbage,
+mango, olive, legumes), 7 genus-level names with no mappable host, and the 8 in-scope classes with
+under 200 images. Readable folder slugs (`rice_leaf_roller`) replace IP102's 0..101 indices, and
+`pest_class_names.json` is written in Ultralytics' sorted-folder order so it can be diffed against
+`model.names` after training.
+
+**The official IP102 split is not leak-free.** `ml/audit_pest_scoped.py` ->
+`ml/pest_scoped_audit.txt`: 0 exact md5 duplicates across splits and 0 filename conflicts, but an
+exhaustive cross-split dHash sweep found 361 candidate pairs, and `ml/pest_neardup_verify.py` ->
+`ml/pest_neardup_verification.txt` confirmed them by pixel comparison (24x24 grayscale MAE): **300
+pairs at MAE 0-2** (the same photo re-encoded), 35 at 2-5, 11 at 5-10 - i.e. **346 pairs involving
+497 distinct images are burst-series siblings that IP102 split across train/val/test** (train<->test
+228, train<->val 83, val<->test 35). Only 8 pairs exceeded MAE 20, so this is not a hash artefact,
+and the two cross-class candidates are among those 8, so there is no evidence of label noise. The
+lesson carried over from the disease dataset: the split is checked, not assumed.
+
+**Quarantine plan** (`ml/pest_quarantine_plan.py` -> `ml/pest_quarantine_plan.txt`, applied with
+`ml/quarantine_pest_neardup.py --apply`): a model only trains on `train`, so only a *train* image can
+leak into an eval split. **242 train images** (1.5% of 16,513; only `spotted_lanternfly` loses
+meaningfully at -115) have a near-duplicate in val or test and are removed, which makes 56 val and
+163 test images honest. A further **29 val images** are removed for val<->test twins, because val
+selects the best epoch and would otherwise bias the final test number. The test split is never
+modified. Files move to `ml/data/pest/quarantine/neardup_{train,val}/<slug>/` - moved, not deleted,
+the same pattern as the disease dataset's `mislabeled_wheat_healthy` quarantine.
+
+**Known gap for the limitations section.** Pest classification covers rice, wheat, grape and citrus
+pests, based on the labeled data available (IP102). Cotton, tomato, pepper and potato - all crops the
+disease model diagnoses - have no named or host-specific pest class in IP102; covering them requires
+either additional labeled pest datasets or a broader, less precise polyphagous scope (76 classes,
+63,207 images, evaluated and rejected as too weak to train on). Expanding pest coverage to those
+crops is future work. Two further caveats belong in the same section: IP102 images are close-ups *of
+the insect*, not of infested leaves, so the model is only meaningful when the photo is of the pest
+itself; and IP102 has no healthy / "no pest present" class, so the pest model can never answer
+"nothing here" and needs its own re-tuned confidence gate rather than reusing the disease gate.
+
+**Status:** dataset built and audited, quarantine prepared (dry run verified: 242 train + 29 val, test
+untouched). Training has NOT been started - the audit findings were reported before any GPU time was
+spent, deliberately.
+

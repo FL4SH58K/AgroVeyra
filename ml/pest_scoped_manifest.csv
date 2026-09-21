@@ -1,0 +1,42 @@
+index,slug,crop,ip102_folder,ip102_name,train,val,test,total
+0,rice_leaf_roller,rice,0,rice leaf roller,669,111,335,1115
+1,rice_leaf_caterpillar,rice,1,rice leaf caterpillar,292,48,147,487
+2,paddy_stem_maggot,rice,2,paddy stem maggot,156,26,79,261
+3,asiatic_rice_borer,rice,3,asiatic rice borer,631,106,316,1053
+4,yellow_rice_borer,rice,4,yellow rice borer,302,50,152,504
+5,rice_gall_midge,rice,5,rice gall midge,303,51,152,506
+6,rice_stemfly,rice,6,Rice Stemfly,221,37,111,369
+7,brown_plant_hopper,rice,7,brown plant hopper,500,83,251,834
+8,white_backed_plant_hopper,rice,8,white backed plant hopper,535,90,268,893
+9,small_brown_plant_hopper,rice,9,small brown plant hopper,331,56,166,553
+10,rice_water_weevil,rice,10,rice water weevil,513,86,257,856
+11,rice_leafhopper,rice,11,rice leafhopper,242,40,122,404
+12,rice_shell_pest,rice,13,rice shell pest,245,41,123,409
+13,corn_borer,corn,22,corn borer,1018,170,510,1698
+14,peach_borer,peach,26,peach borer,414,69,208,691
+15,english_grain_aphid,wheat,27,english grain aphid,392,65,197,654
+16,green_bug,wheat,28,green bug,195,32,98,325
+17,bird_cherry_oat_aphid,wheat,29,bird cherry-oataphid,424,71,213,708
+18,wheat_blossom_midge,wheat,30,wheat blossom midge,291,48,146,485
+19,penthaleus_major,wheat,31,penthaleus major,139,24,70,233
+20,wheat_phloeothrips,wheat,33,wheat phloeothrips,175,29,88,292
+21,wheat_sawfly,wheat,34,wheat sawfly,203,34,102,339
+22,grape_phylloxera,grape,59,Viteus vitifoliae,212,35,107,354
+23,grape_leaf_beetle,grape,62,oides decempunctata,169,29,85,283
+24,grape_hawk_moth,grape,66,Ampelophaga,458,76,230,764
+25,spotted_lanternfly,grape,67,Lycorma delicatula,3186,530,1594,5310
+26,grape_borer,grape,68,Xylotrechus,690,115,345,1150
+27,citrus_swallowtail,citrus,73,Papilio xuthus,269,45,135,449
+28,citrus_red_mite,citrus,74,Panonchus citri McGregor,231,38,116,385
+29,cottony_cushion_scale,citrus,76,Icerya purchasi Maskell,433,72,217,722
+30,arrowhead_scale,citrus,77,Unaspis yanonensis,251,42,126,419
+31,pink_wax_scale,citrus,78,Ceroplastes rubens,154,26,78,258
+32,florida_red_scale,citrus,79,Chrysomphalus aonidum,135,22,68,225
+33,citrus_blackfly,citrus,82,Aleurocanthus spiniferus,414,68,208,690
+34,citrus_fruit_fly_minax,citrus,83,Tetradacus c Bactrocera minax,232,39,117,388
+35,oriental_fruit_fly,citrus,84,Dacus dorsalis(Hendel),263,44,132,439
+36,citrus_leafminer,citrus,88,Phyllocnistis citrella Stainton,242,40,122,404
+37,black_citrus_aphid,citrus,90,Toxoptera aurantii,135,23,68,226
+38,citrus_aphid,citrus,91,Aphis citricola Vander Goot,210,35,106,351
+39,citrus_flatid_hopper_imitata,citrus,94,Lawana imitata Melichar,346,58,174,578
+40,citrus_flatid_hopper_marginella,citrus,95,Salurnis marginella Guerr,292,48,147,487
