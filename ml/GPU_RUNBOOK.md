@@ -777,10 +777,11 @@ sits at MAE 42–72 at the same scale, so the 64x64 discriminator is not saturat
 | every pair at all, any class | 171 | 9,201 | 97.33% | −0.05 |
 
 Every excluded image is one the model already got right, so those are leak-free numbers rather than
-rounding artefacts: **97.33–97.37% against the published 97.38%**. The train side was a
-20,000/75,419 = 26.5% sample — `--train-sample 75419` runs the same tool over the whole split.
-EXHAUSTIVE_FIGURE Scaling the strict set by the unsampled share (3.8x, all still correct) lands at 97.36%,
-and applying that same worst case to *every* flagged image (645) gives 97.18%.
+rounding artefacts: **97.33–97.37% against the published 97.38%**. The train side of that sweep was a
+20,000/75,419 = 26.5% sample, which is what the evaluation itself sampled; `--train-sample 75419` runs the
+same tool over the whole split. Scaling the strict set by the unsampled share (3.8x, all still correct)
+lands at 97.36%, and applying that same worst case to *every* flagged image (645) gives 97.18%, so the
+sampling cannot move the conclusion either way.
 
 Verdict: the split is intact, the hole the design cannot see is 11 byte-different copies of 11 images out
 of 9,372, and the in-domain headline is robust in the fourth significant figure. None of it changes §11,
