@@ -783,6 +783,13 @@ same tool over the whole split. Scaling the strict set by the unsampled share (3
 lands at 97.36%, and applying that same worst case to *every* flagged image (645) gives 97.18%, so the
 sampling cannot move the conclusion either way.
 
+The exhaustive variant is available but not cheap, and that is the reason the sampled audit is the one
+quoted: at 75,419 x 18,957 the same-size bucket comparison is O(n x m) in pure Python and was still
+running after five minutes of hamming with all 6.6 GB of images already read (measured: `--train-sample
+75419`, stopped at cpu 789 s with no pair list yet, `ml/_dnafull_run.out`). A pigeonhole index over the
+64-bit hash would make it interactive without changing the semantics, since the comparison stays inside a
+size bucket either way.
+
 Verdict: the split is intact, the hole the design cannot see is 11 byte-different copies of 11 images out
 of 9,372, and the in-domain headline is robust in the fourth significant figure. None of it changes §11,
 and none of it touches the honest field number of 43.75%.
