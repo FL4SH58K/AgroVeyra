@@ -608,10 +608,38 @@ every miss is *semantically adjacent* - `brown_plant_hopper` -> `white_backed_pl
 `black_citrus_aphid` <-> `english_grain_aphid`, `florida_red_scale` and `grape_hawk_moth` ->
 `spotted_lanternfly`. That is what fine-grained insect classification looks like, not random output.
 
-**Status:** the pest model is trained, exported, verified and installed. Two things remain before it
-can ship in the app: (1) its **own confidence-gate sweep** - at 73.5% top-1, a 0.95 gate would
-withhold most answers, so it needs measuring the way the disease gate was (`ml/confidence_gate_sweep.py`);
-(2) an app-side entry point for pest results. Note also that while the pest model is *installed* in
-the assets and backend models directory, no Kotlin code loads it yet, so the app's behaviour is
-unchanged until that UI work is done.
+**Pest confidence gate** (`ml/pest_gate_sweep.py` -> `ml/pest_confidence_gate_analysis.txt`), measured by
+scoring all 8,286 test images **once** through the shipped TFLite asset with the app's own preprocessing
+and applying the gate post-hoc:
+
+| gate | shown | coverage | wrong shown | precision |
+| --- | --- | --- | --- | --- |
+| none | 8,286 | 100.00% | 2,313 | 72.09% |
+| 0.70 | 6,190 | 74.70% | 936 | 84.88% |
+| 0.80 | 5,680 | 68.55% | 690 | 87.85% |
+| 0.90 | 5,062 | 61.09% | 443 | 91.25% |
+| **0.95** | 4,596 | **55.47%** | 296 | **93.56%** |
+| 0.99 | 3,758 | 45.35% | 124 | 96.70% |
+
+Two findings that the training report alone does not show:
+
+1. **The app's preprocessing costs about 1.4 points of top-1.** The same test split scores 73.53% through
+   Ultralytics' evaluation transform but **72.09%** through `preprocess_image` (stretch to 224, /255),
+   which is what `TFLiteHelper` does. Export parity (20/20 top-1 agreement, max |dp| = 2e-6) rules the
+   model out as the cause, so the difference is preprocessing. **72.09% is the number the app produces**,
+   and it is the number to quote.
+2. **The model is weakest on the crops the app serves most.** Ungated top-1: grape 87.25%, citrus 77.18%,
+   peach 76.44%, corn 73.33%, but **rice 59.02% and wheat 56.56%** (n = 2,479 and 914). At the 0.95 gate
+   those become 86.12% and 85.91% precision, showing 915 and 369 of them respectively.
+
+0.95 is the consistent choice with the disease gate (93.56% precision, 55.47% coverage in-domain), but the
+honest framing differs from the disease model: there, 0.95 showed *only* correct answers on the 16 field
+photos; here roughly 6% of shown answers are still wrong, and all of it is in-domain IP102 evidence - no
+real farmer photo has ever been through this model.
+
+**Status:** the pest model is trained, exported, verified, gate-measured and installed. Remaining work is
+deliberately not started: (1) an app-side entry point - no Kotlin loads the pest asset, so the app behaves
+exactly as before; (2) that needs a product decision first, because IP102 images are close-ups *of the
+insect*, not of infested leaves, so the UX has to ask for a photo of the pest itself rather than reusing the
+leaf-scanning flow.
 
