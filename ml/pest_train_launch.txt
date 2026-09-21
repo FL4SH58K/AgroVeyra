@@ -1,0 +1,29 @@
+Pest training launch record
+===========================
+
+launched : 2026-09-21 12:29:45
+pid      : 33232   (started with Start-Process, so it survives the terminal closing)
+command  : ml\.venv\Scripts\python.exe ml\train_pest.py
+params   : yolo11n-cls.pt, imgsz 224, batch 16, epochs 50, patience 10, seed 42,
+           device 0, workers 8, project ml/runs, name pest_classifier_scoped
+dataset  : ml\data\pest\ip102_scoped   (train 16271 / val 2723 / test 8286 - post-quarantine)
+logs     : ml\_pest_train.out (stdout), ml\_pest_train.err (stderr)
+checkpoint expected at: ml\runs\pest_classifier_scoped\weights\best.pt
+expected runtime     : about 1.9 h, extrapolated from disease_clean (616 s per 75419 images
+                       at imgsz 224 / batch 16 on the same RTX 3050 6GB)
+
+Pre-launch quarantine (ml/quarantine_pest_neardup.py --apply, output in
+ml/pest_quarantine_applied.txt):
+  train 16513 -> 16271 (-242)
+  val    2752 ->  2723 (-29)
+  test   8286 ->  8286 (unchanged)
+  reason: IP102's official split shares burst-series images across splits - 346 pixel-verified
+  pairs at MAE<=10 involving 497 images. See ml/pest_neardup_verification.txt (the evidence) and
+  ml/pest_quarantine_plan.txt (which files, per class). Files were moved, not deleted, to
+  ml/data/pest/quarantine/neardup_{train,val}/<slug>/.
+
+Preflight verified before launch (`ml\train_pest.py --check-only`):
+  python 3.11.9, ultralytics 8.4.142, torch 2.5.1+cu121, CUDA ready on RTX 3050 6GB (6.0 GB)
+  dataset: 41 class folders in train, val and test
+  class contract: OK - pest_class_names.json equals the sorted folder names
+                  index 0 = arrowhead_scale ... index 40 = yellow_rice_borer

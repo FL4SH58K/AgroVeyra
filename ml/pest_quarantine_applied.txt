@@ -1,0 +1,5 @@
+﻿MOVED: train=242, val=29, test=0
+  train: 16513 -> 16271
+  val: 2752 -> 2723
+  test: 8286 -> 8286
+quarantined under C:\ROHIT RAJESH\AgriVeyra\ml\data\pest\quarantine
