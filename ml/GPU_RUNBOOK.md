@@ -730,13 +730,6 @@ anything.
 
 ### 11a. The 372 dHash pairs are not leakage (audited 2026-09-21)
 
-The evaluation prints `near-duplicate pairs (dHash<=6, train sample 20,000): 372`. Quoted raw that reads
-like a leak, so `ml/disease_neardup_audit.py` (`ml/disease_neardup_audit.txt`,
-`ml/_disease_neardup_pairs.csv`) re-derived the same pairs with the same seed and the same sample and then
-answered the only questions that matter from the pixels:
-
-### 11a. The 372 dHash pairs are not leakage (audited 2026-09-21)
-
 The evaluation prints `near-duplicate pairs (dHash<=6, train sample 20,000): 372`. Quoted raw that reads like
 a leak. It is not: `ml/disease_neardup_audit.py` -> `ml/disease_neardup_audit.txt` re-derived the same 372
 pairs from the same seed and the same 20,000-image train sample (248 s) and then asked the only questions
