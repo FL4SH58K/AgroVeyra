@@ -146,11 +146,12 @@ Line ''
 
 # --- 6. reconciliation --------------------------------------------------------------------------
 Line 'reconciliation:'
-$srcCount = (Get-ChildItem $src -Recurse -File -Force -ErrorAction SilentlyContinue |
-    Where-Object { $path = $_.FullName; -not ($excludeDirs | Where-Object { $path.StartsWith($_) }) }).Count
-$dstCount = (Get-ChildItem $worktree -Recurse -File -Force -ErrorAction SilentlyContinue).Count
-Line ("  source files (excluding the excluded trees): $srcCount")
-Line ("  backup files                              : $dstCount")
+# Counting the source tree here would mean enumerating every dataset file (~300 k paths) only to
+# filter them out again, which takes minutes. Completeness is already proven by pass 2 copying
+# nothing, so this counts the copy instead and reports the git state of the backup.
+$dstFiles = Get-ChildItem $worktree -Recurse -File -Force -ErrorAction SilentlyContinue
+$dstSize = ($dstFiles | Measure-Object -Sum Length).Sum
+Line ("  backup files   : {0}  ({1:N1} MB)" -f $dstFiles.Count, ($dstSize / 1MB))
 if (Test-Path (Join-Path $worktree '.git')) {
     $head = & git -C $worktree log --oneline -1 2>&1
     Line ("  backup HEAD commit: $head")
