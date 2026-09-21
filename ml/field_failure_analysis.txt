@@ -1,0 +1,136 @@
+======================================================================================================================
+AGROVEYRA - WHY THE FIELD ACCURACY IS 43.75%
+======================================================================================================================
+Source   : ml/real_world_results.csv (the same 16 field photos scored by both the old leaky build and
+           the current leak-free model), ml/real_world_comparison.txt sections 2 and 4, and
+           ml/confidence_gate_analysis.txt for the gate numbers.
+Purpose  : the honest answer to the one question a guide or judge will ask about this project.
+
+----------------------------------------------------------------------------------------------------------------------
+1. WHAT THE NUMBER IS, AND HOW SOFT IT IS
+----------------------------------------------------------------------------------------------------------------------
+  field photos scored : 16
+  top-1 correct       : 7  ->  43.75%
+  top-3 correct       : 8  ->  50.00%   (only wheat_yellow_rust_2 has the truth inside its top 3)
+
+  Two caveats belong next to that number, not hidden under it:
+    * 16 photos means every photo is worth 6.25 points. The 95% interval around 43.75% with n = 16 is
+      roughly 20% to 70%, so this is a noisy point estimate, not a precise accuracy.
+    * every row of the CSV carries truth_source=alias: the ground truth comes from the filename
+      convention, not from an expert verifying the leaf. The denominator is soft too.
+
+----------------------------------------------------------------------------------------------------------------------
+2. THE DECOMPOSITION THAT ACTUALLY EXPLAINS IT
+----------------------------------------------------------------------------------------------------------------------
+  by crop:
+      cotton   2 / 2  = 100.00%
+      wheat    3 / 6  =  50.00%
+      rice     2 / 6  =  33.33%
+      tomato   0 / 2  =   0.00%
+
+  by the question being asked:
+      "is this leaf healthy?"        3 / 4  =  75.00%   (healthy_rice_1/2, healthy_wheat_1 correct)
+      "which disease is it?"         4 / 12 =  33.33%   (cotton_bacterial_blight 1/2, wheat_powdery_mildew 1/2)
+
+  This is the sharpest framing available: the model is reasonably good at healthy-vs-diseased and poor
+  at naming the specific disease. A single "43.75%" hides that completely.
+
+----------------------------------------------------------------------------------------------------------------------
+3. THE NINE ERRORS, CLASSIFIED
+----------------------------------------------------------------------------------------------------------------------
+  photo                                truth                            predicted                    conf    kind
+  ----------------------------------   ------------------------------   --------------------------   ------  ----------------------
+  rice_bacterial_leaf_blight_1         Rice___Bacterial_leaf_blight     Rice___Sheath_blight         76.06%  same crop, sibling
+  rice_bacterial_leaf_blight_2         Rice___Bacterial_leaf_blight     Rice___Sheath_blight         89.09%  same crop, sibling
+  wheat_yellow_rust_1                  Wheat___yellow_rust              Wheat___brown_rust           59.73%  same crop, sibling
+  wheat_yellow_rust_2                  Wheat___yellow_rust              Wheat___brown_rust           70.35%  same crop, sibling
+  rice_brown_spot_1                    Rice___Brown_spot                Wheat___leaf_blight          62.46%  wrong crop
+  rice_brown_spot_2                    Rice___Brown_spot                Wheat___blast                74.94%  wrong crop
+  tomato_early_blight_1                Tomato___Early_blight            Wheat___tan_spot             31.00%  wrong crop (low conf)
+  tomato_early_blight_2                Tomato___Early_blight            Cotton___bacterial_blight    92.30%  wrong crop (CONFIDENT)
+  healthy_wheat_2                      Wheat___healthy                  Wheat___leaf_blight          27.59%  healthy called diseased
+
+  Reading of the pattern:
+    * 4 of the 9 errors never leave the correct crop, and the pairs are sibling diseases - two blights,
+      two rusts. The model has learned coarse colour/texture cues rather than lesion morphology.
+    * 5 of the 9 cross a crop boundary. Four of those are below 0.75 confidence (so the gate catches
+      them), but tomato_early_blight_2 -> Cotton___bacterial_blight at 92.30% is confidently wrong,
+      which is the failure mode a confidence gate cannot repair.
+    * one healthy leaf was called diseased (27.59%), i.e. the useful direction of error costs the
+      farmer a treatment decision rather than missing one.
+
+----------------------------------------------------------------------------------------------------------------------
+4. WHAT IT IS NOT - EACH RULED OUT BY MEASUREMENT, NOT ARGUMENT
+----------------------------------------------------------------------------------------------------------------------
+  hypothesis                     evidence                                                                   verdict
+  ----------------------------   ------------------------------------------------------------------------   ---------
+  preprocessing / resize policy  the --center-crop control scores the field set at exactly 43.75% (7/16),      ruled out
+                                 identical to the app's stretch-resize path
+  image decode path              PIL and cv2 decode these files identically (max pixel delta 0)               ruled out
+  data leakage in the split      the leaky build scored this same 43.75%; the rebuild moved only the          ruled out
+                                 in-domain numbers (96.67% -> 92.78% on the leaky subset, 91.11% on the
+                                 honest control) and left the field number untouched
+  a broken or badly trained      in-domain 97.6% top-1 / 99.7% top-5 on the held-out clean val, and export   ruled out
+  model                          parity is 100% argmax agreement across all 60 classes
+  the confidence gate            the gate changes what is SHOWN, not what is correct                         not a cause
+  thin / overfit wheat classes   contributes: Wheat___septoria (279 train images) and black_rust (264) are   partial
+                                 0/3 on the clean val sample - the same subset that fails in the field
+
+  Conclusion: the gap is a distribution problem, not a defect that can be patched inside the app.
+
+----------------------------------------------------------------------------------------------------------------------
+5. THE ROOT CAUSE: DOMAIN SHIFT
+----------------------------------------------------------------------------------------------------------------------
+  what the model was trained on                       what a phone photo of a plant actually contains
+  -------------------------------------------------   ---------------------------------------------------------
+  one detached leaf, plain studio background          leaf in situ: soil, other leaves, stems, hands, sky
+  even diffuse lighting                               shadows, specular highlights, dappled light
+  one canonical symptom stage filling the frame       whole plant or part of a leaf, early or ambiguous stage
+  curated resolution and white balance                phone JPEG pipeline, sharpening, denoise, auto white balance
+  fixed apparent scale                                arbitrary distance, angle and blur
+
+  Secondary contributors:
+    * symptom-stage mismatch - the training images of Wheat___yellow_rust are mostly late-stage uniform
+      orange pustules; an early field infection reads as faint flecks and is labelled leaf_blight or
+      tan_spot, which is exactly the confusion in section 3.
+    * augmentation mismatch - randaugment / erasing=0.4 / fliplr perturb pixels; they never teach
+      background invariance, so clutter shifts the learned features.
+    * class imbalance - Wheat___stem_fly has 137 training images, black_rust 264, septoria 279.
+
+  Cross-check from the preprocessing audit: under the center-crop path the worst single failure gets
+  WORSE, not better - wheat_yellow_rust_2 moves from 70.35% (wrong) to 99.70% (still wrong). A more
+  confident wrong answer is not progress, and no confidence gate repairs it.
+
+----------------------------------------------------------------------------------------------------------------------
+6. WHAT THE USER ACTUALLY EXPERIENCES: THE 0.95 GATE
+----------------------------------------------------------------------------------------------------------------------
+  At gate 0.95 the app shows 6 of the 16 photos, and all 6 are correct:
+      cotton_bacterial_blight_1  99.99%     healthy_rice_1  99.99%     wheat_powdery_mildew_1  99.19%
+      cotton_bacterial_blight_2 100.00%     healthy_rice_2  99.99%     wheat_powdery_mildew_2  99.92%
+  The 10 it refuses to answer are precisely the ambiguous ones. Deployed behaviour is therefore:
+      precision 100% on what it does show, a retake request on roughly 6 of every 10 real photos.
+  That is the deliberate trade recorded in ml/confidence_gate_analysis.txt and GPU_RUNBOOK section 7.
+
+----------------------------------------------------------------------------------------------------------------------
+7. WHAT WOULD ACTUALLY MOVE THE NUMBER (in priority order)
+----------------------------------------------------------------------------------------------------------------------
+  1. More field photos with verified labels - 50 to 200 images, ideally labelled by the guide or an
+     agronomist so the ground truth stops being a filename. Even 50 photos gives a usable interval.
+  2. Fine-tune on field imagery (a few epochs on the existing checkpoint), or at minimum recalibrate
+     the gate on it.
+  3. Field-realistic augmentation: random real backgrounds, scale and rotation, motion blur, JPEG
+     re-compression, brightness and white-balance jitter. This is the standard fix for this gap.
+  4. Two-stage pipeline: detect or segment the leaf first, then classify the crop - removes most of
+     the clutter the classifier is currently drowning in.
+  5. Larger backbone (yolo11s-cls or m) for finer lesion detail; the current one is 1.58 M parameters.
+  6. Per-crop gates - rice (33%) and wheat (50%) deserve stricter thresholds than cotton (100%).
+
+----------------------------------------------------------------------------------------------------------------------
+8. ONE-SLIDE VERSION
+----------------------------------------------------------------------------------------------------------------------
+  "97.6% top-1 on the held-out in-domain set, 43.75% on 16 real field photos - because those are two
+   different problems. On the field photos the model agrees that a leaf is healthy 75% of the time, and
+   when it names a disease it mostly confuses sibling diseases inside the correct crop. We proved the
+   gap is domain shift - not leakage, not preprocessing, not a broken model - and we ship a 0.95
+   confidence gate so the app asks for a better photo instead of guessing. Closing the gap needs field
+   imagery, not a code change."

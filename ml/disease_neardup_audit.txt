@@ -1,0 +1,99 @@
+======================================================================================================================
+DISEASE CLASSIFIER - what the dHash near-duplicate pairs actually are
+======================================================================================================================
+source      : ml/disease_test_evaluation.txt (LEAKAGE RE-CHECK), ml/_disease_test_predictions.csv
+pair list   : C:\ROHIT RAJESH\AgriVeyra\ml\_disease_neardup_pairs.csv
+purpose     : decide whether '372 near-duplicate pairs' is leakage or background collision, and
+              put an explicit number on what it costs the 97.38% headline.
+
+----------------------------------------------------------------------------------------------------------------------
+1. WHAT WAS RE-DERIVED
+----------------------------------------------------------------------------------------------------------------------
+  train sample re-hashed            : 20,000 of 75,419 train images (seed 42)
+  scored images re-hashed           : 18,957 val images
+  candidate pairs (dHash <= 6, same pixel size) : 372
+  distinct val images in pairs      : 329
+  distinct train images opposite    : 339
+  hashing time                      : 248s (independent recomputation)
+
+----------------------------------------------------------------------------------------------------------------------
+2. THE ONLY FATAL KIND: a real split violation
+----------------------------------------------------------------------------------------------------------------------
+  same source family (uuid matches)          : 0 / 372
+      A non-zero here would mean one physical leaf sits in train and in the held-out half, i.e.
+      the rebuild's photo-boundary rule failed. It is zero, so that rule still holds.
+  same scan id (same label + same number)    : 89 / 372
+      PlantVillage ships its own duplicates as '<label> <id> copy 2_<aug>'. Those carry a
+      DIFFERENT uuid, so family grouping cannot see them. This is the one hole the design can
+      have, which is why it is counted separately instead of inside the dHash count.
+  same class AND same scan id                : 86 / 372
+
+----------------------------------------------------------------------------------------------------------------------
+3. SAME CLASS OR NOT (only same-class pairs can inflate top-1)
+----------------------------------------------------------------------------------------------------------------------
+  same class                                     : 253
+  same crop, different disease                   : 22
+  different crop                                 : 119
+      A different-crop pair cannot inflate the metric: the two labels disagree, so the model is
+      not being asked the same question twice.
+
+----------------------------------------------------------------------------------------------------------------------
+4. PIXEL VERIFICATION - centre-50% MAE on 64x64 greyscale
+----------------------------------------------------------------------------------------------------------------------
+  bucket                              pairs   same-class   cross-class
+  same leaf      (MAE <= 5)             38           37             1
+  similar leaf   (5 < MAE <= 15)        68           66             2
+  different leaf (MAE > 15)            266          150           116
+  minimum centre MAE seen                        : 0.00
+
+  the 12 pairs that look most alike (lowest centre MAE)
+         MAE  dHash      class  val / train
+        0.00      0       same  h447.jpg  ~  h469.jpg
+        0.00      0       same  h447.jpg  ~  h444.jpg
+        0.00      0       same  h88.jpg  ~  h91.jpg
+        0.00      0       same  h88.jpg  ~  h90.jpg
+        0.00      0       same  h255.jpg  ~  h254.jpg
+        0.00      0       same  h212.jpg  ~  h210.jpg
+        0.00      0       same  h248.jpg  ~  h247.jpg
+        0.00      0       same  h427.jpg  ~  h388.jpg
+        0.00      0       same  h159.jpg  ~  h163.jpg
+        0.00      0       same  h96.jpg  ~  h97.jpg
+        0.00      0       same  h201.jpg  ~  h205.jpg
+        0.00      0       same  h397.jpg  ~  h398.jpg
+
+----------------------------------------------------------------------------------------------------------------------
+5. WHAT IT COSTS THE HEADLINE
+----------------------------------------------------------------------------------------------------------------------
+  rows in the predictions file : 18,973  {'test-half': 9372, 'selection-half': 9585, 'field': 16}
+  TEST half                    : 9,126/9,372 = 97.38% (the published number)
+
+  exclusion rule                                  excl   left   accuracy    delta   excl. correct
+  every pair above, any class                      171   9201     97.33%    -0.05       171/171 
+  same-class pairs only                            118   9254     97.34%    -0.03       118/118 
+  same scan id (PlantVillage copies)                54   9318     97.36%    -0.02        54/54  
+  same class AND same leaf (MAE <= 5)               16   9356     97.37%    -0.00        16/16  
+  same class AND <= similar leaf (MAE <= 15)        53   9319     97.36%    -0.01        53/53  
+  same leaf whatever the class (MAE <= 5)           16   9356     97.37%    -0.00        16/16  
+
+  leaves touched by the strict set (same class AND same leaf): 16 of 5,777 (0.277%)
+
+----------------------------------------------------------------------------------------------------------------------
+6. VERDICT
+----------------------------------------------------------------------------------------------------------------------
+  0 of 372 pairs share a source family, so no augmented family spans the
+  train/held-out boundary: the split itself is intact.
+
+  119 of 372 pairs are leaves of DIFFERENT crops that hash within 6 bits of one
+  another because the plain background dominates a dHash on a PlantVillage image. They cannot
+  inflate top-1 accuracy and should never be quoted as leakage.
+
+  253 pairs are same-class. Of those, 37 survive pixel verification as the same
+  leaf (centre MAE <= 5) and 66 are only similar. Section 5 prints the headline with each
+  of those sets removed, so the leak-free number is measured rather than asserted.
+
+  READ IT AS: the published number is an in-domain score on augmented leaves; section 5 is its
+  leak-free version, and the sweep does not change the story. The story is still the one in
+  ml/field_failure_analysis.txt - 43.75% on real phone photos of real leaves.
+
+pairs csv   : C:\ROHIT RAJESH\AgriVeyra\ml\_disease_neardup_pairs.csv
+elapsed     : 259s

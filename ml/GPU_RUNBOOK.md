@@ -643,3 +643,150 @@ exactly as before; (2) that needs a product decision first, because IP102 images
 insect*, not of infested leaves, so the UX has to ask for a photo of the pest itself rather than reusing the
 leaf-scanning flow.
 
+## 11. Held-out test evaluation of the disease model (measured 2026-09-21)
+
+§9's 97.6% and §7's gate numbers are **validation** numbers: `data/merged_clean/val` was monitored during
+training for early stopping. To publish something test-shaped, val was split in half along source-photo
+boundaries and one half was treated as held out (`ml/disease_test_evaluation.py` ->
+`ml/disease_test_evaluation.txt`, 462 s, exit 0).
+
+| check | result |
+| --- | --- |
+| split rule | whole augmented families move together (text before `___`), stratified per class, seed 42 |
+| TEST half | 9,372 images / 5,777 distinct source families |
+| SELECTION half | 9,585 images / 5,805 distinct families; classes with <4 leaves in either half: **0** |
+| `best.pt` vs `last.pt` | 236 tensors compared, max abs diff **0** — no epoch was ever chosen on val |
+| exact duplicates against all 75,419 train images (md5) | **0** |
+| model actually scored | the shipped `agroveyra_model.tflite` (`6aec2f1afedaf4ec`) with the app's preprocessing |
+| field photos, same harness | 7/16 = 43.75% top-1 (matches §9 exactly, so the harness agrees with `evaluate_real_world.py`) |
+
+The evaluation report prints 5,779 and 5,809 leaves because it sums the per-class group counts; two families
+sit in two class folders each, so the distinct counts are 5,777 and 5,805 (re-checked with the split builder).
+
+Why the split is by source photo and not by file: the images are augmented families of one leaf
+(`1547f817-...___FREC_Scab 3194.JPG` / `_90deg` / `_180deg` / `_270deg`). Splitting by file would put two
+rotations of the *same leaf* on both sides, which is not an independent sample — the same trap §9 fixed
+at the train/val boundary.
+
+**The number to quote: TEST half 9,126/9,372 = 97.38% top-1, 99.64% top-5** (95% CI 97.04–97.72% by
+bootstrap over images). Macro precision 93.76% / recall 93.39% / F1 93.44%, weighted F1 97.35%. The
+selection half scores 97.62% and the whole val 97.50%, so the held-out half is not an outlier; aggregating
+the 1.6 variants per leaf, mean variant accuracy is 95.84% and 95.83% of leaves are fully correct.
+
+Two independent facts make that defensible as a held-out number rather than a re-labelled val number:
+
+1. **No epoch was selected on val.** The training curve peaked at the final epoch, so patience never
+   fired — and that is now *verified at the weight level*: `best.pt` and `last.pt` are identical across
+   all 236 tensors (max |Δ| = 0). Nothing was chosen by looking at the selection half.
+2. **Nothing scored is in train.** Every one of the 18,957 val images was md5-ed against all 75,419 train
+   images: **0 exact duplicates**, and the dHash near-duplicate sweep is dissected in §11a below rather
+   than quoted raw.
+
+**Where the errors are, by crop (TEST half):**
+
+| crop | n | top-1 | same-crop, wrong disease | wrong crop |
+| --- | --- | --- | --- | --- |
+| Wheat | 1,083 | **80.15%** | 201 | 14 |
+| Rice | 381 | 95.80% | 16 | 0 |
+| Cotton | 158 | 98.73% | 0 | 2 |
+| Cherry | 324 | 99.07% | 0 | 3 |
+| Corn | 707 | 99.43% | 0 | 4 |
+| Strawberry | 452 | 99.56% | 0 | 2 |
+| Soybean | 253 | 99.60% | 0 | 1 |
+| Peach | 446 | 99.78% | 1 | 0 |
+| Apple | 963 | 99.90% | 1 | 0 |
+| Tomato | 1,908 | 99.95% | 1 | 0 |
+| Blueberry, Grape, Orange, Pepper, Potato, Raspberry, Squash | 2,697 | 100.00% | 0 | 0 |
+
+**Wheat is the whole story:** 1,083 of 9,372 test images (11.6%) carry 215 of the 246 errors (87%). All ten
+worst classes by recall are wheat — leaf_blight 48.39% (n=62, P 65.22%), black_rust 57.58%, tan_spot 60.56%,
+mite 64.94%, common_root_rot 65.52%, aphid 68.97%, smut 75.00%, blast 79.66%, brown_rust 86.78%,
+fusarium_head_blight 87.50%; the first non-wheat is `Rice___Bacterial_leaf_blight` at 90.62%. The confusions
+stay inside the crop (leaf_blight <-> tan_spot 17 + 5, aphid <-> mite 9, common_root_rot <-> blast 7,
+brown_rust <-> black_rust 6), so these are look-alike diseases rather than a broken class. The only repeated
+wrong-crop error is `Corn___healthy -> Rice___healthy`, 4 times.
+
+**Healthy vs naming (TEST half):** healthy leaves **2,921/2,933 = 99.59%**, diseased leaves
+**6,205/6,439 = 96.37%**. Of the 246 misses, **217 name the wrong disease for the right crop** and 17 pick
+the wrong crop entirely. That is the in-domain mirror of the field finding in
+`ml/field_failure_analysis.txt`: the model is far better at "this leaf is sick" than at "this is which
+disease".
+
+**Gate sweep on the test half** (scored once, gate applied post-hoc, same method as §10's pest table):
+
+| gate | shown | coverage | wrong shown | precision |
+| --- | --- | --- | --- | --- |
+| none | 9,372 | 100.00% | 246 | 97.38% |
+| 0.50 | 9,232 | 98.51% | 157 | 98.30% |
+| 0.70 | 9,069 | 96.77% | 80 | 99.12% |
+| 0.90 | 8,886 | 94.81% | 33 | 99.63% |
+| **0.95** | 8,780 | **93.68%** | 20 | **99.77%** |
+| 0.99 | 8,518 | 90.89% | 11 | 99.87% |
+
+In-domain, 0.95 costs only 6.3 points of coverage; on the 16 field photos the same threshold shows 6 of 16
+(§9). **93.68% coverage in-domain against 37.5% on real photos, at the same gate** — that one line is the
+domain gap, and it is why §7 keeps 0.95 as a precision guard rather than a claim that the gate fixes
+anything.
+
+### 11a. The 372 dHash pairs are not leakage (audited 2026-09-21)
+
+The evaluation prints `near-duplicate pairs (dHash<=6, train sample 20,000): 372`. Quoted raw that reads
+like a leak, so `ml/disease_neardup_audit.py` (`ml/disease_neardup_audit.txt`,
+`ml/_disease_neardup_pairs.csv`) re-derived the same pairs with the same seed and the same sample and then
+answered the only questions that matter from the pixels:
+
+### 11a. The 372 dHash pairs are not leakage (audited 2026-09-21)
+
+The evaluation prints `near-duplicate pairs (dHash<=6, train sample 20,000): 372`. Quoted raw that reads like
+a leak. It is not: `ml/disease_neardup_audit.py` -> `ml/disease_neardup_audit.txt` re-derived the same 372
+pairs from the same seed and the same 20,000-image train sample (248 s) and then asked the only questions
+that matter, from the pixels rather than from a hash.
+
+| question | answer |
+| --- | --- |
+| do the two sides share a source family (uuid)? | **0 of 372** — no augmented family spans train/held-out, so the rebuild's rule holds |
+| same class? | 253 yes, 22 same crop but different disease, 119 different crop |
+| same leaf? | 38 pairs at centre MAE <= 5 (37 same-class), 68 "similar" (5–15), 266 merely the same background |
+| how much of the TEST half does the strict set touch? | 16 images of 9,372 (0.17%), 16 of 5,777 families |
+
+The 119 different-crop pairs are the tell that a raw dHash count is the wrong instrument here: a
+PlantVillage frame is mostly plain background, the background gradient decides the hash, and leaves of
+*different* crops land within 6 bits of each other. Those pairs cannot inflate a metric whose labels
+disagree, which is why the raw 372 must not be quoted as leakage.
+
+Where the strict 16 come from is more interesting, because it is a real (tiny) hole. The zero-MAE core is
+`Cotton___healthy` filed as `h447.jpg` / `h469.jpg` — a second naming scheme with no uuid, so neither md5
+nor family grouping can see it. `ml/disease_strict_pair_check.py` re-checked all 16 at 224x224 RGB:
+
+| verdict | images | evidence |
+| --- | --- | --- |
+| identical copies | **11** | max per-pixel diff **0** on identical dimensions but different bytes (10 cotton-healthy, 1 wheat-blast) |
+| burst siblings | 5 | max diff 105–211, MAE 4.6–7.5 (3 wheat-smut, 1 cherry `FREC_Pwd.M 0323`/`0324`, 1 rice `20231006_165800`/`165801`) |
+
+So **11 of 9,372 TEST images (0.12%) have a pixel-identical twin in train**, which md5 cannot catch because
+the two files are re-encoded. Control: the same val leaf against six other train leaves of its own class
+sits at MAE 42–72 at the same scale, so the 64x64 discriminator is not saturating on white backgrounds.
+
+**What it costs the headline** (TEST half, baseline 9,126/9,372 = 97.38%):
+
+| excluded | images | left | accuracy | delta |
+| --- | --- | --- | --- | --- |
+| the 11 identical twins | 11 | 9,361 | 9,115/9,361 = **97.37%** | −0.003 |
+| the strict set (same class, MAE <= 5) | 16 | 9,356 | 9,110/9,356 = **97.37%** | −0.004 |
+| every same-class pair | 118 | 9,254 | 97.34% | −0.03 |
+| every pair at all, any class | 171 | 9,201 | 97.33% | −0.05 |
+
+Every excluded image is one the model already got right, so those are leak-free numbers rather than
+rounding artefacts: **97.33–97.37% against the published 97.38%**. The train side was a
+20,000/75,419 = 26.5% sample — `--train-sample 75419` runs the same tool over the whole split.
+EXHAUSTIVE_FIGURE Scaling the strict set by the unsampled share (3.8x, all still correct) lands at 97.36%,
+and applying that same worst case to *every* flagged image (645) gives 97.18%.
+
+Verdict: the split is intact, the hole the design cannot see is 11 byte-different copies of 11 images out
+of 9,372, and the in-domain headline is robust in the fourth significant figure. None of it changes §11,
+and none of it touches the honest field number of 43.75%.
+
+
+
+
+

@@ -1,0 +1,178 @@
+======================================================================================================================
+DISEASE CLASSIFIER - held-out TEST evaluation (Option 2 protocol)
+======================================================================================================================
+model            : C:\ROHIT RAJESH\AgriVeyra\android\app\src\main\assets\agroveyra_model.tflite
+model sha256     : 6aec2f1afedaf4ecf085e2065a7457ee4e430c30625d1926bd9499efb71bfc59
+classes          : 60 (order from class_names.json)
+preprocessing    : the app's path - stretch to 224 + /255, via evaluate_real_world
+scored           : 2026-09-21 22:58:38
+
+SPLIT (by source-photo family, stratified per class)
+  val images            : 18,957
+  TEST half             : 9,372 images / 5,779 source leaves
+  SELECTION half        : 9,585 images / 5,809 source leaves
+  rule                  : whole augmented families move together, seed 42
+  classes with <4 leaves in one half: 0
+
+MODEL-SELECTION CHECK (is the reported checkpoint 'the best epoch on val'?)
+  best.pt vs last.pt    : 236 tensors compared, max |best - last| = 0 (identical weights - no epoch was selected on val)
+
+SCORING
+
+LEAKAGE RE-CHECK (scored files vs the train split)
+  train images                      : 75,419
+  scored images checked             : 18,957
+  md5 pass (43s): exact duplicates shared with train: 0
+  dHash pass (233s, train sample 20,000): near-duplicate pairs (dHash<=6): 372
+      NEAR-DUP dHash=6: 1547f817-6a4d-4cbc-8ce0-7dff293562ee___FREC_Scab 3194_270deg.JPG ~ 515cfd7f-995c-4843-93f7-dc2c012db476___R.S_HL 7877 copy 2_flipLR.jpg
+      NEAR-DUP dHash=2: ab7d0d06-b45c-4472-a708-c2a1d65ee748___FREC_Scab 3152_270deg.JPG ~ 08c42d78-aa7b-4106-b0c1-b260f898dcba___FREC_Scab 3151_270deg.JPG
+      NEAR-DUP dHash=2: ab7d0d06-b45c-4472-a708-c2a1d65ee748___FREC_Scab 3152_90deg.JPG ~ 08c42d78-aa7b-4106-b0c1-b260f898dcba___FREC_Scab 3151_90deg.JPG
+      NEAR-DUP dHash=2: ab7d0d06-b45c-4472-a708-c2a1d65ee748___FREC_Scab 3152_new30degFlipLR.JPG ~ 08c42d78-aa7b-4106-b0c1-b260f898dcba___FREC_Scab 3151_new30degFlipLR.JPG
+      NEAR-DUP dHash=6: 029424b0-0ef5-491b-9ef5-069190d24d8f___FREC_Scab 3504_new30degFlipLR.JPG ~ 7b17fb27-2af4-4c90-b499-0c0658ba7262___FREC_Scab 2943_new30degFlipLR.JPG
+      NEAR-DUP dHash=6: 7308b9c4-3408-48ff-bd4a-b07350421e60___FREC_Scab 3508_new30degFlipLR.JPG ~ 7e4bbd7a-b494-426f-9f08-755ce4a399e7___FREC_Scab 3331_new30degFlipLR.JPG
+      NEAR-DUP dHash=6: 5eb564a6-cd74-4c90-95d9-611a6301369d___FREC_Scab 3099_new30degFlipLR.JPG ~ ab0ab3b2-0893-46c6-8f66-9469e8340b64___FREC_Scab 3368_new30degFlipLR.JPG
+      NEAR-DUP dHash=6: a7609a35-fd75-4ec3-868a-eb97b9ffd096___FREC_Scab 3032_new30degFlipLR.JPG ~ 3bf2f5f8-4578-405a-88c6-c5338620a078___FREC_Scab 3059_new30degFlipLR.JPG
+      NEAR-DUP dHash=5: 5c857785-58d0-4e74-8fff-dce904538692___JR_FrgE.S 2790_new30degFlipLR.JPG ~ 35f56736-d311-4e80-88a4-7ba12fd71985___JR_FrgE.S 2787_new30degFlipLR.JPG
+      NEAR-DUP dHash=6: eb98c4ac-28e3-40ef-8cf4-38acddd5d774___JR_FrgE.S 3043_new30degFlipLR.JPG ~ 11a9b188-754b-45b5-a498-590bfdeb2643___Mt.N.V_HL 6159_new30degFlipLR.JPG
+
+======================================================================================================================
+HEADLINE - held-out TEST half (the number to quote, with the caveats below)
+======================================================================================================================
+  TEST half      : 9,126/9,372 = 97.38% top-1   99.64% top-5   (95% CI 97.04-97.72%)
+  selection half : 9,357/9,585 = 97.62% top-1   99.67% top-5
+  whole val      : 18,483/18,957 = 97.50% top-1   99.65% top-5
+  field photos   : 7/16 = 43.75% top-1   56.25% top-5
+
+  macro precision 93.76%   macro recall 93.39%   macro F1 93.44%   weighted F1 97.35%
+  per-leaf view  : 5,779 source leaves, mean variant accuracy 95.84%, leaves fully correct 95.83% (1.6 variants/leaf)
+
+HEALTHY vs NAMING (test half)
+  healthy images : 2,921/2,933 = 99.59%
+  diseased images: 6,205/6,439 = 96.37%
+  diseased errors: 217 same-crop wrong disease, 17 wrong crop
+
+PER-CROP (test half)
+  crop               n    top-1   same-crop errors   wrong-crop errors
+  Apple            963   99.90%                  1                   0
+  Blueberry        230  100.00%                  0                   0
+  Cherry           324   99.07%                  0                   3
+  Corn             707   99.43%                  0                   4
+  Cotton           158   98.73%                  0                   2
+  Grape            685  100.00%                  0                   0
+  Orange           155  100.00%                  0                   0
+  Peach            446   99.78%                  1                   0
+  Pepper           480  100.00%                  0                   0
+  Potato           717  100.00%                  0                   0
+  Raspberry        222  100.00%                  0                   0
+  Rice             381   95.80%                 16                   0
+  Soybean          253   99.60%                  0                   1
+  Squash           208  100.00%                  0                   0
+  Strawberry       452   99.56%                  0                   2
+  Tomato         1,908   99.95%                  1                   0
+  Wheat          1,083   80.15%                201                  14
+
+TOP MISPREDICTIONS (test half)
+     17 x  Wheat___leaf_blight  ->  Wheat___tan_spot   [same-crop wrong disease]
+      9 x  Wheat___aphid  ->  Wheat___mite   [same-crop wrong disease]
+      7 x  Wheat___common_root_rot  ->  Wheat___blast   [same-crop wrong disease]
+      6 x  Wheat___brown_rust  ->  Wheat___black_rust   [same-crop wrong disease]
+      5 x  Wheat___aphid  ->  Wheat___mildew   [same-crop wrong disease]
+      5 x  Wheat___mite  ->  Wheat___common_root_rot   [same-crop wrong disease]
+      5 x  Wheat___smut  ->  Wheat___blast   [same-crop wrong disease]
+      5 x  Wheat___tan_spot  ->  Wheat___leaf_blight   [same-crop wrong disease]
+      4 x  Corn___healthy  ->  Rice___healthy   [wrong crop]
+      4 x  Wheat___aphid  ->  Wheat___leaf_blight   [same-crop wrong disease]
+      4 x  Wheat___black_rust  ->  Wheat___brown_rust   [same-crop wrong disease]
+      4 x  Wheat___black_rust  ->  Wheat___tan_spot   [same-crop wrong disease]
+      4 x  Wheat___common_root_rot  ->  Wheat___mite   [same-crop wrong disease]
+      4 x  Wheat___common_root_rot  ->  Wheat___tan_spot   [same-crop wrong disease]
+      4 x  Wheat___fusarium_head_blight  ->  Wheat___blast   [same-crop wrong disease]
+
+GATE SWEEP (test half): coverage vs precision at each threshold
+    gate     shown  coverage  correct   wrong  precision   recall
+    0.05     9,372   100.00%    9,126     246     97.38%   97.38%
+    0.20     9,370    99.98%    9,126     244     97.40%   97.38%
+    0.30     9,354    99.81%    9,123     231     97.53%   97.34%
+    0.40     9,302    99.25%    9,098     204     97.81%   97.08%
+    0.50     9,232    98.51%    9,075     157     98.30%   96.83%
+    0.60     9,136    97.48%    9,029     107     98.83%   96.34%
+    0.70     9,069    96.77%    8,989      80     99.12%   95.91%
+    0.80     8,997    96.00%    8,939      58     99.36%   95.38%
+    0.85     8,960    95.60%    8,913      47     99.48%   95.10%
+    0.90     8,886    94.81%    8,853      33     99.63%   94.46%
+    0.95     8,780    93.68%    8,760      20     99.77%   93.47%
+    0.99     8,518    90.89%    8,507      11     99.87%   90.77%
+
+GATE SWEEP (the 16 real field photos, for comparison)
+  gate 0.05: shown 16/16, precision  43.8%
+  gate 0.20: shown 16/16, precision  43.8%
+  gate 0.30: shown 15/16, precision  46.7%
+  gate 0.40: shown 14/16, precision  50.0%
+  gate 0.50: shown 14/16, precision  50.0%
+  gate 0.60: shown 12/16, precision  50.0%
+  gate 0.70: shown 11/16, precision  54.5%
+  gate 0.80: shown  8/16, precision  75.0%
+  gate 0.85: shown  8/16, precision  75.0%
+  gate 0.90: shown  7/16, precision  85.7%
+  gate 0.95: shown  6/16, precision 100.0%
+  gate 0.99: shown  6/16, precision 100.0%
+
+WORST CLASSES by recall (at least 20 test images)
+   48.39% recall (n=   62)  P  65.22%  F1  55.56%  Wheat___leaf_blight
+   57.58% recall (n=   33)  P  50.00%  F1  53.52%  Wheat___black_rust
+   60.56% recall (n=   71)  P  50.00%  F1  54.78%  Wheat___tan_spot
+   64.94% recall (n=   77)  P  72.46%  F1  68.49%  Wheat___mite
+   65.52% recall (n=   58)  P  74.51%  F1  69.72%  Wheat___common_root_rot
+   68.97% recall (n=   87)  P  85.71%  F1  76.43%  Wheat___aphid
+   75.00% recall (n=   52)  P  78.00%  F1  76.47%  Wheat___smut
+   79.66% recall (n=   59)  P  66.20%  F1  72.31%  Wheat___blast
+   86.78% recall (n=  121)  P  88.24%  F1  87.50%  Wheat___brown_rust
+   87.50% recall (n=   64)  P  93.33%  F1  90.32%  Wheat___fusarium_head_blight
+   90.62% recall (n=   64)  P  90.62%  F1  90.62%  Rice___Bacterial_leaf_blight
+   93.65% recall (n=   63)  P  92.19%  F1  92.91%  Rice___Leaf_scald
+
+LEAKAGE RE-CHECK SUMMARY
+  scored images checked against 75,419 train images
+  exact duplicates shared with train : 0
+  near-duplicate pairs (dHash<=6, train sample 20,000): 372
+
+======================================================================================================================
+CAVEATS - read before quoting the number
+======================================================================================================================
+  1. The TEST half shares no source leaf with the SELECTION half, but both come from the val
+     split that was monitored during training for early stopping. The model-selection check
+     above reports whether best.pt is merely the last epoch: if the weights are identical, no
+     epoch was chosen on val and this is a genuine held-out number.
+  2. Val images are PlantVillage-style augmented families - several rotations of one leaf on a
+     plain background. In-domain accuracy therefore overstates a phone photo of a leaf in a
+     field; the field-photo row above and ml/field_failure_analysis.txt are the honest pair.
+  3. Everything is scored through the SHIPPED TFLite asset with the app's preprocessing, so it
+     is the number the phone produces, not the checkpoint's best-case score.
+
+predictions : C:\ROHIT RAJESH\AgriVeyra\ml\_disease_test_predictions.csv
+confusion   : C:\ROHIT RAJESH\AgriVeyra\ml\_disease_test_confusion.csv
+elapsed     : 462s
+
+======================================================================================================================
+ADDENDUM 2026-09-21 - the dHash pairs above, audited (ml/disease_neardup_audit.py)
+======================================================================================================================
+  The raw pair count in LEAKAGE RE-CHECK is NOT a leakage figure and must not be quoted as one. The pairs
+  were re-derived from the same seed and the same 20,000-image train sample, then classified by class
+  agreement, source family and pixel-level MAE (ml/disease_neardup_audit.txt):
+
+    same source family (uuid matches)          :   0 of 372   -> no family spans train/held-out
+    different crop                             : 119 of 372   -> the labels disagree; cannot inflate top-1
+    same class                                 : 253 of 372
+    same class AND same leaf (centre MAE <= 5) :  37 pairs, 16 of them in the TEST half
+    of those 16, pixel-identical at 224 RGB    :  11           (ml/disease_strict_pair_check.txt)
+
+  TEST half with those exclusions removed, against the 9,126/9,372 = 97.38% published above:
+
+    the 11 identical twins removed : 9,115/9,361 = 97.37%   (-0.003)
+    the 16 strict set removed      : 9,110/9,356 = 97.37%   (-0.004)
+    all 171 flagged images removed : 8,955/9,201 = 97.33%   (-0.05)
+
+  Every excluded image is one the model already got right, so the headline above is unaffected: the
+  leak-free range is 97.33-97.37%. The 11 identical twins are re-encoded copies of the same image, which is
+  exactly the one duplicate kind md5 cannot see - which is why this sweep exists.
+

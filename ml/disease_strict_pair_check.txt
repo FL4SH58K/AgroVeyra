@@ -1,0 +1,56 @@
+======================================================================================================================
+STRICT NEAR-DUPLICATE SET - confirmed at 224x224 RGB
+======================================================================================================================
+strict pairs in the TEST half : 19
+distinct TEST images          : 16
+
+  near      maxdiff= 105.0  mae224=  5.66  (256, 256)   Cherry_(including_sour)___Powdery_mildew
+            3928d15a-b841-4524-a5be-b34546c358f2___FREC_Pwd.M 0324.JPG ~ 324c0529-3992-4015-91f2-1f8c8b87940f___FREC_Pwd.M 0323.JPG
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (515, 527)   Cotton___healthy
+            h159.jpg                               ~ h163.jpg
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (539, 501)   Cotton___healthy
+            h201.jpg                               ~ h205.jpg
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (498, 500)   Cotton___healthy
+            h212.jpg                               ~ h210.jpg
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (567, 608)   Cotton___healthy
+            h248.jpg                               ~ h247.jpg
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (411, 399)   Cotton___healthy
+            h255.jpg                               ~ h254.jpg
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (694, 694)   Cotton___healthy
+            h397.jpg                               ~ h398.jpg
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (410, 230)   Cotton___healthy
+            h427.jpg                               ~ h388.jpg
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (633, 509)   Cotton___healthy
+            h447.jpg                               ~ h469.jpg
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (538, 526)   Cotton___healthy
+            h88.jpg                                ~ h91.jpg
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (393, 656)   Cotton___healthy
+            h96.jpg                                ~ h97.jpg
+  near      maxdiff= 211.0  mae224=  6.80  (1200, 1600) Rice___Brown_spot
+            20231006_165801.jpg                    ~ 20231006_165800.jpg
+  IDENTICAL maxdiff=   0.0  mae224=  0.00  (319, 212)   Wheat___blast
+            blast_128.png                          ~ blast_146.png
+  near      maxdiff= 136.0  mae224=  7.53  (256, 256)   Wheat___smut
+            smut_330.png                           ~ smut_453.png
+  near      maxdiff= 131.0  mae224=  4.55  (256, 256)   Wheat___smut
+            smut_344.png                           ~ smut_689.png
+  near      maxdiff= 109.0  mae224=  7.20  (256, 256)   Wheat___smut
+            smut_496.png                           ~ smut_539.png
+
+----------------------------------------------------------------------------------------------------------------------
+VERDICT
+----------------------------------------------------------------------------------------------------------------------
+  identical (max diff 0 at 224 RGB) : 11
+  burst siblings (max diff > 0)          : 5
+  strict TEST images the model got right : 16/16
+
+  exclusion rule                                excl    left      fraction   accuracy    delta
+  strict set (same class, MAE <= 5)               16    9356   9,110/9,356     97.37%   -0.004
+  identical twins only (max diff 0)               11    9361   9,115/9,361     97.37%   -0.003
+  baseline, nothing excluded                       0    9372   9,126/9,372     97.38%   +0.000
+
+  The 64x64 screening rule over-counts slightly (burst siblings pass it); the 224 RGB pass
+  separates them. Either way the exclusion moves the headline by hundredths of a point, and
+  every excluded image was one the model already got right.
+
+pairs csv   : C:\ROHIT RAJESH\AgriVeyra\ml\_disease_neardup_pairs.csv
