@@ -212,13 +212,15 @@ def main() -> int:
                 break
 
     try:
-        val_metrics = model.val(data=str(data_dir))
+        val_metrics = model.val(data=str(data_dir), project=str(project_dir), name=args.name + "_val")
         print(f"  val top-1/top-5 : {val_metrics.top1:.4f} / {val_metrics.top5:.4f}")
     except Exception as error:
         print(f"  val metrics unavailable: {error}")
 
     try:
-        test_metrics = model.val(data=str(data_dir), split="test")
+        test_metrics = model.val(
+            data=str(data_dir), split="test", project=str(project_dir), name=args.name + "_test"
+        )
         print(f"  test top-1/top-5: {test_metrics.top1:.4f} / {test_metrics.top5:.4f}")
     except Exception as error:
         print(f"  test split unavailable ({error}); evaluate it separately for the honest number")

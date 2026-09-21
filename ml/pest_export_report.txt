@@ -1,0 +1,58 @@
+======================================================================================================================
+AgroVeyra PEST classifier - float32 TFLite export and verification
+======================================================================================================================
+checkpoint    : C:\ROHIT RAJESH\AgriVeyra\ml\runs\pest_classifier_scoped\weights\best.pt (3.14 MiB)
+build dir     : C:\ROHIT RAJESH\AgriVeyra\ml\export_build_pest
+converter     : onnx2tf flatbuffer_direct via C:\Python314\python.exe
+
+classes       : checkpoint=41 json=41
+class order   : identical to pest_class_names.json
+
+[1/5] exporting ONNX : opset=13 imgsz=224 (NCHW float32)
+      wrote C:\ROHIT RAJESH\AgriVeyra\ml\export_build_pest\pest_best.onnx (6.06 MiB)
+[2/5] converting with onnx2tf (flatbuffer_direct) -> float32 TFLite
+      produced pest_best_folded_static_float32.tflite -> agroveyra_pest_model_float32.tflite (6.06 MiB)
+
+[3/5] OP-LEVEL VERIFICATION (read from the flatbuffer, not assumed from export flags)
+      input tensor   : shape=[1, 224, 224, 3] dtype=float32 quantization=none
+      output tensor  : shape=[1, 41] dtype=float32 quantization=none
+      ops in graph   : 159
+      contains softmax: True
+      contains quantize/dequantize ops: False
+      [PASS] input layout is NHWC [1, 224, 224, 3] (matches TFLiteHelper)
+      [PASS] input dtype is float32 (no int8 requantization)
+      [PASS] output dtype is float32
+      [PASS] no quantize/dequantize ops in graph
+      [PASS] class count is 41
+      [PASS] class order matches pest_class_names.json
+
+[4/5] NUMERICAL PARITY vs the checkpoint (20 test images, app preprocessing)
+      layout used for the TFLite feed: app
+      top-1 agreement : 20/20
+      max |p_tflite - p_torch| : 0.000002
+      arrowhead_scale/59942.jpg                    | arrowhead_scale                | arrowhead_scale                |    76.29% |    76.29%
+      asiatic_rice_borer/01863.jpg                 | asiatic_rice_borer             | asiatic_rice_borer             |    99.48% |    99.48%
+      bird_cherry_oat_aphid/23415.jpg              | grape_phylloxera               | grape_phylloxera               |    78.55% |    78.55%
+      black_citrus_aphid/64909.jpg                 | english_grain_aphid            | english_grain_aphid            |    78.03% |    78.03%
+      brown_plant_hopper/04300.jpg                 | white_backed_plant_hopper      | white_backed_plant_hopper      |    82.48% |    82.48%
+      citrus_aphid/65140.jpg                       | citrus_aphid                   | citrus_aphid                   |    58.45% |    58.45%
+      citrus_blackfly/61018.jpg                    | citrus_blackfly                | citrus_blackfly                |    97.57% |    97.57%
+      citrus_flatid_hopper_imitata/66796.jpg       | citrus_flatid_hopper_imitata   | citrus_flatid_hopper_imitata   |    99.66% |    99.66%
+      citrus_flatid_hopper_marginella/67377.jpg    | citrus_flatid_hopper_marginella | citrus_flatid_hopper_marginella |   100.00% |   100.00%
+      citrus_fruit_fly_minax/61704.jpg             | citrus_fruit_fly_minax         | citrus_fruit_fly_minax         |   100.00% |   100.00%
+      citrus_leafminer/64314.jpg                   | citrus_leafminer               | citrus_leafminer               |    98.56% |    98.56%
+      citrus_red_mite/58670.jpg                    | citrus_red_mite                | citrus_red_mite                |   100.00% |   100.00%
+      citrus_swallowtail/58211.jpg                 | citrus_swallowtail             | citrus_swallowtail             |   100.00% |   100.00%
+      corn_borer/14314.jpg                         | corn_borer                     | corn_borer                     |    99.28% |    99.28%
+      cottony_cushion_scale/59219.jpg              | cottony_cushion_scale          | cottony_cushion_scale          |   100.00% |   100.00%
+      english_grain_aphid/22432.jpg                | black_citrus_aphid             | black_citrus_aphid             |    68.16% |    68.16%
+      florida_red_scale/60618.jpg                  | spotted_lanternfly             | spotted_lanternfly             |    99.76% |    99.76%
+      grape_borer/49943.jpg                        | grape_borer                    | grape_borer                    |    94.64% |    94.64%
+      grape_hawk_moth/43875.jpg                    | spotted_lanternfly             | spotted_lanternfly             |    51.03% |    51.03%
+      grape_leaf_beetle/43058.jpg                  | grape_leaf_beetle              | grape_leaf_beetle              |   100.00% |   100.00%
+
+[5/5] INSTALLING ARTIFACT
+      android asset : C:\ROHIT RAJESH\AgriVeyra\android\app\src\main\assets\agroveyra_pest_model.tflite (6.06 MiB)
+      backend model : C:\ROHIT RAJESH\AgriVeyra\backend\models\agroveyra_pest_model.tflite (6.06 MiB)
+      note: the disease model agroveyra_model.tflite is untouched.
+

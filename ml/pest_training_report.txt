@@ -1,0 +1,61 @@
+PEST CLASSIFIER - training report
+=================================
+model        : yolo11n-cls.pt (nano, classification head rebuilt for 41 classes)
+dataset      : ml/data/pest/ip102_scoped  (post-quarantine: train 16271 / val 2723 / test 8286)
+run          : ml/runs/pest_classifier_scoped  (launched 2026-09-21 12:29:45, PID 33232)
+config       : imgsz 224, batch 16, epochs 50, patience 10, seed 42, deterministic, workers 8
+hardware     : RTX 3050 6GB laptop, torch 2.5.1+cu121, ultralytics 8.4.142
+started from : pretrained yolo11n-cls.pt, "Transferred 234/236 items from pretrained weights"
+
+EPOCHS
+------
+45 of 50 ran; patience stopped it (best epoch was 35, so no val improvement for 10 epochs).
+155.9 s per epoch average; 116.9 minutes of training plus the final val and test passes.
+The train-time scan of 16,271 images reported 0 corrupt, which is a third independent integrity
+check on top of validate_pest_dataset.py and the md5 pass.
+
+RESULTS
+-------
+  val  top-1 : 0.74293  (best, epoch 35)
+  val  top-5 : 0.92839  (best, epoch 32)
+  TEST top-1 : 0.7353   / top-5 0.9230   (all 8,286 held-out images, never used for training or
+                                          for choosing the checkpoint)
+  epoch 1    : val top-1 0.55564, top-5 0.81344
+  final epoch: val top-1 0.74220, top-5 0.92545
+
+  every 5th epoch (val):
+    ep  1  top1=0.55564  top5=0.81344  train_loss=2.45277
+    ep  5  top1=0.48035  top5=0.77158  train_loss=2.13215
+    ep 10  top1=0.59273  top5=0.85898  train_loss=1.64124
+    ep 15  top1=0.64928  top5=0.89056  train_loss=1.32058
+    ep 20  top1=0.67866  top5=0.90709  train_loss=1.12543
+    ep 25  top1=0.71355  top5=0.91774  train_loss=0.93645
+    ep 30  top1=0.72163  top5=0.92325  train_loss=0.80557
+    ep 35  top1=0.74293  top5=0.92508  train_loss=0.64899
+    ep 40  top1=0.73852  top5=0.92545  train_loss=0.52602
+    ep 45  top1=0.74220  top5=0.92545  train_loss=0.43249
+
+  Read: accuracy climbs then plateaus at ~74% while train loss keeps falling to 0.43 - the onset of
+  overfitting, caught by patience=10 exactly as intended rather than being guessed at.
+
+INTERPRETATION
+--------------
+73.5% top-1 on 41 fine-grained pest species with a 1.58 M parameter nano model is in the range the
+literature would predict for IP102-style data, and it is the honest number: the split is md5-clean,
+pixel-verified against cross-split near-duplicates (242 train and 29 val images quarantined), and the
+test split was never used to pick anything. Expect far more than the disease model's 0.95 gate to be
+needed here - at 73.5% top-1 many correct answers sit below 0.95, so the pest feature needs its own
+confidence-gate sweep (same procedure as ml/confidence_gate_sweep.py) before shipping.
+
+NO FIELD VALIDATION YET: unlike the disease model (16 real field photos), there are no real-world
+pest photographs on this machine. Every number above is in-domain IP102 close-ups of insects. Nobody
+has yet pointed this model at a farmer's photo, so the app-side framing matters: IP102 images are of
+the insect itself, and the dataset has no "no pest present" class.
+
+ARTIFACTS
+---------
+  weights   : ml/runs/pest_classifier_scoped/weights/best.pt (3.14 MiB), last.pt
+  curves    : ml/runs/pest_classifier_scoped/{results.csv,results.png,confusion_matrix*.png}
+  export    : ml/pest_export_report.txt (float32 TFLite, op-level checked, 20/20 parity)
+  checksum  : best.pt sha256 is recorded in ml/pest_train_launch.txt context; the TFLite artifact is
+              e192b07125d741c4... (6.06 MiB) in all three locations (build, android asset, backend)

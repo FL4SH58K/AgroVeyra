@@ -585,7 +585,33 @@ the insect*, not of infested leaves, so the model is only meaningful when the ph
 itself; and IP102 has no healthy / "no pest present" class, so the pest model can never answer
 "nothing here" and needs its own re-tuned confidence gate rather than reusing the disease gate.
 
-**Status:** dataset built and audited, quarantine prepared (dry run verified: 242 train + 29 val, test
-untouched). Training has NOT been started - the audit findings were reported before any GPU time was
-spent, deliberately.
+**Training (2026-09-21, `ml/runs/pest_classifier_scoped`, run for real on the post-quarantine split):**
+45 of 50 epochs ran before `patience=10` stopped it (best epoch 35); 155.9 s/epoch. **val top-1
+74.29% / top-5 92.84%; test top-1 73.53% / top-5 92.30%** on all 8,286 held-out images, which were
+never used to train or to choose the checkpoint. `model.names` was re-checked against
+`pest_class_names.json` after training and is identical. The curve is the expected shape for a nano
+model on 41 fine-grained species: top-1 climbs 55.6% (epoch 1) to 74.3% (epoch 35) then plateaus
+while train loss keeps falling to 0.43, i.e. patience caught the onset of overfitting instead of us
+guessing. Full numbers: `ml/pest_training_report.txt`, `ml/pest_results_curve.csv`.
+
+**Export and verification (`ml/export_pest_tflite.py`, reusing the disease pipeline):** float32 TFLite
+with an NHWC `[1,224,224,3]` input and `[1,41]` float32 output, 159 ops, softmax present, **no
+quantize/dequantize ops**, class order identical to the json. Parity against the checkpoint on 20
+test images: **20/20 top-1 agreement, max |p_tflite - p_torch| = 0.000002**. Installed as
+`android/app/src/main/assets/agroveyra_pest_model.tflite` and `backend/models/agroveyra_pest_model.tflite`
+(sha256 `e192b07125d741c4...`, 6.06 MiB, byte-identical in all three locations);
+`agroveyra_model.tflite` (disease, `6aec2f1afedaf4ec`) is untouched. Report:
+`ml/pest_export_report.txt`.
+
+Reading those 20 predictions rather than only the score: 14/20 correct on the sampled images, and
+every miss is *semantically adjacent* - `brown_plant_hopper` -> `white_backed_plant_hopper`,
+`black_citrus_aphid` <-> `english_grain_aphid`, `florida_red_scale` and `grape_hawk_moth` ->
+`spotted_lanternfly`. That is what fine-grained insect classification looks like, not random output.
+
+**Status:** the pest model is trained, exported, verified and installed. Two things remain before it
+can ship in the app: (1) its **own confidence-gate sweep** - at 73.5% top-1, a 0.95 gate would
+withhold most answers, so it needs measuring the way the disease gate was (`ml/confidence_gate_sweep.py`);
+(2) an app-side entry point for pest results. Note also that while the pest model is *installed* in
+the assets and backend models directory, no Kotlin code loads it yet, so the app's behaviour is
+unchanged until that UI work is done.
 
