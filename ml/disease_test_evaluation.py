@@ -258,8 +258,8 @@ def weight_identity() -> str:
     try:
         import torch
 
-        first = torch.load(str(best), map_location="cpu")
-        second = torch.load(str(last), map_location="cpu")
+        first = torch.load(str(best), map_location="cpu", weights_only=False)
+        second = torch.load(str(last), map_location="cpu", weights_only=False)
         sa, sb = first["model"].state_dict(), second["model"].state_dict()
         if set(sa) != set(sb):
             return "state_dict keys differ between best.pt and last.pt"
