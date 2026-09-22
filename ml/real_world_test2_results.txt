@@ -1,0 +1,13 @@
+==============================================================================================================
+AgroVeyra - supplementary real-world test (real_world_test2)
+==============================================================================================================
+model  : C:\ROHIT RAJESH\AgriVeyra\backend\models\agroveyra_model.tflite
+images : 1
+
+  rice_bacterial_leaf_blight_1.jpg
+    truth : Rice___Bacterial_leaf_blight   (alias: alias)
+    top-1 : Rice___Leaf_blast   conf 24.80%   -> WRONG
+    top-5 : Rice___Leaf_blast (24.8%) | Wheat___leaf_blight (17.7%) | Wheat___septoria (10.7%) | Wheat___brown_rust (9.7%) | Wheat___yellow_rust (9.2%)
+
+--------------------------------------------------------------------------------------------------------------
+RESULT: 0/1 correct (top-1)
