@@ -2,12 +2,47 @@
 AgroVeyra - supplementary real-world test (real_world_test2)
 ==============================================================================================================
 model  : C:\ROHIT RAJESH\AgriVeyra\backend\models\agroveyra_model.tflite
-images : 1
+images : 8
+
+  cotton_bacterial_blight_1.jpg
+    truth : Cotton___bacterial_blight   (alias: alias)
+    top-1 : Cotton___bacterial_blight   conf 99.99%   -> CORRECT
+    top-5 : Cotton___bacterial_blight (100.0%) | Cotton___healthy (0.0%) | Wheat___tan_spot (0.0%) | Cotton___fussarium_wilt (0.0%) | Grape___healthy (0.0%)
+
+  cotton_healthy_1.jpg
+    truth : Cotton___healthy   (alias: exact)
+    top-1 : Cotton___bacterial_blight   conf 100.00%   -> WRONG
+    top-5 : Cotton___bacterial_blight (100.0%) | Wheat___tan_spot (0.0%) | Potato___Early_blight (0.0%) | Cotton___healthy (0.0%) | Cotton___fussarium_wilt (0.0%)
 
   rice_bacterial_leaf_blight_1.jpg
     truth : Rice___Bacterial_leaf_blight   (alias: alias)
     top-1 : Rice___Leaf_blast   conf 24.80%   -> WRONG
     top-5 : Rice___Leaf_blast (24.8%) | Wheat___leaf_blight (17.7%) | Wheat___septoria (10.7%) | Wheat___brown_rust (9.7%) | Wheat___yellow_rust (9.2%)
 
+  rice_healthy_1.jpg
+    truth : Rice___healthy   (alias: exact)
+    top-1 : Corn___healthy   conf 99.91%   -> WRONG
+    top-5 : Corn___healthy (99.9%) | Rice___healthy (0.0%) | Potato___healthy (0.0%) | Soybean___healthy (0.0%) | Cherry___healthy (0.0%)
+
+  tomato_early_blight_1.jpg
+    truth : Tomato___Early_blight   (alias: alias)
+    top-1 : Grape___Black_rot   conf 54.32%   -> WRONG
+    top-5 : Grape___Black_rot (54.3%) | Potato___Early_blight (21.4%) | Wheat___tan_spot (9.1%) | Cotton___bacterial_blight (8.5%) | Strawberry___Leaf_scorch (6.4%)
+
+  tomato_healthy_1.jpg
+    truth : Tomato___healthy   (alias: exact)
+    top-1 : Cotton___curl_virus   conf 89.96%   -> WRONG
+    top-5 : Cotton___curl_virus (90.0%) | Tomato___Late_blight (7.4%) | Blueberry___healthy (0.9%) | Raspberry___healthy (0.6%) | Wheat___mite (0.4%)
+
+  wheat_healthy_1.jpg
+    truth : Wheat___healthy   (alias: exact)
+    top-1 : Rice___healthy   conf 86.73%   -> WRONG
+    top-5 : Rice___healthy (86.7%) | Wheat___tan_spot (6.2%) | Wheat___aphid (3.6%) | Wheat___healthy (1.2%) | Wheat___mildew (1.0%)
+
+  wheat_yellow_rust_1.jpg
+    truth : Wheat___yellow_rust   (alias: alias)
+    top-1 : Wheat___brown_rust   conf 59.73%   -> WRONG
+    top-5 : Wheat___brown_rust (59.7%) | Wheat___leaf_blight (17.4%) | Wheat___tan_spot (10.8%) | Wheat___black_rust (8.8%) | Wheat___aphid (0.9%)
+
 --------------------------------------------------------------------------------------------------------------
-RESULT: 0/1 correct (top-1)
+RESULT: 1/8 correct (top-1)
