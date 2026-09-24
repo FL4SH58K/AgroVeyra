@@ -92,6 +92,7 @@ export-env/
 
 # --- Downloaded datasets / backbones at the repo root ----------------------
 datasets/
+/weights/
 *.pt
 *.pth
 /_tmp_*
