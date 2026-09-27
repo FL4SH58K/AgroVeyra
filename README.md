@@ -10,25 +10,27 @@ On-device crop-disease (and pest) classification with a supporting backend. The 
 | Backend | FastAPI + TensorFlow Lite | `GET /`, `POST /predict`, `POST /weather` |
 | ML pipeline | Python + Ultralytics | dataset rebuild, training, export, held-out evaluation |
 
-Two trained models, both `yolo11n-cls`:
+Three trained models, all `yolo11n-cls`:
 
 - **Disease** — 60 classes across 17 crops (PlantVillage). Shipped as `agroveyra_model.tflite`.
 - **Pest** — 41 classes (rice, wheat, citrus, grape, corn, peach; IP102). Shipped as `agroveyra_pest_model.tflite`. **Trained, exported and verified; app integration pending.**
+- **Triage** — 3 classes (healthy / disease / pest_damage). Shipped as `agroveyra_triage_model.tflite`. Runs first on every scan; `pest_damage` opens a 4-category questionnaire (see `pest_category_db.json`).
 
 ## The honest accuracy numbers
 
-| scope | disease model |
+| scope | result |
 |---|---|
-| held-out test — 9,372 images, split by source photo | **97.38% top-1 / 99.64% top-5** |
-| real field photos — 16 phone photos | **43.75% top-1** |
-| pest test — 8,286 held-out images | **73.53% top-1 / 92.30% top-5** |
+| disease held-out test — 9,372 images, split by source photo | **97.38% top-1 / 99.64% top-5** |
+| disease real field photos — 16 phone photos | **43.75% top-1** |
+| pest (insect-ID) test — 8,286 held-out images | **73.53% top-1 / 92.30% top-5** |
+| triage val — 512 images | **97.27% top-1 / 100% top-5** |
 
 The 97.38% → 43.75% drop is **domain shift, not a defect** — proven (not argued) in `ml/field_failure_analysis.txt`: the model is ~75% right on "is this leaf healthy?" and ~33% on "which disease?", and the gap is unchanged by preprocessing, decode path, or removing leakage. At the shipped **0.95 confidence gate** the model shows only answers it can stand behind (in-domain 93.68% coverage @ 99.77% precision; on field photos 6/16 shown, all correct). Read `ml/disease_test_evaluation.txt` and its caveats before quoting any of this.
 
 ## Repo layout
 
 ```
-android/   Kotlin app (ScanActivity, ResultActivity, HistoryActivity, TFLiteHelper, Room, Retrofit)
+android/   Kotlin app (ScanActivity, ResultActivity, PestResultActivity, HistoryActivity, TFLiteHelper, Room, Retrofit)
 backend/   FastAPI + tensorflow-lite (main.py, utils/predict|severity|weather|voice.py, models/, treatment_db.json)
 ml/        data pipeline + training + export + evaluation scripts and their reports
 ```
@@ -60,7 +62,8 @@ ml\.venv\Scripts\python.exe ml\score_real_world2.py          # supplementary rea
 ## Known limitations
 
 - **Disease model is weakest on wheat** (80.15% in-domain; carries 215 of the 246 test errors) and on real field photos (domain shift).
-- **Pest model is not yet wired into the app or backend** — it exists only as a verified asset; IP102 images are close-ups *of the insect*, there is no "no pest present" class, and rice/wheat are its weakest crops.
+- **Pest model (insect-ID, 41 classes) is not yet wired into the app or backend** — it exists only as a verified asset; IP102 images are close-ups *of the insect*, there is no "no pest present" class, and rice/wheat are its weakest crops.
+- **Pest-damage triage is category-level, not species-specific** — trained on cross-crop data (lemon aphids + sesame insect damage); it detects *generic* leaf pest damage and routes to a 4-category questionnaire rather than naming the pest.
 - **Field validation is thin** (16 phone photos, and growing in `ml/real_world_test2/`); the honest field number has a wide interval.
 - The backend's OpenWeatherMap key is a placeholder by default (`your_key_here`) — `/weather` degrades to `spread_risk: UNKNOWN` until a real key is set.
 
