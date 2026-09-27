@@ -128,8 +128,10 @@ Line 'model binaries (hash comparison source vs backup):'
 $models = @(
     'android\app\src\main\assets\agroveyra_model.tflite',
     'android\app\src\main\assets\agroveyra_pest_model.tflite',
+    'android\app\src\main\assets\agroveyra_triage_model.tflite',
     'backend\models\agroveyra_model.tflite',
-    'backend\models\agroveyra_pest_model.tflite'
+    'backend\models\agroveyra_pest_model.tflite',
+    'backend\models\agroveyra_triage_model.tflite'
 )
 foreach ($rel in $models) {
     $from = Join-Path $src $rel
