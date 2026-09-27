@@ -181,6 +181,39 @@ class ScanActivity : AppCompatActivity() {
 	private fun runLocalInference(file: File, capturedPath: String) {
 		lifecycleScope.launch {
 			showLoading(true, "Analyzing leaf...")
+
+			// 1) Triage first: healthy / disease / pest_damage.
+			val triageResult = withContext(Dispatchers.IO) {
+				val bitmap = android.graphics.BitmapFactory.decodeFile(file.absolutePath)
+				val triageHelper = TFLiteHelper(
+					this@ScanActivity,
+					TFLiteHelper.TRIAGE_MODEL_FILE_NAME,
+					TFLiteHelper.TRIAGE_CLASS_NAMES_FILE_NAME
+				)
+				val prediction = triageHelper.classify(bitmap)
+				triageHelper.close()
+				prediction
+			}
+
+			if (triageResult == null) {
+				handlePredictionFailure("Prediction failed. Model not ready or processing error.", file)
+				return@launch
+			}
+
+			val (triageClass, triageConfidence) = triageResult
+			if (triageConfidence < TFLiteHelper.MIN_CONFIDENCE) {
+				showLowConfidenceRetake(triageConfidence)
+				return@launch
+			}
+
+			// 2) Pest damage routes to the questionnaire; no disease classification needed.
+			if (triageClass == "pest_damage") {
+				showLoading(false)
+				launchPestResult(capturedPath, triageConfidence)
+				return@launch
+			}
+
+			// 3) Healthy or disease -> run the disease classifier as before.
 			val result = withContext(Dispatchers.IO) {
 				val bitmap = android.graphics.BitmapFactory.decodeFile(file.absolutePath)
 				val tfliteHelper = TFLiteHelper(this@ScanActivity)
@@ -195,6 +228,14 @@ class ScanActivity : AppCompatActivity() {
 				handlePredictionFailure("Prediction failed. Model not ready or processing error.", file)
 			}
 		}
+	}
+
+	private fun launchPestResult(capturedPath: String, confidence: Float) {
+		val intent = Intent(this, PestResultActivity::class.java).apply {
+			putExtra(PestResultActivity.EXTRA_CAPTURED_IMAGE_PATH, capturedPath)
+			putExtra(PestResultActivity.EXTRA_CONFIDENCE, confidence)
+		}
+		startActivity(intent)
 	}
 
 	private fun handlePredictionSuccess(className: String, confidence: Float, capturedPath: String) {

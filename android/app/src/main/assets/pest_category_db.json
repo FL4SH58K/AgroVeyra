@@ -1,0 +1,62 @@
+{
+	"chewing_holes": {
+		"display_name": "Holes or chewed edges",
+		"symptoms": "Irregular holes through leaves, notched or ragged leaf edges, or leaves eaten down to the veins (skeletonized). You may spot caterpillars, beetles, or slime trails nearby.",
+		"common_pests": [
+			"Caterpillars (armyworms, loopers, cutworms)",
+			"Beetles (flea beetles, Japanese beetles, cucumber beetles)",
+			"Grasshoppers",
+			"Slugs and snails",
+			"Sawfly larvae"
+		],
+		"chemical_treatment": "Target the specific feeder: for caterpillars use Bacillus thuringiensis (Bt) or spinosad; for beetles use pyrethrins or, where permitted, carbaryl or permethrin. Spray in the evening, cover leaf undersides, and follow label rates and re-entry intervals.",
+		"organic_treatment": "Hand-pick caterpillars and beetles into soapy water, use neem oil or Bt for caterpillars, and apply diatomaceous earth or iron-phosphate baits for slugs and snails. A hard water spray can dislodge small larvae.",
+		"prevention": "Use floating row covers to exclude flying adults, encourage birds, lady beetles, and parasitic wasps, remove crop debris and weeds that shelter larvae, and rotate crops yearly.",
+		"urgency": "medium"
+	},
+	"stippling_yellowing": {
+		"display_name": "Tiny pale specks or yellowing",
+		"symptoms": "Fine white or yellow speckling (stippling) on the upper leaf, leaves turning yellow or bronzed, and often sticky honeydew or black sooty mold underneath. Look for tiny insects on the leaf undersides.",
+		"common_pests": [
+			"Aphids",
+			"Spider mites",
+			"Whiteflies",
+			"Leafhoppers",
+			"Thrips",
+			"Scale insects"
+		],
+		"chemical_treatment": "Use insecticidal soap or horticultural oil for soft-bodied pests. For persistent mite or whitefly pressure, use a targeted miticide or insecticide such as spiromesifen or abamectin, rotating modes of action to slow resistance.",
+		"organic_treatment": "Blast leaf undersides with a strong water spray, apply insecticidal soap or neem oil, and release predators such as lady beetles, lacewings, and predatory mites (Phytoseiulus for mites).",
+		"prevention": "Avoid excess nitrogen that attracts sap feeders, inspect new plants for hitchhikers, use reflective mulch to repel whiteflies, and conserve natural enemies by limiting broad-spectrum sprays.",
+		"urgency": "medium"
+	},
+	"webbing_curling": {
+		"display_name": "Webbing or curled leaves",
+		"symptoms": "Fine silken webbing on leaves or stems, or leaves curling, cupping, and twisting. Pests are often tucked inside the webbing or curled tissue.",
+		"common_pests": [
+			"Spider mites (webbing)",
+			"Aphids (leaf curling)",
+			"Leaf rollers and leaf folders",
+			"Webworms",
+			"Psyllids"
+		],
+		"chemical_treatment": "For mites apply a targeted miticide (hexythiazox or abamectin); for aphids and leaf rollers use insecticidal soap or spinosad. Remove heavily webbed or rolled leaves first so the spray reaches the pests.",
+		"organic_treatment": "Spray water to break up webbing, prune out curled or webbed leaves, apply insecticidal soap or neem oil, and release predatory mites, lady beetles, or Trichogramma wasps against leaf-roller eggs.",
+		"prevention": "Keep plants adequately watered (mites explode on drought-stressed plants), avoid broad-spectrum insecticides that kill predators, and scout weekly so early webbing is caught before it spreads.",
+		"urgency": "high"
+	},
+	"mining_trails": {
+		"display_name": "Winding trails inside the leaf",
+		"symptoms": "Pale, winding, or blotchy tunnels (mines) inside the leaf, with the surface intact but the inner tissue eaten out. You may see tiny dark specks (frass) inside the trails.",
+		"common_pests": [
+			"Leafminer flies (Liriomyza spp.)",
+			"Leafminer moths",
+			"Leafminer beetles",
+			"Leafminer sawflies"
+		],
+		"chemical_treatment": "Use a translaminar insecticide such as abamectin or spinosad where label permits; systemics can reach larvae inside the leaf. Time sprays to adult emergence and rotate modes of action, as leafminers develop resistance quickly.",
+		"organic_treatment": "Remove and destroy mined leaves, hang yellow sticky traps to catch adult flies, and release parasitic wasps (Diglyphus and Dacnusa) that attack the larvae inside the mines.",
+		"prevention": "Use floating row covers, destroy crop residue between plantings, and avoid excess nitrogen that produces soft, attractive foliage; resistant varieties and trap crops reduce pressure.",
+		"urgency": "medium"
+	}
+}

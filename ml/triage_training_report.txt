@@ -1,0 +1,43 @@
+AgroVeyra TRIAGE classifier (healthy / disease / pest_damage) — training summary
+================================================================================
+
+Checkpoint : ml/runs/pest_triage/weights/best.pt (yolo11n-cls, 3.04 MiB)
+Dataset    : ml/data/triage/  (built by ml/build_triage_dataset.py)
+  2,554 images, 3 classes:
+    healthy       794
+    disease       799
+    pest_damage   961
+  split : train 2,042 / val 512 (80/20, stratified, seed 42)
+  dedup : md5 (0 removed) + dHash threshold 5 (105 removed)
+  sources:
+    healthy      <- PlantVillage healthy leaves + LeLePhid healthy (lemon)
+    disease      <- merged_clean, pathogen classes only. The 3 arthropod classes
+                    Wheat___aphid / Wheat___mite / Wheat___stem_fly were excluded
+                    so that "disease" = pathogen and "pest_damage" = arthropod.
+    pest_damage  <- LeLePhid aphid (335, lemon) + sesame "Insect Leaf Damage" (724)
+
+Training  : yolo11n-cls, imgsz 224, batch 16, 50 epochs, patience 10, seed 42
+            (RTX 3050 6GB laptop GPU)
+  early-stopped at epoch 30 (best val/loss 0.087 at epoch 20)
+
+Validation (512 images):
+  top-1 : 0.9727
+  top-5 : 1.0000
+
+  per-class precision / recall / F1 (rows=true, cols=pred):
+    disease      P=0.9750 R=0.9455 F1=0.9600
+    healthy      P=0.9371 R=0.9739 F1=0.9551
+    pest_damage  P=1.0000 R=0.9948 F1=0.9974
+
+Caveat: pest_damage is trained on cross-crop data (lemon aphids + sesame insect
+damage), so the triage learns *generic leaf pest-damage appearance*, not a
+specific pest species. In the app it routes to a 4-category questionnaire
+(pest_category_db.json) for species-level guidance rather than naming the pest.
+
+Notes:
+  - 1 corrupt image ignored: pv_disease_0027.png is actually a GIF
+    (pre-existing PlantVillage quirk).
+  - class order == sorted(folder names) == triage_class_names.json
+    == ["disease", "healthy", "pest_damage"].
+
+Export   : float32 TFLite (see ml/triage_export_report.txt)

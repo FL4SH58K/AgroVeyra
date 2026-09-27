@@ -60,6 +60,15 @@ ml/.sha256_*.json
 # Step 6/7 run scratch: live logs, pidfiles and pre-run result backups kept as evidence
 # (referenced by ml/real_world_comparison.txt and GPU_RUNBOOK.md section 9)
 ml/_*
+
+# Triage (pest-damage) session scratch: live build/training logs and pidfiles.
+# The durable summaries are tracked as ml/triage_training_report.txt and
+# ml/triage_export_report.txt instead.
+android/build_*.txt
+ml/export_triage_*.log
+ml/train_triage*.log
+ml/train_triage_pid.txt
+ml/triage_plan.txt
 # 28.8 MB per-file audit manifest for the rebuilt split; regenerate with
 # ml/rebuild_split.py --apply (the summary report ml/dataset_rebuild_report.txt *is* tracked)
 ml/dataset_rebuild_manifest.csv

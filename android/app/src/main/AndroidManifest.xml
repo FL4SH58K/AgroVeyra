@@ -25,6 +25,9 @@
 			android:name=".ResultActivity"
 			android:exported="false" />
 		<activity
+			android:name=".PestResultActivity"
+			android:exported="false" />
+		<activity
 			android:name=".HistoryActivity"
 			android:exported="false" />
 		<activity

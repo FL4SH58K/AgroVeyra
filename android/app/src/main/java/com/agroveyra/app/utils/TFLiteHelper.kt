@@ -16,7 +16,11 @@ import java.nio.ByteOrder
 import java.nio.channels.FileChannel
 import kotlin.math.roundToInt
 
-class TFLiteHelper(context: Context) : Closeable {
+class TFLiteHelper(
+	context: Context,
+	private val modelFileName: String = MODEL_FILE_NAME,
+	private val classNamesFileName: String = CLASS_NAMES_FILE_NAME
+) : Closeable {
 
 	private val appContext = context.applicationContext
 	private var interpreter: Interpreter? = null
@@ -24,8 +28,10 @@ class TFLiteHelper(context: Context) : Closeable {
 
 	companion object {
 		private const val TAG = "TFLiteHelper"
-		private const val MODEL_FILE_NAME = "agroveyra_model.tflite"
-		private const val CLASS_NAMES_FILE_NAME = "class_names.json"
+		const val MODEL_FILE_NAME = "agroveyra_model.tflite"
+		const val CLASS_NAMES_FILE_NAME = "class_names.json"
+		const val TRIAGE_MODEL_FILE_NAME = "agroveyra_triage_model.tflite"
+		const val TRIAGE_CLASS_NAMES_FILE_NAME = "triage_class_names.json"
 		private const val INPUT_SIZE = 224
 		private const val BYTES_PER_CHANNEL = 4
 		private const val NUM_CHANNELS = 3
@@ -49,11 +55,11 @@ class TFLiteHelper(context: Context) : Closeable {
 
 	init {
 		try {
-			val model = loadModelFile(MODEL_FILE_NAME)
+			val model = loadModelFile(modelFileName)
 			interpreter = Interpreter(model, Interpreter.Options().apply {
 				setNumThreads(4)
 			})
-			classNames = loadClassNames(CLASS_NAMES_FILE_NAME)
+			classNames = loadClassNames(classNamesFileName)
 			Log.i(TAG, "TFLite model loaded successfully with ${classNames.size} classes")
 		} catch (exception: Exception) {
 			Log.e(TAG, "Failed to initialize TFLiteHelper", exception)
